@@ -2400,14 +2400,6 @@ INSERT INTO `PAIEMENT` (`id`, `qte`, `total`, `id_user`, `id_reservation`, `id_p
 INSERT INTO `PAIEMENT` (`id`, `qte`, `total`, `id_user`, `id_reservation`, `id_produit`) VALUES (499, 13, '9053.9', 499, 99, 49);
 INSERT INTO `PAIEMENT` (`id`, `qte`, `total`, `id_user`, `id_reservation`, `id_produit`) VALUES (500, 22, '4472.54', 500, 100, 50);
 
-
-
-
-
-
-
-
-
-
-
-
+UPDATE PAIEMENT, PRODUITS
+SET total = PRODUITS.prix * PAIEMENT.qte
+WHERE PAIEMENT.id_produit = PRODUITS.id;

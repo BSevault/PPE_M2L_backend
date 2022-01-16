@@ -1,0 +1,54 @@
+USERS
+	id INT(3) PRIMARY KEY
+	nom VARCHAR (255)
+	prenom 
+	ddn
+	email
+	password
+	telephone
+	adresse
+
+
+SALLES
+	id
+	nom
+	prix
+	capacite
+	description
+
+
+PRODUITS
+	id
+	nom
+	description
+	prix
+
+RESERVATIONS
+	id
+	date_resa
+	is_paid
+	#salle_id
+	#user_id
+
+PARTICIPANTS
+	id
+	covid_positive
+	#resa_id
+	#user_id
+
+PAIEMENTS
+	id
+	#user_id
+	#resa_id
+	#produit_id
+	quantité
+
+TICKETS
+	id
+	titre
+	message
+	date_date
+	#user_id
+	#salle_id
+	#resa_id
+	

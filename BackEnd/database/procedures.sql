@@ -21,7 +21,7 @@ END //
 CREATE OR REPLACE PROCEDURE createAccount(IN p_nom VARCHAR(255), IN p_prenom VARCHAR(255), IN p_email VARCHAR(255), IN p_tel INT, IN p_password VARCHAR(255), IN p_ddn VARCHAR(255), IN p_adresse VARCHAR(255))
 BEGIN
 	INSERT INTO Users(nom, prenom, email, tel, password, ddn, adresse)
-	VALUES (p_nom, p_prenom, p_email, p_tel, p_password, p_ddn, p_adresse);
+	VALUES (p_nom, p_prenom, p_email, p_tel, SHA1(p_password), p_ddn, p_adresse);
 END //
 
 
@@ -30,7 +30,7 @@ CREATE OR REPLACE PROCEDURE updateAccount(IN p_id int, IN p_nom VARCHAR(255), IN
 BEGIN
 	UPDATE USERS
 	SET
-		nom = p_nom, prenom = p_prenom, email = p_email, tel = p_tel, password = p_password, ddn = p_ddn, adresse = p_adresse
+		nom = p_nom, prenom = p_prenom, email = p_email, tel = p_tel, password = SHA1(p_password), ddn = p_ddn, adresse = p_adresse
 	WHERE
 		id = p_id;
 END //

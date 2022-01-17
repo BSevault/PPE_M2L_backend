@@ -13,7 +13,7 @@ CREATE TABLE USERS(
    tel VARCHAR(50),
    password TEXT NOT NULL,
    ddn DATE NOT NULL,
-   adresse VARCHAR(255) ,
+   adresse VARCHAR(255),
    PRIMARY KEY(id)
 );
 
@@ -23,6 +23,7 @@ CREATE TABLE SALLES(
    description VARCHAR(255),
    capacite INT NOT NULL,
    prix FLOAT NOT NULL,
+   is_active BOOLEAN NOT NULL DEFAULT 1,
    PRIMARY KEY(id)
 );
 

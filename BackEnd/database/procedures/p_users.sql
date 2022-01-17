@@ -68,15 +68,21 @@ END //
 -- get user reservations (participants: (nom/prénom))
 
     -- reservations avant date du jour (exclus) 
-
-    -- reservations après date du jour (inclus)
-    CREATE OR REPLACE PROCEDURE getAccountResa(IN p_date_resa int)
+    CREATE OR REPLACE PROCEDURE getBeforeReservation (IN p_user_id int)
     BEGIN
-	SELECT u.id, u.nom, u.prenom, u.email, u.tel, u.ddn, u.adresse 
-	FROM users u
-	INNER JOIN reservations r
-	ON u.id = r.id
-	WHERE date_resa >= p_date_resa;
+	SELECT s.nom, s.description, r.date_resa, s.prix, is_paid  FROM reservations r
+	INNER JOIN salles s
+	ON r.id_salle = s.id
+	WHERE date_resa > DATE(NOW());
+    END //
+    
+    -- reservations après date du jour (inclus)
+    CREATE OR REPLACE PROCEDURE getFuturReservation (IN p_user_id int)
+    BEGIN
+	SELECT s.nom, s.description, r.date_resa, s.prix, is_paid  FROM reservations r
+	INNER JOIN salles s
+	ON r.id_salle = s.id
+	WHERE date_resa > DATE(NOW());
     END //
 
 -- create user reservation

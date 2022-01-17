@@ -1,9 +1,17 @@
 const router = require('express-promise-router')();
 
-const { testGet } = require('../controllers/controllers');
+const { getSalles, getOneSalle, createAccount } = require('../controllers/controllers');
 
 router
-    .route('/test')
-    .get(testGet)
+    .route('/salles')
+    .get(getSalles)
+
+router
+    .route('/salle/:id')
+    .get(getOneSalle)
+
+router
+    .route('/registration')
+    .post(createAccount)
 
 module.exports = router;

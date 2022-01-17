@@ -65,7 +65,7 @@ CREATE TABLE PAIEMENT(
    total FLOAT NOT NULL,
    id_user INT NOT NULL,
    id_reservation INT NOT NULL,
-   id_produit INT NOT NULL,
+   id_produit INT,
    PRIMARY KEY(id),
    FOREIGN KEY(id_user) REFERENCES USERS(id),
    FOREIGN KEY(id_produit) REFERENCES PRODUITS(id),

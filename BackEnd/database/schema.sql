@@ -32,6 +32,7 @@ CREATE TABLE PRODUITS(
    description VARCHAR(255),
    qte_dispo INT NOT NULL,
    prix FLOAT NOT NULL,
+   is_active BOOLEAN NOT NULL DEFAULT 1,
    PRIMARY KEY(id)
 );
 

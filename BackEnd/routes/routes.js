@@ -5,7 +5,11 @@ const {
     getOneSalle, 
     createAccount, 
     updateAccount,
-    getHistoriquePaiement
+    getHistoriquePaiement,
+    getReservation,
+    createReservation,
+    updateReservation,
+    deleteReservation
 } = require('../controllers/controllers');
 
 router
@@ -21,9 +25,17 @@ router
     .post(createAccount)
 
 router
-    .route('/compte/:id')
+    .route('/compte/:user_id')
     .get(getHistoriquePaiement)
     .put(updateAccount)
+
+router
+    .route('/reservation/:user_id')
+    .get(getReservation)
+    .post(createReservation)
+    .put(updateReservation)
+    .delete(deleteReservation)
+
 
 
 module.exports = router;

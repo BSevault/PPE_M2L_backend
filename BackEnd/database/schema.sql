@@ -38,6 +38,7 @@ CREATE TABLE PRODUITS(
 CREATE TABLE TICKETS(
    id INT NOT NULL AUTO_INCREMENT,
    date_ticket DATE NOT NULL,
+   date_probleme DATE NOT NULL,
    description TEXT NOT NULL,
    id_user INT NOT NULL,
    id_salle INT,

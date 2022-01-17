@@ -41,7 +41,7 @@ RESERVATION
 
 PAIEMENT
 	id INT PRIMARY KEY
-	qte INT : quantité de produit achetés
+	qte INT : quantité de produits achetés
 	total FLOAT : total du paiement
 	#id_user INT FOREIGN KEY référence à USERS.id : quel user a réglé le paiement
 	#id_reservation INT FOREIGN KEY référence à RESERVATIONS.id : id de la réservation concernée

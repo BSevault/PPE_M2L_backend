@@ -1,54 +1,54 @@
 USERS
-	id INT(3) PRIMARY KEY
-	nom VARCHAR (255)
-	prenom 
-	ddn
-	email
-	password
-	telephone
-	adresse
-
+	id INT PRIMARY KEY
+	nom VARCHAR : nom user
+	prenom VARCHAR :prenom user
+	ddn VARCHAR : date de naissance user
+	email VARCHAR : email user
+	password VARCHAR : password hashé en SHA1
+	telephone VARCHAR : telephone user
+	adresse VARCHAR : adresse user
 
 SALLES
-	id
-	nom
-	prix
-	capacite
-	description
-
+	id INT PRIMARY KEY
+	nom VARCHAR : nom de la salle
+	description VARCHAR : description de la salle
+	capacite INT : capacité maximum de la salle en nombre de personnes
+	prix FLOAT : prix d'une réservation de la salle
 
 PRODUITS
-	id
-	nom
-	description
-	prix
+	id INT PRIMARY KEY
+	nom_produit VARCHAR : nom du produit
+	description VARCHAR :description du produits
+	qte_dispo INT : stock disponible
+	prix FLOAT ; prix du produit
 
-RESERVATIONS
-	id
-	date_resa
-	is_paid
-	#salle_id
-	#user_id
+	TICKETS
+	id INT PRIMARY KEY
+	titre VARCHAR : titre du ticket
+	date_ticket DATETIME : date de rédaction du ticket
+	date_probleme DATETIME : date de survenue du problème décrit dans le ticket
+	description VARCHAR : message du ticket
+	#id_user INT FOREIGN KEY référence à USERS.id : user qui arédigé le ticket
+	#id_salle INT FOREIGN KEY référence à SALLES.id : salle concernée par le ticket
+	#id_produit INT FOREIGN KEY référence à PRODUITS.id : produit concerné par le ticket
+
+RESERVATION
+	id INT PRIMARY KEY
+	date_resa DATETIME : date de réservation
+	is_paid BOOL : statut du paiement de la salle (payé ou non)
+	#id_user INT FOREIGN KEY référence à USERS.id : id du user qui a fait la réservation
+	#id_salle INT FOREIGN KEY référence à SALLES.id : id de la salle concernée
+
+PAIEMENT
+	id INT PRIMARY KEY
+	qte INT : quantité de produit achetés
+	total FLOAT : total du paiement
+	#id_user INT FOREIGN KEY référence à USERS.id : quel user a réglé le paiement
+	#id_reservation INT FOREIGN KEY référence à RESERVATIONS.id : id de la réservation concernée
+	#id_produit INT FOREIGN KEY référence à PRODUITS.id: produit concerné, si null concerne le paiement d'une réservation
 
 PARTICIPANTS
-	id
-	covid_positive
-	#resa_id
-	#user_id
-
-PAIEMENTS
-	id
-	#user_id
-	#resa_id
-	#produit_id
-	quantité
-
-TICKETS
-	id
-	titre
-	message
-	date_date
-	#user_id
-	#salle_id
-	#resa_id
-	
+	id INT PRIMARY KEY
+	covid_positive BOOL : statut covid d'un participant (positif ou négatif)
+	#id_user INT FOREIGN KEY référence à USERS.id : id du user participant à la réservation
+	#id_reservation INT FOREIGN KEY référence à RESERVATIONS.id : réservation à laquelle participe le participant

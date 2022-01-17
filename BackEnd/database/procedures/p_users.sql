@@ -8,10 +8,20 @@ DELIMITER //
     -- check user password (authentification)
     -- get user payments services (historique)
     -- get user payments salles (historique)
+-- create user
+-- update user
+-- delete user
+
+-- create user paiement
 
 -- get user reservations (participants: (nom/prénom))
     -- reservations avant date du jour (exclus) 
     -- reservations après date du jour (inclus)
+
+-- create user reservation
+-- update user reservation (set is_paid via create paiement)
+-- delete user reservation (bloqué post date du jour)
+
 
 -- get user participations (réservation: (nom_salle, date, admin_resa(nom/prenom)))
     -- participations avant date du jour (exclus)
@@ -29,7 +39,5 @@ DELIMITER //
     -- update
     -- delete
 
--- create user
--- update user
--- delete user
+
 

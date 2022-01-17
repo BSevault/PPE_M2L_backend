@@ -183,4 +183,9 @@ BEGIN
 	WHERE date_resa > DATE(NOW());
 END //
 
-
+-- cas covid positif
+CREATE OR REPLACE PROCEDURE isCovid (IN p_user_id int)
+BEGIN
+	UPDATE participants
+	SET covid_positive = 1;
+END //

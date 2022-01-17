@@ -50,9 +50,9 @@ END //
 
 
 -- créer une réservation
-CREATE OR REPLACE PROCEDURE createReservation (IN p_date VARCHAR(255), IN p_user_id int, IN p_salle_id int)
+CREATE OR REPLACE PROCEDURE createReservation (IN p_date VARCHAR(255), IN p_user_id int, IN p_salle_id int, IN p_is_paid BOOLEAN)
 BEGIN
-	INSERT INTO reservation (date_resa, id_user, id_salle) VALUES (p_date, p_user_id, p_salle_id);
+	INSERT INTO reservation (date_resa, id_user, id_salle, is_paid) VALUES (p_date, p_user_id, p_salle_id, p_is_paid);
 END //
 
 

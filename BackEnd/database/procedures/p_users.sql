@@ -73,16 +73,16 @@ END //
 	SELECT s.nom, s.description, r.date_resa, s.prix, is_paid  FROM reservations r
 	INNER JOIN salles s
 	ON r.id_salle = s.id
-	WHERE date_resa > DATE(NOW());
+	WHERE r.id_user = p_user_id AND date_resa < DATE(NOW());
     END //
-    
+
     -- reservations après date du jour (inclus)
-    CREATE OR REPLACE PROCEDURE getFuturReservation (IN p_user_id int)
+    CREATE OR REPLACE PROCEDURE getFutureReservation (IN p_user_id int)
     BEGIN
 	SELECT s.nom, s.description, r.date_resa, s.prix, is_paid  FROM reservations r
 	INNER JOIN salles s
 	ON r.id_salle = s.id
-	WHERE date_resa > DATE(NOW());
+	WHERE r.id_user = p_user_id AND date_resa >= DATE(NOW());
     END //
 
 -- create user reservation
@@ -125,9 +125,10 @@ END //
     -- delete
 
 -- cas covid positif
-CREATE OR REPLACE PROCEDURE isCovid (IN p_user_id int)
+CREATE OR REPLACE PROCEDURE isCovid (IN p_user_id int, IN p_resa_id int)
 BEGIN
 	UPDATE participants
-	SET covid_positive = 1;
+	SET covid_positive = 1
+    WHERE id_user = p_user_id AND id_reservation = p_resa_id;
 END //
 

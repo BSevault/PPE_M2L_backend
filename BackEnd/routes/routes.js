@@ -1,6 +1,12 @@
 const router = require('express-promise-router')();
 
-const { getSalles, getOneSalle, createAccount } = require('../controllers/controllers');
+const {
+    getSalles, 
+    getOneSalle, 
+    createAccount, 
+    updateAccount,
+    getHistoriquePaiement
+} = require('../controllers/controllers');
 
 router
     .route('/salles')
@@ -13,5 +19,11 @@ router
 router
     .route('/registration')
     .post(createAccount)
+
+router
+    .route('/compte/:id')
+    .get(getHistoriquePaiement)
+    .put(updateAccount)
+
 
 module.exports = router;

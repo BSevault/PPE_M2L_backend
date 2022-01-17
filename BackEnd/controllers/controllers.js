@@ -8,6 +8,7 @@ module.exports = {
             return res.status(200).json({ success: result[0]});
         });
     },
+
     getOneSalle: async (req, res) => {
         const { id } = req.params;
         await call(res, async (connexion) => {            
@@ -15,13 +16,31 @@ module.exports = {
             return res.status(200).json({ success: result[0] });
         });
     },
+
     createAccount: async (req, res) => {
-        const { nom, prenom, email, tel, password, ddn, adresse } = req.body;
-        const params = [nom, prenom, email, tel, password, ddn, adresse]
+        const params = Object.values(req.body); // transform object into array
         await call(res, async (connexion) => {
             const result = await connexion.query("CALL createAccount(?,?,?,?,?,?,?)", params);
-            return res.status(200).json({ success: result })
-        })
+            return res.status(200).json({ success: result });
+        });
+    },
+
+    updateAccount: async (req, res) => {
+        const { id } = req.params; // en vrai ça serais plutôt un token qu'une id
+        const params = Object.values(req.body);
+        params.unshift(id);
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL updateAccount(?,?,?,?,?,?,?,?)", params);
+            return res.status(200).json({ success: result });
+        });
+    },
+
+    getHistoriquePaiement: async (req, res) => {
+        const { id } = req.params;
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL getHistoriquePaiement(?)", [id] )
+            return res.status(200).json({ success: result[0] })
+        });
     }
 
 }

@@ -40,18 +40,18 @@ END //
     END //
 
 -- create user
-CREATE OR REPLACE PROCEDURE createAccount(IN p_nom VARCHAR(255), IN p_prenom VARCHAR(255), IN p_email VARCHAR(255), IN p_tel INT, IN p_password VARCHAR(255), IN p_ddn VARCHAR(255), IN p_adress VARCHAR(255))
+CREATE OR REPLACE PROCEDURE createAccount(IN p_nom VARCHAR(255), IN p_prenom VARCHAR(255), IN p_email VARCHAR(255), IN p_tel VARCHAR(50), IN p_password VARCHAR(255), IN p_ddn VARCHAR(255), IN p_adresse VARCHAR(255))
 BEGIN
-	INSERT INTO users(nom, prenom, email, tel, password, ddn, adress)
-	VALUES (p_nom, p_prenom, p_email, p_tel, p_password, p_ddn, p_adress);
+	INSERT INTO Users(nom, prenom, email, tel, password, ddn, adresse)
+	VALUES (p_nom, p_prenom, p_email, p_tel, SHA1(p_password), p_ddn, p_adresse);
 END //
 
 -- update user
-CREATE OR REPLACE PROCEDURE updateAccount(IN p_id int, IN p_nom VARCHAR(255), IN p_prenom VARCHAR(255), IN p_email VARCHAR(255), IN p_tel INT, IN p_password VARCHAR(255), IN p_ddn VARCHAR(255), IN p_adress VARCHAR(255))
+CREATE OR REPLACE PROCEDURE updateAccount(IN p_id int, IN p_nom VARCHAR(255), IN p_prenom VARCHAR(255), IN p_email VARCHAR(255), IN p_tel VARCHAR(50), IN p_password VARCHAR(255), IN p_ddn VARCHAR(255), IN p_adresse VARCHAR(255))
 BEGIN
 	UPDATE USERS
 	SET
-    nom = p_nom, prenom = p_prenom, email = p_email, tel = p_tel, password = p_password, ddn = p_ddn, adress = p_adress
+		nom = p_nom, prenom = p_prenom, email = p_email, tel = p_tel, password = SHA1(p_password), ddn = p_ddn, adresse = p_adresse
 	WHERE
 		id = p_id;
 END //
@@ -86,9 +86,9 @@ END //
     END //
 
 -- create user reservation
-CREATE OR REPLACE PROCEDURE createReservation (IN p_date VARCHAR(255), IN p_user_id int, IN p_salle_id int)
+CREATE OR REPLACE PROCEDURE createReservation (IN p_date VARCHAR(255), IN p_user_id int, IN p_salle_id int, IN p_is_paid BOOLEAN)
 BEGIN
-INSERT INTO reservations (date_resa, id_user, id_salle) VALUES (p_date, p_user_id, p_salle_id);
+	INSERT INTO reservations (date_resa, id_user, id_salle, is_paid) VALUES (p_date, p_user_id, p_salle_id, p_is_paid);
 END //
 
 -- update user reservation (set is_paid via create paiement)

@@ -166,26 +166,65 @@ END //
 
 
 -- voir les participants à une réservation
-CREATE OR REPLACE PROCEDURE getFutureReservation (IN p_user_id int)
+CREATE OR REPLACE PROCEDURE getParticipants (IN p_resa_id int)
 BEGIN
-	SELECT s.nom, s.description, r.date_resa, s.prix, is_paid  FROM reservations r
+	SELECT s.nom, r.date_resa, u.prenom, u.nom 
+	FROM participants p
+	INNER JOIN reservation r
+	ON p.id_reservation = r.id
 	INNER JOIN salles s
-	ON r.id_salle = s.id
-	WHERE date_resa > DATE(NOW());
+	ON r.id_salle = s.id;
 END //
 
 -- ajouter des participants 
-CREATE OR REPLACE PROCEDURE addParticipant (IN p_user_id int)
+CREATE OR REPLACE PROCEDURE addParticipant (IN p_user_id int, IN p_resa_id int)
 BEGIN
-	SELECT s.nom, s.description, r.date_resa, s.prix, is_paid  FROM reservations r
-	INNER JOIN salles s
-	ON r.id_salle = s.id
-	WHERE date_resa > DATE(NOW());
+	INSERT INTO participants (covid_positive, id_user, id_reservation)
+	VALUES (DEFAULT, p_user_id, p_resa_id);
 END //
 
 -- cas covid positif
 CREATE OR REPLACE PROCEDURE isCovid (IN p_user_id int)
 BEGIN
 	UPDATE participants
-	SET covid_positive = 1;
+	SET covid_positive = 1
+    WHERE id_user = p_user_id AND id_reservation IN (
+		SELECT id FROM reservations
+		WHERE date_resa > DATE(NOW())
+	);
 END //
+
+-- get userTickets (historique)
+CREATE OR REPLACE PROCEDURE getUserTickets (IN p_user_id int)
+BEGIN
+	SELECT t.date_ticket, t.description, t.date_probleme, s.nom
+	FROM tickets t
+	INNER JOIN salles s
+	ON t.id_salle = s.id
+	WHERE t.id_user = p_user_id;
+END //
+
+
+-- get userTicket
+CREATE OR REPLACE PROCEDURE getOneUserTicket (IN p_user_id int, IN p_id int)
+BEGIN
+	SELECT t.date_ticket, t.description, t.date_probleme, s.nom
+	FROM tickets t
+	INNER JOIN salles s
+	ON t.id_salle = s.id
+	WHERE t.id_user = p_user_id AND t.id = p_id;
+END //
+
+    -- create
+CREATE OR REPLACE PROCEDURE createUserTicket (IN p_date_ticket date, IN p_date_probleme date, IN p_description VARCHAR(255), IN p_user_id int, IN )
+BEGIN
+	INSERT INTO tickets (date_ticket, date_probleme, description, id_user, id_salle)
+	VALUES (DATE(NOW()), p_date_probleme, p_description, p_user_id, (
+		SELECT s.id FROM salles s 
+		INNER JOIN reservations r 
+		ON s.id = r.id_salle 
+		WHERE r.date_resa = date_probleme));
+END //
+    -- update
+
+    -- delete

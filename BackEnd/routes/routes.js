@@ -12,6 +12,15 @@ const {
     deleteReservation
 } = require('../controllers/controllers');
 
+const {
+    getAllAccount,
+    getOneAccount,
+    getUserTickets,
+    getOneUserTicket,
+    createUserTicket,
+    updateOneUserTicket
+} = require('../controllers/controller_users');
+
 router
     .route('/salles')
     .get(getSalles)
@@ -25,9 +34,27 @@ router
     .post(createAccount)
 
 router
+    .route('/compte')
+    .get(getAllAccount)
+    
+router
     .route('/compte/:user_id')
-    .get(getHistoriquePaiement)
+    .get(getOneAccount)
     .put(updateAccount)
+
+router
+    .route('/compte/:user_id/paiements')
+    .get(getHistoriquePaiement)
+
+router
+    .route('/compte/:user_id/tickets')
+    .get(getUserTickets)
+    .post(createUserTicket)
+
+router
+    .route('/compte/:user_id/tickets/:ticket_id')
+    .get(getOneUserTicket)
+    .put(updateOneUserTicket)
 
 router
     .route('/reservation/:user_id')

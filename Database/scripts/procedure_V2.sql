@@ -216,7 +216,7 @@ BEGIN
 END //
 
     -- create
-CREATE OR REPLACE PROCEDURE createUserTicket (IN p_date_ticket date, IN p_date_probleme date, IN p_description VARCHAR(255), IN p_user_id int)
+CREATE OR REPLACE PROCEDURE createUserTicket (IN p_date_probleme date, IN p_description VARCHAR(255), IN p_user_id int)
 BEGIN
 	INSERT INTO tickets (date_ticket, date_probleme, description, id_user, id_salle)
 	VALUES (DATE(NOW()), p_date_probleme, p_description, p_user_id, (
@@ -240,7 +240,7 @@ BEGIN
 END //
 
     -- delete
-CREATE OR REPLACE PROCEDURE updateUserTicket (IN p_user_id int, IN p_date_probleme date)
+CREATE OR REPLACE PROCEDURE deleteUserTicket (IN p_user_id int, IN p_date_probleme date)
 BEGIN
 	DELETE FROM tickets
 	WHERE id_user = p_user_id AND date_probleme = p_date_probleme 

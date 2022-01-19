@@ -79,6 +79,12 @@ BEGIN
 END //
 
 -- create user paiement
+CREATE OR REPLACE PROCEDURE createUserPayment(IN p_qte INT, IN p_total FLOAT,IN p_id_user INT, IN p_id_reservation INT, IN p_id_produit INT)
+NOT DETERMINISTIC CONTAINS SQL
+BEGIN
+	INSERT INTO paiements (qte, total, id_user, id_reservation, id_produit)
+	VALUES (p_qte, p_total, p_id_user, p_id_reservation, p_id_produit);
+END //
 
 -- get user reservations (participants: (nom/prénom))
 

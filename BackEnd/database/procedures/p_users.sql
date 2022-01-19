@@ -28,8 +28,8 @@ NOT DETERMINISTIC CONTAINS SQL
 BEGIN
 	SELECT p.id, p.qte, p.total, p.id_reservation, p.id_produit
 	FROM paiements p
-	INNER JOIN users u
-	ON p_user_id = p.id_user
+	WHERE p_user_id = p.id_user
+	AND p.id_produit IS NOT NULL;
 END //
 
     -- get user payments salles (historique)

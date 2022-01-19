@@ -143,7 +143,7 @@ BEGIN
 END //
 
     -- create // matt
-    CREATE OR REPLACE PROCEDURE createUserTicket (IN p_date_ticket date, IN p_date_probleme date, IN p_description VARCHAR(255), IN p_user_id int, IN )
+    CREATE OR REPLACE PROCEDURE createUserTicket (IN p_date_ticket date, IN p_date_probleme date, IN p_description VARCHAR(255), IN p_user_id int)
 BEGIN
 	INSERT INTO tickets (date_ticket, date_probleme, description, id_user, id_salle)
 	VALUES (DATE(NOW()), p_date_probleme, p_description, p_user_id, (
@@ -152,8 +152,34 @@ BEGIN
 		ON s.id = r.id_salle 
 		WHERE r.date_resa = date_probleme));
 END //
+
+
     -- update // matt 
+CREATE OR REPLACE PROCEDURE updateUserTicket (IN p_date_probleme date, IN p_description VARCHAR(255), IN p_user_id int)
+BEGIN
+	UPDATE tickets
+	SET date_probleme = p_date_probleme, description = p_description
+	WHERE id_user = 1 AND id_salle IN (
+		SELECT s.id FROM salles s 
+		INNER JOIN reservations r 
+		ON s.id = r.id_salle 
+		WHERE r.date_resa = p_date_probleme
+	);
+END //
+
     -- delete // matt
+	CREATE OR REPLACE PROCEDURE updateUserTicket (IN p_user_id int, IN p_date_probleme date)
+BEGIN
+	DELETE FROM tickets
+	WHERE id_user = p_user_id AND date_probleme = p_date_probleme 
+	AND id_salle IN (
+		SELECT s.id FROM salles s 
+		INNER JOIN reservations r 
+		ON s.id = r.id_salle 
+		WHERE r.date_resa = p_date_probleme
+	);
+END //
+
 
 -- cas covid positif // matt
 CREATE OR REPLACE PROCEDURE isCovid (IN p_user_id int)

@@ -55,8 +55,4 @@ router
     .delete(deleteReservation)
 
 
-
-
-
-
 module.exports = router;

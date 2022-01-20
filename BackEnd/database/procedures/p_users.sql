@@ -259,7 +259,7 @@ BEGIN
 	SET covid_positive = 1
     WHERE id_user = p_user_id AND id_reservation IN (
 		SELECT id FROM reservations
-		WHERE date_resa >= DATE(NOW())
+		WHERE date_resa BETWEEN DATE(NOW()) AND ADDDATE(DATE(NOW()), INTERVAL 10 DAY)
 	);
 END //
 

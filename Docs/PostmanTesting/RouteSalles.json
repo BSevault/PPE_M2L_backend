@@ -136,14 +136,14 @@
                     "response": []
                 },
                 {
-                    "name": "activeStatusSalle",
+                    "name": "toggleStatusSalle",
                     "id": "26d54cf3-49a6-4b49-9c6f-1ea3efc91702",
                     "request": {
-                        "method": "PUT",
+                        "method": "PATCH",
                         "header": [],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\r\n    \"is_active\": 0\r\n}",
+                            "raw": "",
                             "options": {
                                 "raw": {
                                     "language": "json"
@@ -151,20 +151,19 @@
                             }
                         },
                         "url": {
-                            "raw": "localhost:3001/salles/:salle_id/activation",
+                            "raw": "localhost:3001/salles/:salle_id",
                             "host": [
                                 "localhost"
                             ],
                             "port": "3001",
                             "path": [
                                 "salles",
-                                ":salle_id",
-                                "activation"
+                                ":salle_id"
                             ],
                             "variable": [
                                 {
                                     "key": "salle_id",
-                                    "value": "32"
+                                    "value": "33"
                                 }
                             ]
                         }
@@ -173,204 +172,6 @@
                 }
             ],
             "id": "f68b8942-a602-4899-9e05-72e9a6e0aa16"
-        },
-        {
-            "name": "Create User",
-            "id": "a9b03b0a-adcc-44ae-96e1-29934102ed0f",
-            "request": {
-                "method": "PUT",
-                "header": [],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{\r\n    \"nom\": \"Bob_test_update\",\r\n    \"prenom\": \"Marley4\",\r\n    \"email\": \"bob-marley@marley-bob.bob\",\r\n    \"tel\": \"(282)678-6538\",\r\n    \"password\": \"bob\",\r\n    \"ddn\": \"1980-01-02\",\r\n    \"adresse\": \"bob island\"\r\n}",
-                    "options": {
-                        "raw": {
-                            "language": "json"
-                        }
-                    }
-                },
-                "url": {
-                    "raw": "localhost:3001/api/compte/:id",
-                    "host": [
-                        "localhost"
-                    ],
-                    "port": "3001",
-                    "path": [
-                        "api",
-                        "compte",
-                        ":id"
-                    ],
-                    "variable": [
-                        {
-                            "key": "id",
-                            "value": "503"
-                        }
-                    ]
-                }
-            },
-            "response": []
-        },
-        {
-            "name": "New Request",
-            "id": "829e4179-f4cc-4ee5-b2ce-2dd1d411b188",
-            "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                    "raw": "localhost:3001/api/compte/:id",
-                    "host": [
-                        "localhost"
-                    ],
-                    "port": "3001",
-                    "path": [
-                        "api",
-                        "compte",
-                        ":id"
-                    ],
-                    "variable": [
-                        {
-                            "key": "id",
-                            "value": "70"
-                        }
-                    ]
-                }
-            },
-            "response": []
-        },
-        {
-            "name": "New Request Copy",
-            "id": "89de50c7-c37a-42a7-93ce-7b0bd9847f71",
-            "request": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{\r\n    \"date\": \"2022-01-17\",\r\n    \"salle_id\": \"12\",\r\n    \"is_paid\": 0\r\n}",
-                    "options": {
-                        "raw": {
-                            "language": "json"
-                        }
-                    }
-                },
-                "url": {
-                    "raw": "localhost:3001/api/reservation/:user_id",
-                    "host": [
-                        "localhost"
-                    ],
-                    "port": "3001",
-                    "path": [
-                        "api",
-                        "reservation",
-                        ":user_id"
-                    ],
-                    "variable": [
-                        {
-                            "key": "user_id",
-                            "value": "500"
-                        }
-                    ]
-                }
-            },
-            "response": []
-        },
-        {
-            "name": "New Request Copy 2",
-            "id": "96374eb3-1836-4556-a2e2-c27f73afe062",
-            "request": {
-                "method": "PUT",
-                "header": [],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{\r\n    \"date\": \"2022-01-17\",\r\n    \"salle_id\": \"13\"\r\n}",
-                    "options": {
-                        "raw": {
-                            "language": "json"
-                        }
-                    }
-                },
-                "url": {
-                    "raw": "localhost:3001/api/reservation/:user_id",
-                    "host": [
-                        "localhost"
-                    ],
-                    "port": "3001",
-                    "path": [
-                        "api",
-                        "reservation",
-                        ":user_id"
-                    ],
-                    "variable": [
-                        {
-                            "key": "user_id",
-                            "value": "500"
-                        }
-                    ]
-                }
-            },
-            "response": []
-        },
-        {
-            "name": "New Request Copy 3",
-            "id": "f51f5462-47b6-46ca-8c05-d0f900d6f072",
-            "request": {
-                "method": "DELETE",
-                "header": [],
-                "body": {
-                    "mode": "raw",
-                    "raw": "{\r\n    \"date\": \"2022-01-17\",\r\n    \"salle\": \"aperiam\"\r\n}",
-                    "options": {
-                        "raw": {
-                            "language": "json"
-                        }
-                    }
-                },
-                "url": {
-                    "raw": "localhost:3001/api/reservation/:user_id",
-                    "host": [
-                        "localhost"
-                    ],
-                    "port": "3001",
-                    "path": [
-                        "api",
-                        "reservation",
-                        ":user_id"
-                    ],
-                    "variable": [
-                        {
-                            "key": "user_id",
-                            "value": "500"
-                        }
-                    ]
-                }
-            },
-            "response": []
-        },
-        {
-            "name": "New Request",
-            "id": "a096da80-1e79-41f1-ab09-aff0546880ff",
-            "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                    "raw": "localhost:3001/api/reservation/:user_id",
-                    "host": [
-                        "localhost"
-                    ],
-                    "port": "3001",
-                    "path": [
-                        "api",
-                        "reservation",
-                        ":user_id"
-                    ],
-                    "variable": [
-                        {
-                            "key": "user_id",
-                            "value": "503"
-                        }
-                    ]
-                }
-            },
-            "response": []
         }
     ]
 }

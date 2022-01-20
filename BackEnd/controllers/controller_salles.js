@@ -50,11 +50,10 @@ module.exports = {
         });
     },
 
-    activeStatusSalle: async (req, res) => {
+    toggleStatusSalle: async (req, res) => {
         const { salle_id } = req.params;
-        const { is_active } = req.body;
         await call(res, async (connexion) => {
-            const result = await connexion.query("CALL activeStatusSalle(?,?)", [salle_id, is_active]);
+            const result = await connexion.query("CALL toggleStatusSalle(?)", [salle_id]);
             return res.status(200).json({ success: result });
         });
     }

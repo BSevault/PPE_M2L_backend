@@ -1,0 +1,376 @@
+{
+    "info": {
+        "_postman_id": "eeba7ef0-fd50-4c99-b684-a21d7566c368",
+        "name": "M2L",
+        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Salles",
+            "item": [
+                {
+                    "name": "getAllSalles",
+                    "id": "81655804-cd2b-4707-90ae-6f2e60d7a856",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": "localhost:3001/salles/all"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "getActiveSalles",
+                    "id": "a2c2bcb2-bbf7-45af-ba9f-3a598bea2a18",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": "localhost:3001/salles"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "getOneSalle",
+                    "id": "af420818-7636-429a-b761-5992a276f43c",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "localhost:3001/salles/:salle_id",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "salles",
+                                ":salle_id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "salle_id",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GetSalleResas",
+                    "id": "4db04ea2-cebf-4b80-8c80-a97affc4f1bc",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "localhost:3001/salles/:salle_id/reservations",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "salles",
+                                ":salle_id",
+                                "reservations"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "salle_id",
+                                    "value": "9"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "createSalle",
+                    "id": "4521cb45-6436-473f-8652-119012ed8d91",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"nom\": \"salle de bob\",\r\n    \"desc\": \"test aaaaaaaaaaaa\",\r\n    \"capa\": 30,\r\n    \"prix\": 12.1,\r\n    \"is_active\": 1\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": "localhost:3001/salles/"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "updateSalle",
+                    "id": "861bc5d9-b7e9-400a-8f40-bb93f358b4d5",
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"nom\": \"salle de bob\",\r\n    \"desc\": \"test update description\",\r\n    \"capa\": 31,\r\n    \"prix\": 13.1,\r\n    \"is_active\": 0\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "localhost:3001/salles/:salle_id",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "salles",
+                                ":salle_id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "salle_id",
+                                    "value": "32"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "activeStatusSalle",
+                    "id": "26d54cf3-49a6-4b49-9c6f-1ea3efc91702",
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"is_active\": 0\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "localhost:3001/salles/:salle_id/activation",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "salles",
+                                ":salle_id",
+                                "activation"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "salle_id",
+                                    "value": "32"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "id": "f68b8942-a602-4899-9e05-72e9a6e0aa16"
+        },
+        {
+            "name": "Create User",
+            "id": "a9b03b0a-adcc-44ae-96e1-29934102ed0f",
+            "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"nom\": \"Bob_test_update\",\r\n    \"prenom\": \"Marley4\",\r\n    \"email\": \"bob-marley@marley-bob.bob\",\r\n    \"tel\": \"(282)678-6538\",\r\n    \"password\": \"bob\",\r\n    \"ddn\": \"1980-01-02\",\r\n    \"adresse\": \"bob island\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "localhost:3001/api/compte/:id",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001",
+                    "path": [
+                        "api",
+                        "compte",
+                        ":id"
+                    ],
+                    "variable": [
+                        {
+                            "key": "id",
+                            "value": "503"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "New Request",
+            "id": "829e4179-f4cc-4ee5-b2ce-2dd1d411b188",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "localhost:3001/api/compte/:id",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001",
+                    "path": [
+                        "api",
+                        "compte",
+                        ":id"
+                    ],
+                    "variable": [
+                        {
+                            "key": "id",
+                            "value": "70"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "New Request Copy",
+            "id": "89de50c7-c37a-42a7-93ce-7b0bd9847f71",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"date\": \"2022-01-17\",\r\n    \"salle_id\": \"12\",\r\n    \"is_paid\": 0\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "localhost:3001/api/reservation/:user_id",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001",
+                    "path": [
+                        "api",
+                        "reservation",
+                        ":user_id"
+                    ],
+                    "variable": [
+                        {
+                            "key": "user_id",
+                            "value": "500"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "New Request Copy 2",
+            "id": "96374eb3-1836-4556-a2e2-c27f73afe062",
+            "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"date\": \"2022-01-17\",\r\n    \"salle_id\": \"13\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "localhost:3001/api/reservation/:user_id",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001",
+                    "path": [
+                        "api",
+                        "reservation",
+                        ":user_id"
+                    ],
+                    "variable": [
+                        {
+                            "key": "user_id",
+                            "value": "500"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "New Request Copy 3",
+            "id": "f51f5462-47b6-46ca-8c05-d0f900d6f072",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"date\": \"2022-01-17\",\r\n    \"salle\": \"aperiam\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "localhost:3001/api/reservation/:user_id",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001",
+                    "path": [
+                        "api",
+                        "reservation",
+                        ":user_id"
+                    ],
+                    "variable": [
+                        {
+                            "key": "user_id",
+                            "value": "500"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "New Request",
+            "id": "a096da80-1e79-41f1-ab09-aff0546880ff",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "localhost:3001/api/reservation/:user_id",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001",
+                    "path": [
+                        "api",
+                        "reservation",
+                        ":user_id"
+                    ],
+                    "variable": [
+                        {
+                            "key": "user_id",
+                            "value": "503"
+                        }
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}

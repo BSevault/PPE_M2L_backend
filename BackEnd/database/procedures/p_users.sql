@@ -179,16 +179,10 @@ BEGIN
 END //
 
     -- delete // matt
-CREATE OR REPLACE PROCEDURE deleteUserTicket (IN p_user_id int, IN p_date_probleme date)
+CREATE OR REPLACE PROCEDURE deleteOneUserTicket (IN p_ticket_id int, IN p_user_id int)
 BEGIN
-	DELETE FROM tickets
-	WHERE id_user = p_user_id AND date_probleme = p_date_probleme 
-	AND id_salle IN (
-		SELECT s.id FROM salles s 
-		INNER JOIN reservations r 
-		ON s.id = r.id_salle 
-		WHERE r.date_resa = p_date_probleme
-	);
+DELETE FROM tickets
+	WHERE id_user = p_user_id AND id = p_ticket_id;
 END //
 
 

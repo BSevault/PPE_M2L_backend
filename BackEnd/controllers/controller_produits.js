@@ -38,7 +38,7 @@ module.exports = {
         const { id }= req.params;
         const params = Object.values(req.body);
         await call(res, async (connexion) => {
-            const result = await connexion.query("CALL updateProductById(?,?,?,?,?);",[id,...params]);
+            const result = await connexion.query("CALL updateProductQtyById(?,?);",[id,...params]);
             return res.status(200).json({ success: result});
         });
     }, 

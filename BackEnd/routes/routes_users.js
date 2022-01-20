@@ -41,23 +41,7 @@ router
     .route('/:user_id/paiements')
     .get(getHistoriquePaiement)
 
-router
-    .route('/:user_id/tickets')
-    .get(getUserTickets)
-    .post(createUserTicket)
 
-router
-    .route('/:user_id/tickets/:ticket_id')
-    .get(getOneUserTicket)
-    .put(updateOneUserTicket)
-    .delete(deleteOneUserTicket)
-
-router
-    .route('/:user_id/reservation')
-    .get(getReservation)
-    .post(createReservation)
-    .put(updateReservation)
-    .delete(deleteReservation)
 
 
 module.exports = router;

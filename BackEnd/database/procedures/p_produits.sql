@@ -48,11 +48,11 @@ END //
 
 
 -- delete produit
-CREATE OR REPLACE PROCEDURE deleteProductById (IN p_id INT)
+CREATE OR REPLACE PROCEDURE toggleProductIsActiveById (IN p_id INT)
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
     UPDATE PRODUITS
-    SET is_active = 0
+    SET is_active = !is_active
     WHERE id = p_id;
 END //
 

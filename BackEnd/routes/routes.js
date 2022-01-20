@@ -18,7 +18,8 @@ const {
     getUserTickets,
     getOneUserTicket,
     createUserTicket,
-    updateOneUserTicket
+    updateOneUserTicket,
+    deleteOneUserTicket
 } = require('../controllers/controller_users');
 
 router
@@ -55,6 +56,7 @@ router
     .route('/compte/:user_id/tickets/:ticket_id')
     .get(getOneUserTicket)
     .put(updateOneUserTicket)
+    .delete(deleteOneUserTicket)
 
 router
     .route('/reservation/:user_id')

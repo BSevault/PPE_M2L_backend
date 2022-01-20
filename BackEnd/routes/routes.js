@@ -19,7 +19,8 @@ const {
     getOneUserTicket,
     createUserTicket,
     updateOneUserTicket,
-    deleteOneUserTicket
+    deleteOneUserTicket,
+    isCovid
 } = require('../controllers/controller_users');
 
 router
@@ -42,6 +43,10 @@ router
     .route('/compte/:user_id')
     .get(getOneAccount)
     .put(updateAccount)
+
+router
+    .route('/compte/:user_id/participation')
+    .put(isCovid)
 
 router
     .route('/compte/:user_id/paiements')

@@ -66,9 +66,22 @@ module.exports = {
             }
 
         });
+    },
+
+    isCovid: async (req, res) => {
+        const { user_id } = req.params;
+        await call(res, (connexion) => {
+            const result = await connexion.query("CALL isCovid(?)", [ user_id ]);
+            
+            if (result.affectedRows == 0) {
+                return res.status(300).json({ error: "Aucun ligne affectée"});
+            } else {
+                return res.status(200).json({ success: `Status changé sur ${resultresult.affectedRows} réunions`});
+            }
+        })
     }
 
-    
+
 
 
 }

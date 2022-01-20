@@ -4,7 +4,7 @@
         <field id="tpd3" name="Nom" width="189" order="0"/>
         <field id="tpd4" name="Date de début" width="86" order="1"/>
         <field id="tpd5" name="Date de fin" width="85" order="2"/>
-        <option id="color.recent"><![CDATA[#009900 #339900 #00cc00 #006666 #ff6666 #cccc00 #ccff33]]></option>
+        <option id="color.recent"><![CDATA[#cccc00 #009900 #339900 #00cc00 #006666 #ff6666 #ccff33]]></option>
     </view>
     <view id="resource-table">
         <field id="0" name="Nom" width="210" order="0"/>
@@ -51,12 +51,7 @@
             <depend id="9" type="2" difference="0" hardness="Strong"/>
         </task>
         <task id="8" name="DB: Dummy Data" color="#009900" meeting="false" start="2022-01-21" duration="1" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true"/>
-        <task id="9" name="DB: Procédures" color="#ccff33" meeting="false" start="2022-01-21" duration="3" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true">
-            <depend id="30" type="2" difference="0" hardness="Strong"/>
-            <depend id="31" type="2" difference="0" hardness="Strong"/>
-            <depend id="32" type="2" difference="0" hardness="Strong"/>
-            <depend id="38" type="2" difference="0" hardness="Strong"/>
-        </task>
+        <task id="9" name="DB: Procédures" color="#ccff33" meeting="false" start="2022-01-21" duration="3" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true"/>
         <task id="29" name="Git: Setup repo" color="#009900" meeting="false" start="2022-01-17" duration="1" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true"/>
         <task id="44" name="Back Matt Route + procedure" color="#cccc00" meeting="false" start="2022-01-18" duration="5" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true">
             <notes><![CDATA[getAllAccount // ok
@@ -68,22 +63,7 @@ updateOneUserTicket // ok
 deleteUserTicket 
 isCovid]]></notes>
         </task>
-        <task id="30" name="Back: Routes Visiteurs" color="#8cb6ce" meeting="false" start="2022-01-26" duration="1" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true">
-            <depend id="39" type="2" difference="0" hardness="Strong"/>
-        </task>
-        <task id="31" name="Back: Routes Users" color="#8cb6ce" meeting="false" start="2022-01-26" duration="1" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true">
-            <depend id="1" type="2" difference="0" hardness="Strong"/>
-        </task>
-        <task id="32" name="Back: Routes Admins" color="#8cb6ce" meeting="false" start="2022-01-26" duration="1" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true">
-            <depend id="40" type="2" difference="0" hardness="Strong"/>
-        </task>
-        <task id="38" name="Back: Authentification" color="#8cb6ce" meeting="false" start="2022-01-26" duration="1" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true">
-            <depend id="3" type="2" difference="0" hardness="Strong"/>
-        </task>
-        <task id="39" name="Front: Pages Visiteurs" color="#8cb6ce" meeting="false" start="2022-01-27" duration="1" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true"/>
-        <task id="1" name="Front: Pages Users" color="#8cb6ce" meeting="false" start="2022-01-27" duration="1" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true"/>
-        <task id="40" name="Front: Pages Admins" color="#8cb6ce" meeting="false" start="2022-01-27" duration="1" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true"/>
-        <task id="3" name="Front: Authentification" color="#8cb6ce" meeting="false" start="2022-01-27" duration="1" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true"/>
+        <task id="45" name="Création table Salles contexte M2L" color="#cccc00" meeting="false" start="2022-01-20" duration="1" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Benjamin" function="Default:0" contacts="" phone=""/>
@@ -96,6 +76,7 @@ isCovid]]></notes>
         <allocation task-id="6" resource-id="0" function="Default:0" responsible="true" load="33.0"/>
         <allocation task-id="29" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="5" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="45" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="9" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
         <allocation task-id="44" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="6" resource-id="1" function="Default:0" responsible="false" load="33.0"/>

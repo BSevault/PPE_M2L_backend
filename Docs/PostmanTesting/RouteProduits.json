@@ -1,0 +1,117 @@
+{
+    "info": {
+        "_postman_id": "a5a5de28-36a4-4850-8711-ffb379b39b00",
+        "name": "PPE3_M2L",
+        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "getAllProducts",
+            "id": "a57e2237-2f55-4175-92a9-a9f841614bb8",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": "http://localhost:3001/produits"
+            },
+            "response": []
+        },
+        {
+            "name": "getProductById",
+            "id": "64706497-d43a-4164-9ebd-92937b149027",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:3001/produits/:id",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "3001",
+                    "path": ["produits", ":id"],
+                    "variable": [{ "key": "id", "value": "9" }]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "createProduct",
+            "id": "340d7738-d1d8-4c3a-9f1f-489da62006cc",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"nom_produit\": \"cigashit\",\r\n    \"description\": \"la drogue c'est mal voyez\",\r\n    \"qte_dispo\": 42,\r\n    \"prix\": 5\r\n}",
+                    "options": { "raw": { "language": "json" } }
+                },
+                "url": "http://localhost:3001/produits/"
+            },
+            "response": []
+        },
+        {
+            "name": "updateProductById",
+            "id": "61d0f213-b141-492f-b0a4-3203dd9d48b6",
+            "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"nom_produit\": \"cigashit\",\r\n    \"description\": \"la drogue c'est vraiment mal voyez\",\r\n    \"qte_dispo\": 10,\r\n    \"prix\": 10\r\n}",
+                    "options": { "raw": { "language": "json" } }
+                },
+                "url": {
+                    "raw": "http://localhost:3001/produits/:id",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "3001",
+                    "path": ["produits", ":id"],
+                    "variable": [{ "key": "id", "value": "51" }]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "updateProductQtyById",
+            "id": "342e7a7c-c67a-4a02-bb7a-6c6a2343d73d",
+            "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"qte_dispo\": 10\r\n}",
+                    "options": { "raw": { "language": "json" } }
+                },
+                "url": {
+                    "raw": "http://localhost:3001/produits/:id",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "3001",
+                    "path": ["produits", ":id"],
+                    "variable": [{ "key": "id", "value": "51" }]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "toggleProductIsActiveById",
+            "id": "8ad8559b-a036-4f56-9ff0-42f7bd0c838e",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "",
+                    "options": { "raw": { "language": "json" } }
+                },
+                "url": {
+                    "raw": "http://localhost:3001/produits/:id",
+                    "protocol": "http",
+                    "host": ["localhost"],
+                    "port": "3001",
+                    "path": ["produits", ":id"],
+                    "variable": [{ "key": "id", "value": "51" }]
+                }
+            },
+            "response": []
+        }
+    ]
+}

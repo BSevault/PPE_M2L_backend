@@ -29,11 +29,11 @@ const routes_users = require('./routes/routes_users'); // delete this after refa
 app
     .use('/produits', routes_produits)
     .use('/salles', routes_salles)
-    .use('/users/comptes', routes_users_comptes)
-    .use('/users/paiements', routes_users_paiements)
-    .use('/users/participations', routes_users_participations)
-    .use('/users/reservations', routes_users_reservations)
-    .use('/users/tickets', routes_users_tickets)
+    .use('/users', routes_users_comptes)
+    .use('/users', routes_users_paiements)
+    .use('/users', routes_users_participations)
+    .use('/users', routes_users_reservations)
+    .use('/users', routes_users_tickets)
 
     .use('/users', routes_users); // delete this after refacto routes users
 

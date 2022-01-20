@@ -1,11 +1,11 @@
 const router = require('express-promise-router')();
 
 const {
-    getAllSalles
-} = require('../../controllers/controller_salles');
+    createUserPayment
+} = require('../../controllers/users/paiements');
 
 router
     .route('/')
-    .get(getAllSalles)
+    .post(createUserPayment)
 
 module.exports = router;

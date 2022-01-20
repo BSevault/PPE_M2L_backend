@@ -85,15 +85,15 @@ CREATE TABLE PARTICIPANTS(
    FOREIGN KEY(id_reservation) REFERENCES RESERVATIONS(id)
 );
 
-INSERT INTO SALLES (nom, description, capacite, prix)
-VALUES 
-('Majorelle', 'Service de sonorisation et vidéo projecteur disponible', 30, 2000),
-('Restauration et convivialité', 'Service de sonorisation et vidéo projecteur disponible', 50, 3000),
-('Grüber', 'Vidéo projecteur disponible', 20, 1000),
-('Lamour', 'Service de sonorisation et vidéo projecteur disponible', 25, 1500),
-('Amphithéâtre', 'Service de sonorisation et vidéo projecteur disponible', 100, 3500),
-('Longwy', 'Vidéo projecteur disponible', 15, 800),
-('Daum', 'Vidéo projecteur disponible', 20, 1000),
-('Gallé', 'Vidéo projecteur disponible', 20, 1000),
-('Corbin', 'Vidéo projecteur disponible', 20, 1000),
-('Baccarat', 'Vidéo projecteur disponible', 20, 1000);
+-- INSERT INTO SALLES (nom, description, capacite, prix)
+-- VALUES 
+-- ('Majorelle', 'Service de sonorisation et vidéo projecteur disponible', 30, 2000),
+-- ('Restauration et convivialité', 'Service de sonorisation et vidéo projecteur disponible', 50, 3000),
+-- ('Grüber', 'Vidéo projecteur disponible', 20, 1000),
+-- ('Lamour', 'Service de sonorisation et vidéo projecteur disponible', 25, 1500),
+-- ('Amphithéâtre', 'Service de sonorisation et vidéo projecteur disponible', 100, 3500),
+-- ('Longwy', 'Vidéo projecteur disponible', 15, 800),
+-- ('Daum', 'Vidéo projecteur disponible', 20, 1000),
+-- ('Gallé', 'Vidéo projecteur disponible', 20, 1000),
+-- ('Corbin', 'Vidéo projecteur disponible', 20, 1000),
+-- ('Baccarat', 'Vidéo projecteur disponible', 20, 1000);

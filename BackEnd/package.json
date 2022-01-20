@@ -10,7 +10,7 @@
     "integrateDB": "cross-env mariadb -u root -p <./database/schema.sql",
     "integrateDummy": "cross-env mariadb -u root -p <./database/dummy_datas.sql",
     "resetDB": "cross-env npm run integrateDB & npm run integrateDummy",
-    "integrateProcedures": "cross-env mariadb -u root -p <./database/procedures.sql"
+    "integrateProcedures": "cross-env mariadb -u root -p <./database/procedures/p_produits.sql & <./database/procedures/p_salles.sql & <./database/procedures/p_users.sql"
   },
   "repository": {
     "type": "git",

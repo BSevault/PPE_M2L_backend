@@ -19,7 +19,7 @@ CREATE OR REPLACE PROCEDURE checkUserPassword(IN p_id INT, IN p_password VARCHAR
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
     SELECT id FROM USERS
-    WHERE USERS.id = p_id, password = SHA1(p_password);
+    WHERE USERS.id = p_id AND password = SHA1(p_password);
 END //
 
     -- get user payments services (historique)
@@ -114,7 +114,7 @@ END //
 
 -- update user reservation (set is_paid via create paiement) // ok route
 CREATE OR REPLACE PROCEDURE updateReservation (IN p_date VARCHAR(255), IN p_user_id int, IN p_salle_id int)
-	BEGIN
+BEGIN
 	UPDATE reservations 
 	SET date_resa = p_date, id_salle = p_salle_id
 	WHERE id_user = p_user_id;
@@ -159,17 +159,38 @@ BEGIN
 END //
 
     -- create // matt
-    CREATE OR REPLACE PROCEDURE createUserTicket (IN p_date_ticket date, IN p_date_probleme date, IN p_description VARCHAR(255), IN p_user_id int, IN )
+CREATE OR REPLACE PROCEDURE createUserTicket (IN p_date_probleme date, IN p_description VARCHAR(255), IN p_user_id int)
 BEGIN
 	INSERT INTO tickets (date_ticket, date_probleme, description, id_user, id_salle)
-	VALUES (DATE(NOW()), p_date_probleme, p_description, p_user_id, (
+	VALUES (NOW(), p_date_probleme, p_description, p_user_id, (
 		SELECT s.id FROM salles s 
 		INNER JOIN reservations r 
 		ON s.id = r.id_salle 
 		WHERE r.date_resa = date_probleme));
 END //
+
+
     -- update // matt 
+CREATE OR REPLACE PROCEDURE updateOneUserTicket (IN p_ticket_id int, IN p_date_probleme date, IN p_description VARCHAR(255), IN p_user_id int)
+BEGIN
+	UPDATE tickets
+	SET date_probleme = p_date_probleme, description = p_description, id_user = p_user_id
+	WHERE id = p_ticket_id;
+END //
+
     -- delete // matt
+CREATE OR REPLACE PROCEDURE deleteUserTicket (IN p_user_id int, IN p_date_probleme date)
+BEGIN
+	DELETE FROM tickets
+	WHERE id_user = p_user_id AND date_probleme = p_date_probleme 
+	AND id_salle IN (
+		SELECT s.id FROM salles s 
+		INNER JOIN reservations r 
+		ON s.id = r.id_salle 
+		WHERE r.date_resa = p_date_probleme
+	);
+END //
+
 
 -- cas covid positif // matt
 CREATE OR REPLACE PROCEDURE isCovid (IN p_user_id int)

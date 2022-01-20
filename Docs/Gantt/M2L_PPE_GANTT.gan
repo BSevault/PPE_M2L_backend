@@ -59,13 +59,13 @@
         </task>
         <task id="29" name="Git: Setup repo" color="#009900" meeting="false" start="2022-01-17" duration="1" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true"/>
         <task id="44" name="Back Matt Route + procedure" color="#cccc00" meeting="false" start="2022-01-18" duration="5" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true">
-            <notes><![CDATA[getAllAccount
-getOneAccount
-getUserTickets
-getOneUserTicket
-createUserTicket
--- update
- -- delete
+            <notes><![CDATA[getAllAccount // ok
+getOneAccount // ok
+getUserTickets // ok
+getOneUserTicket // ok
+createUserTicket // ok
+updateOneUserTicket // ok
+deleteUserTicket 
 isCovid]]></notes>
         </task>
         <task id="30" name="Back: Routes Visiteurs" color="#8cb6ce" meeting="false" start="2022-01-26" duration="1" complete="0" thirdDate="2022-01-17" thirdDate-constraint="0" expand="true">

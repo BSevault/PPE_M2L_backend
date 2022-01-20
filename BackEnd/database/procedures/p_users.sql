@@ -40,7 +40,7 @@ END //
 -- get user // ok route
 CREATE OR REPLACE PROCEDURE getOneAccount(IN p_user_id int)
 BEGIN
-    SELECT id, nom, prenom, email, tel, ddn, adresse FROM users WHERE id = p_user_id;
+    SELECT id, nom, prenom, email, tel, ddn, adresse, is_active FROM users WHERE id = p_user_id;
 END //
 
 -- check user password (authentification)

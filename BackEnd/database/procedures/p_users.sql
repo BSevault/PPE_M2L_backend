@@ -22,7 +22,7 @@ BEGIN
 		id = p_id;
 END //
 
--- active status user
+-- active status user // ok route
 CREATE OR REPLACE PROCEDURE activeStatusUser(IN p_user_id int)
 BEGIN
 	UPDATE users
@@ -31,13 +31,13 @@ BEGIN
 	WHERE id = p_user_id;
 END //
 
--- get users
+-- get users // ok route
 CREATE OR REPLACE PROCEDURE getAllAccount()
 BEGIN
 	SELECT id, nom, prenom, email, tel, ddn, adresse FROM users;
 END //
 
--- get user 
+-- get user // ok route
 CREATE OR REPLACE PROCEDURE getOneAccount(IN p_user_id int)
 BEGIN
     SELECT id, nom, prenom, email, tel, ddn, adresse FROM users WHERE id = p_user_id;
@@ -51,16 +51,7 @@ BEGIN
     WHERE USERS.id = p_id AND password = SHA1(p_password);
 END //
 
--- cas covid positif // matt
-CREATE OR REPLACE PROCEDURE isCovid (IN p_user_id int)
-BEGIN
-	UPDATE participants
-	SET covid_positive = 1
-    WHERE id_user = p_user_id AND id_reservation IN (
-		SELECT id FROM reservations
-		WHERE date_resa BETWEEN DATE(NOW()) AND ADDDATE(DATE(NOW()), INTERVAL 10 DAY)
-	);
-END //
+
     
 
 
@@ -203,7 +194,7 @@ END //
 
 
 
-------------------------------USERS RESERVATION------------------------------------
+------------------------------USERS PARTICIPANTS------------------------------------
 
 
 -- get user participations (réservation: (nom_salle, date, admin_resa(nom/prenom)))
@@ -268,7 +259,7 @@ BEGIN
 	WHERE p.id_user = p_id_user AND r.id = p_id_reservation and r.date_resa > DATE(NOW());
 END //
 
--- get userTickets (historique) // matt
+-- get userTickets (historique)
 CREATE OR REPLACE PROCEDURE getUserTickets (IN p_user_id int)
 BEGIN
 	SELECT t.id, t.date_ticket, t.description, t.date_probleme, s.nom
@@ -278,6 +269,16 @@ BEGIN
 	WHERE t.id_user = p_user_id;
 END //
 
+-- cas covid positif
+CREATE OR REPLACE PROCEDURE isCovid (IN p_user_id int)
+BEGIN
+	UPDATE participants
+	SET covid_positive = 1
+    WHERE id_user = p_user_id AND id_reservation IN (
+		SELECT id FROM reservations
+		WHERE date_resa BETWEEN DATE(NOW()) AND ADDDATE(DATE(NOW()), INTERVAL 10 DAY)
+	);
+END //
 
     
 

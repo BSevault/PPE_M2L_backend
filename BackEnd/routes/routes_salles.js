@@ -23,13 +23,11 @@ router
     .route('/:salle_id')
     .get(getOneSalle)
     .put(updateSalle)
+    .patch(activeStatusSalle)
 
 router
     .route('/:salle_id/reservations')
     .get(getSalleResas)
 
-router
-    .route('/:salle_id/activation')
-    .put(activeStatusSalle)
 
 module.exports = router;

@@ -1,11 +1,11 @@
 const router = require('express-promise-router')();
 
 const {
-    getSalles
-} = require('../controllers/controller_produits');
+    getAllSalles
+} = require('../controllers/controller_salles');
 
 router
     .route('/')
-    .get(getSalles)
+    .get(getAllSalles)
 
 module.exports = router;

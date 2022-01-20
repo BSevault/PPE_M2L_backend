@@ -23,10 +23,10 @@ BEGIN
 END //
 
 -- voir salle (liste resas dates)
-CREATE OR REPLACE PROCEDURE getSalleResas (IN p_id INT, IN p_date_day DATE)
+CREATE OR REPLACE PROCEDURE getSalleResas (IN p_id INT)
 BEGIN
 	SELECT date_resa FROM reservations
-	WHERE p_id = id_salle AND date_resa >= p_date_day;
+	WHERE p_id = id_salle AND date_resa >= DATE(NOW());
 END //
 
 -- créer salle

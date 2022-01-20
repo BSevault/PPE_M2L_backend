@@ -15,7 +15,8 @@ const {
     getReservation,
     createReservation,
     updateReservation,
-    deleteReservation
+    deleteReservation,
+    activeStatusUser
 } = require('../controllers/controller_users');
 
 router
@@ -27,6 +28,10 @@ router
     .route('/:user_id')
     .get(getOneAccount)
     .put(updateAccount)
+
+router  
+    .route('/:user_id/active')
+    .get(activeStatusUser)
 
 router
     .route('/:user_id/participation')

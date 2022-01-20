@@ -71,10 +71,12 @@ BEGIN
 		id = p_id;
 END //
 
--- delete user
-CREATE OR REPLACE PROCEDURE deleteAccount(IN p_user_id int)
+-- active status user
+CREATE OR REPLACE PROCEDURE activeStatusUser(IN p_user_id int)
 BEGIN
-	DELETE FROM users
+	UPDATE users
+	SET
+		is_active = !is_active
 	WHERE id = p_user_id;
 END //
 
@@ -207,7 +209,7 @@ END //
 -- get userTickets (historique) // matt
 CREATE OR REPLACE PROCEDURE getUserTickets (IN p_user_id int)
 BEGIN
-	SELECT t.date_ticket, t.description, t.date_probleme, s.nom
+	SELECT t.id, t.date_ticket, t.description, t.date_probleme, s.nom
 	FROM tickets t
 	INNER JOIN salles s
 	ON t.id_salle = s.id

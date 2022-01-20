@@ -1,11 +1,25 @@
 const router = require('express-promise-router')();
 
 const {
-    getSalles
+    getAllProducts,
+    getProductById,
+    createProduct,
+    updateProductById,
+    updateProductQtyById,
+    toggleProductIsActiveById
 } = require('../controllers/controller_produits');
 
 router
     .route('/')
-    .get(getSalles)
+    .get(getAllProducts)
+    .post(createProduct)
+    
+
+router
+    .route('/:id')
+    .get(getProductById)
+    .put(updateProductById)
+    .patch(updateProductQtyById)
+    .delete(toggleProductIsActiveById)
 
 module.exports = router;

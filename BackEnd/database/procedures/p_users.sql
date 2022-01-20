@@ -44,6 +44,18 @@ BEGIN
 	WHERE r.is_paid = 0;
 END //
 
+-- voir ses historiques paiements
+CREATE OR REPLACE PROCEDURE getHistoriquePaiement (IN p_user_id int)
+BEGIN
+	SELECT s.nom, r.date_resa, SUM(p.total), r.is_paid FROM paiements p
+	INNER JOIN reservations r
+	ON p.id_reservation = r.id
+	INNER JOIN salles s
+	ON r.id_salle = s.id
+	WHERE p.id_user = p_user_id
+	GROUP BY p.id_reservation;
+END //
+
     -- voir les comptes qui ont une reservation à venir (admin)
 CREATE OR REPLACE PROCEDURE getAccountResa(IN p_date_resa int)
 BEGIN
@@ -136,6 +148,15 @@ BEGIN
 	INNER JOIN salles s
 	ON s.nom = p_salle
 	WHERE id_user = p_user_id AND date_resa = p_date;
+END //
+
+-- voir ses réservations
+CREATE OR REPLACE PROCEDURE getReservation (IN p_user_id int)
+BEGIN
+	SELECT s.nom, r.date_resa, r.is_paid FROM reservations r
+	INNER JOIN salles s
+	ON r.id_salle = s.id
+	WHERE r.id_user = p_user_id;
 END //
 
 -- get user participations (réservation: (nom_salle, date, admin_resa(nom/prenom)))

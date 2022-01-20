@@ -43,10 +43,10 @@ BEGIN
 	WHERE id = p_id;
 END //
 
--- set salle active status
-CREATE OR REPLACE PROCEDURE activeStatusSalle (IN p_id INT, IN p_active BOOLEAN)
+-- toggle active status
+CREATE OR REPLACE PROCEDURE toggleStatusSalle (IN p_id INT)
 BEGIN
 	UPDATE salles
-	SET is_active = p_active
+	SET is_active = !is_active
 	WHERE id = p_id;	
 END //

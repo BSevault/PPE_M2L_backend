@@ -7,7 +7,7 @@ const {
     getSalleResas,
     createSalle,
     updateSalle,
-    activeStatusSalle
+    toggleStatusSalle
 } = require('../controllers/controller_salles');
 
 router
@@ -23,7 +23,7 @@ router
     .route('/:salle_id')
     .get(getOneSalle)
     .put(updateSalle)
-    .patch(activeStatusSalle)
+    .patch(toggleStatusSalle)
 
 router
     .route('/:salle_id/reservations')

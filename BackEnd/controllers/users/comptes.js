@@ -51,8 +51,7 @@ module.exports = {
             } else {
                 return res.status(200).json({ success: `Le compte est activé`});
             }
-        })
-
+        });
     },
 
     checkUserPassword: async (req, res) => {
@@ -61,13 +60,14 @@ module.exports = {
         await call(res, async (connexion) => {
             const result = await connexion.query("CALL checkUserPassword(?,?)", [user_id, password]);
 
-            console.log(result[0][0].id);
-            if (result[0][0].id) {
-                return res.status(200).json({ success: `Le `});
+            console.log(result);
+            if (result[0][0]) {
+                return res.status(200).json({ success: `Password valide`});
             } else {
-                return res.status(200).json({ success: `Le compte est activé`});
+                return res.status(400).json({ error: `Password invalide`});
             }
-        }) 
+
+        });
     }
     
     

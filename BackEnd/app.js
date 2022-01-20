@@ -14,14 +14,29 @@ app.get('/api', (req, res) => {
 });
 
 
-const routes = require('./routes/routes');
-app.use('/api', routes);
 const routes_produits = require('./routes/routes_produits');
-app.use('/produits', routes_produits);
 const routes_salles = require('./routes/routes_salles');
-app.use('/salles', routes_salles);
-const routes_users = require('./routes/routes_users');
-app.use('/users', routes_users);
+const routes_users_comptes = require('./routes/users/comptes');
+const routes_users_paiements = require('./routes/users/paiements');
+const routes_users_participations = require('./routes/users/participations');
+const routes_users_reservations = require('./routes/users/reservations');
+const routes_users_tickets = require('./routes/users/tickets');
+
+const routes_users = require('./routes/routes_users'); // delete this after refacto routes users
+
+
+
+app
+    .use('/produits', routes_produits)
+    .use('/salles', routes_salles)
+    .use('/users/comptes', routes_users_comptes)
+    .use('/users/paiements', routes_users_paiements)
+    .use('/users/participations', routes_users_participations)
+    .use('/users/reservations', routes_users_reservations)
+    .use('/users/tickets', routes_users_tickets)
+
+    .use('/users', routes_users); // delete this after refacto routes users
+
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

@@ -2,7 +2,7 @@ const router = require('express-promise-router')();
 
 const {
     getAllSalles
-} = require('../controllers/controller_salles');
+} = require('../../controllers/controller_salles');
 
 router
     .route('/')

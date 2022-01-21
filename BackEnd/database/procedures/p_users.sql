@@ -64,13 +64,27 @@ END //
 CREATE OR REPLACE PROCEDURE createUserPayment(IN p_id_user INT, IN p_qte INT, IN p_id_reservation INT, IN p_id_produit INT)
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
-	INSERT INTO paiements (qte, total, id_user, id_reservation, id_produit)
-	VALUES (p_qte, 
-	(
-		SELECT p_qte*prix FROM produits
-		WHERE p_id_produit = produits.id
-	), 
-	p_id_user, p_id_reservation, p_id_produit);
+	IF p_id_produit != null
+	THEN
+		INSERT INTO paiements (qte, id_user, id_reservation, id_produit, total)
+		VALUES (p_qte, p_id_user, p_id_reservation, p_id_produit,
+		(
+			SELECT p_qte*p.prix FROM produits p
+			WHERE p_id_produit = p.id
+		));
+	ELSE
+		UPDATE reservations r
+		SET r.is_paid = 1
+		WHERE p_id_reservation = r.id;
+		INSERT INTO paiements (qte, id_user, id_reservation, id_produit, total)
+		VALUES (p_qte, p_id_user, p_id_reservation, p_id_produit,
+		(
+			SELECT s.prix FROM salles s, reservations r
+			WHERE p_id_reservation = r.id
+			AND r.id_salle = s.id
+		));
+		
+	END IF;
 END //
 
 
@@ -96,7 +110,7 @@ BEGIN
 	WHERE r.is_paid = 0;
 END //
 
--- voir ses historiques paiements
+-- voir ses historiques paiements - pertinent ?
 CREATE OR REPLACE PROCEDURE getHistoriquePaiement (IN p_user_id int)
 BEGIN
 	SELECT s.nom, r.date_resa, SUM(p.total), r.is_paid FROM paiements p

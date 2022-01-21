@@ -11,7 +11,7 @@ CREATE TABLE USERS(
    prenom VARCHAR(255) NOT NULL,
    email VARCHAR(255) NOT NULL,
    tel VARCHAR(50),
-   password TEXT NOT NULL,
+   PASSWORD TEXT NOT NULL,
    ddn DATE NOT NULL,
    adresse VARCHAR(255),
    is_active BOOLEAN NOT NULL DEFAULT 1,
@@ -69,12 +69,22 @@ CREATE TABLE PAIEMENTS(
    total FLOAT NOT NULL,
    id_user INT NOT NULL,
    id_reservation INT NOT NULL,
-   id_produit INT,
+   id_produit INT DEFAULT 0,
    PRIMARY KEY(id),
    FOREIGN KEY(id_user) REFERENCES USERS(id),
    FOREIGN KEY(id_produit) REFERENCES PRODUITS(id),
    FOREIGN KEY(id_reservation) REFERENCES RESERVATIONS(id)
 );
+
+ALTER TABLE paiements
+DROP FOREIGN KEY paiements_ibfk_2;
+
+ALTER TABLE paiements
+ADD
+   CONSTRAINT paiements_ibfk_2
+   FOREIGN KEY (id_produit) REFERENCES produits(id)
+   ON DELETE RESTRICT
+   ON UPDATE SET DEFAULT;
 
 CREATE TABLE PARTICIPANTS(
    id INT NOT NULL AUTO_INCREMENT,

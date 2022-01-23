@@ -84,7 +84,7 @@ BEGIN
 	AND p.id_produit IS NOT NULL;
 END //
 
-    -- get user payments salles (historique)
+    -- get user payments salles (à faire)
 CREATE OR REPLACE PROCEDURE getAccountResaToPay()
 BEGIN
 	SELECT u.id, u.nom, u.prenom, u.email, u.tel, u.ddn, u.adresse, r.id, r.date_resa, s.nom, s.prix

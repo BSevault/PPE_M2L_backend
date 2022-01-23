@@ -19,4 +19,7 @@ module.exports = {
         });
     }
 
+    // get user payment salles (à faire) => getAccountResaToPay()
+    // get user payments services (historique) => getServicesPaymentsByUserId(user_id)
+
 }

@@ -76,15 +76,15 @@ CREATE TABLE PAIEMENTS(
    FOREIGN KEY(id_reservation) REFERENCES RESERVATIONS(id)
 );
 
-ALTER TABLE paiements
-DROP FOREIGN KEY paiements_ibfk_2;
+-- ALTER TABLE paiements
+-- DROP FOREIGN KEY paiements_ibfk_2;
 
-ALTER TABLE paiements
-ADD
-   CONSTRAINT paiements_ibfk_2
-   FOREIGN KEY (id_produit) REFERENCES produits(id)
-   ON DELETE RESTRICT
-   ON UPDATE SET DEFAULT;
+-- ALTER TABLE paiements
+-- ADD
+--    CONSTRAINT paiements_ibfk_2
+--    FOREIGN KEY (id_produit) REFERENCES produits(id)
+--    ON DELETE RESTRICT
+--    ON UPDATE SET DEFAULT;
 
 CREATE TABLE PARTICIPANTS(
    id INT NOT NULL AUTO_INCREMENT,

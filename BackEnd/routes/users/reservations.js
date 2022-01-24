@@ -1,7 +1,7 @@
 const router = require('express-promise-router')();
 
 const {
-    getReservations, 
+    getReservations,
     createReservation,
     updateReservation,
     toggleReservationIsPaid,
@@ -20,16 +20,16 @@ router
     .delete(deleteReservation)
 
 router
-    .route('/:user_id/reservations/history')
-    .get(getBeforeReservation)
-
-router
     .route('/:user_id/reservations')
     .get(getFutureReservation)
 
 router
+    .route('/:user_id/reservations/history')
+    .get(getBeforeReservation)
+
+router
     .route('/:resa_id/covid_state')
     .get(getReservationCovid)
-    
+
 
 module.exports = router;

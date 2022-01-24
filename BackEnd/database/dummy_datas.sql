@@ -537,7 +537,7 @@ INSERT INTO `SALLES` (`id`, `nom`, `description`, `capacite`, `prix`,`is_active`
 
 
 
-INSERT INTO `PRODUITS` (`id`, `nom_produit`, `description`, `qte_dispo`, `prix`) VALUES (1, 'Paiement salle', 'Paiement d'une réservation', 1, '1');
+INSERT INTO `PRODUITS` (`id`, `nom_produit`, `description`, `qte_dispo`, `prix`) VALUES (1, 'Paiement salle', 'Paiement de réservation', 1, '1');
 INSERT INTO `PRODUITS` (`id`, `nom_produit`, `description`, `qte_dispo`, `prix`) VALUES (2, 'itaque', 'Et sequi eius atque quisquam vel. Temporibus non adipisci sit quia. Autem ut eius nihil.', 94, '46.62');
 INSERT INTO `PRODUITS` (`id`, `nom_produit`, `description`, `qte_dispo`, `prix`) VALUES (3, 'ut', 'Assumenda sit atque minus dolore. Odit saepe est et. Modi iusto ut eius est architecto saepe. Nostrum nulla sed esse facere repellendus.', 173, '12.77');
 INSERT INTO `PRODUITS` (`id`, `nom_produit`, `description`, `qte_dispo`, `prix`) VALUES (4, 'rerum', 'Ullam minus vel molestias rerum vel ab. Reprehenderit enim dolores enim repellat eum excepturi. Numquam velit reiciendis vero perferendis tempora consequatur. Sequi qui at est repellendus praesentium ipsam.', 197, '205.85');

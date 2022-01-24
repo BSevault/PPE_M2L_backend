@@ -219,7 +219,7 @@ END //
 -- get user participations (réservation: (nom_salle, date, admin_resa(nom/prenom)))
 CREATE OR REPLACE PROCEDURE getUserParticipations (IN p_user_id INT)
 BEGIN
-	SELECT s.nom, r.date_resa, u.nom, u.prenom FROM reservations r
+	SELECT s.nom nom_salle, r.date_resa, u.nom, u.prenom FROM reservations r
 	INNER JOIN participants p
 	ON p.id_reservation = r.id
 	INNER JOIN salles s

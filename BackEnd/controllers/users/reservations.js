@@ -50,6 +50,30 @@ module.exports = {
             const result = await connexion.query("CALL toggleReservationIsPaid(?,?,?)", [date, salle_id, user_id]);
             return res.status(200).json({ success: result });
         });
+    },
+
+    getBeforeReservation: async (req, res) => {
+        const { user_id } = req.params;
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL getBeforeReservation(?)", [user_id]);
+            return res.status(200).json({ success: result });
+        });
+    },
+
+    getFutureReservation: async (req, res) => {
+        const { user_id } = req.params;
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL getFutureReservation(?)", [user_id]);
+            return res.status(200).json({ success: result });
+        });
+    },
+
+    getReservationCovid: async (req, res) => {
+        const { resa_id } = req.params;
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL getReservationCovid(?)", [resa_id]);
+            return res.status(200).json({ success: result });
+        });
     }
     
 }

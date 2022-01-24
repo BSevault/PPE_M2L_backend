@@ -5,7 +5,10 @@ const {
     createReservation,
     updateReservation,
     toggleReservationIsPaid,
-    deleteReservation
+    deleteReservation,
+    getBeforeReservation,
+    getFutureReservation,
+    getReservationCovid
 } = require('../../controllers/users/reservations');
 
 router
@@ -15,6 +18,18 @@ router
     .put(updateReservation)
     .patch(toggleReservationIsPaid)
     .delete(deleteReservation)
+
+router
+    .route('/:user_id/reservations/history')
+    .get(getBeforeReservation)
+
+router
+    .route('/:user_id/reservations')
+    .get(getFutureReservation)
+
+router
+    .route('/:resa_id/covid_state')
+    .get(getReservationCovid)
     
 
 module.exports = router;

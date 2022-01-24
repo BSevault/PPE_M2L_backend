@@ -142,7 +142,7 @@ BEGIN
 END //
 
 -- voir ses réservations // ok route
-CREATE OR REPLACE PROCEDURE getReservation (IN p_user_id int)
+CREATE OR REPLACE PROCEDURE getReservations (IN p_user_id int)
 BEGIN
 	SELECT s.nom, r.date_resa, r.is_paid FROM reservations r
 	INNER JOIN salles s

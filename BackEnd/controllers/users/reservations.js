@@ -9,10 +9,10 @@ const { call } = require('../../utils');
 
 // ------ RESERVATION -------
 module.exports = {
-    getReservation: async (req, res) => {
+    getReservations: async (req, res) => {
         const { user_id } = req.params;
         await call(res, async (connexion) => {
-            const result = await connexion.query("CALL getReservation(?)", [user_id]);
+            const result = await connexion.query("CALL getReservations(?)", [user_id]);
             return res.status(200).json({ success: result[0] });
         });
     },

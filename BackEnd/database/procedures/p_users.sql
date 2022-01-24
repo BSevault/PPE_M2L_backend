@@ -43,7 +43,7 @@ BEGIN
     SELECT id, nom, prenom, email, tel, ddn, adresse, is_active FROM users WHERE id = p_user_id;
 END //
 
--- check user password (authentification)
+-- check user password (authentification) // ok route
 CREATE OR REPLACE PROCEDURE checkUserPassword(IN p_id INT, IN p_password VARCHAR(255))
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
@@ -60,8 +60,13 @@ END //
 ------------------------------USERS PAIEMENT--------------------------------------
 
 
+<<<<<<< HEAD
 -- create user paiement // route ok
 CREATE OR REPLACE PROCEDURE createUserPayment(IN p_id_user INT, IN p_qte INT, IN p_id_reservation INT, IN p_id_produit INT)
+=======
+-- create user paiementm
+CREATE OR REPLACE PROCEDURE createUserPayent(IN p_id_user INT, IN p_qte INT, IN p_id_reservation INT, IN p_id_produit INT)
+>>>>>>> 0e5f8d50c7d16a6054dbe2b485c216aa68d1f08a
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
 	IF p_id_produit != 1
@@ -156,7 +161,7 @@ BEGIN
 END //
 
 -- voir ses réservations // ok route
-CREATE OR REPLACE PROCEDURE getReservation (IN p_user_id int)
+CREATE OR REPLACE PROCEDURE getReservations (IN p_user_id int)
 BEGIN
 	SELECT s.nom, r.date_resa, r.is_paid FROM reservations r
 	INNER JOIN salles s
@@ -304,7 +309,7 @@ END //
 
 
 
-------------------------------USERS RESERVATION------------------------------------
+------------------------------USERS TICKETS------------------------------------
 
 
 -- get userTicket // ok route

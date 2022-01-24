@@ -27,19 +27,27 @@ module.exports = {
     },
 
     updateReservation: async (req, res) => {
-        const { user_id } = req.params;
-        const { date, salle_id } = req.body; // nous faudra une procédure pour payer
+        const { date, salle_id, resa_id } = req.body;
         await call(res, async (connexion) => {
-            const result = await connexion.query("CALL updateReservation(?,?,?)", [date, user_id, salle_id]);
+            const result = await connexion.query("CALL updateReservation(?,?,?)", [date, resa_id, salle_id]);
             return res.status(200).json({ success: result });
         });
     },
 
     deleteReservation: async (req, res) => {
         const { user_id } = req.params;
-        const { date, salle } = req.body; // Plus simple avec l'id salle peut être
+        const { resa_id } = req.body; 
         await call(res, async (connexion) => {
-            const result = await connexion.query("CALL deleteReservation(?,?,?)", [date, user_id, salle]);
+            const result = await connexion.query("CALL deleteReservation(?,?)", [user_id, resa_id]);
+            return res.status(200).json({ success: result });
+        });
+    },
+
+    toggleReservationIsPaid: async (req, res) => {
+        const { user_id } = req.params;
+        const { date, salle_id } = req.body;
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL toggleReservationIsPaid(?,?,?)", [date, salle_id, user_id]);
             return res.status(200).json({ success: result });
         });
     }

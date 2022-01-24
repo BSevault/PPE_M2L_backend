@@ -60,13 +60,8 @@ END //
 ------------------------------USERS PAIEMENT--------------------------------------
 
 
-<<<<<<< HEAD
 -- create user paiement // route ok
 CREATE OR REPLACE PROCEDURE createUserPayment(IN p_id_user INT, IN p_qte INT, IN p_id_reservation INT, IN p_id_produit INT)
-=======
--- create user paiementm
-CREATE OR REPLACE PROCEDURE createUserPayent(IN p_id_user INT, IN p_qte INT, IN p_id_reservation INT, IN p_id_produit INT)
->>>>>>> 0e5f8d50c7d16a6054dbe2b485c216aa68d1f08a
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
 	IF p_id_produit != 1

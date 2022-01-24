@@ -43,7 +43,7 @@ BEGIN
     SELECT id, nom, prenom, email, tel, ddn, adresse, is_active FROM users WHERE id = p_user_id;
 END //
 
--- check user password (authentification)
+-- check user password (authentification) // ok route
 CREATE OR REPLACE PROCEDURE checkUserPassword(IN p_id INT, IN p_password VARCHAR(255))
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
@@ -60,8 +60,8 @@ END //
 ------------------------------USERS PAIEMENT--------------------------------------
 
 
--- create user paiement
-CREATE OR REPLACE PROCEDURE createUserPayment(IN p_id_user INT, IN p_qte INT, IN p_id_reservation INT, IN p_id_produit INT)
+-- create user paiementm
+CREATE OR REPLACE PROCEDURE createUserPayent(IN p_id_user INT, IN p_qte INT, IN p_id_reservation INT, IN p_id_produit INT)
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
 	INSERT INTO paiements (qte, total, id_user, id_reservation, id_produit)
@@ -290,7 +290,7 @@ END //
 
 
 
-------------------------------USERS RESERVATION------------------------------------
+------------------------------USERS TICKETS------------------------------------
 
 
 -- get userTicket // ok route

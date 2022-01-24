@@ -1,0 +1,32 @@
+Pages (visiteur):
+- Page Salle (Carac) (+ réservation possible si connecté)
+- Page Salles (liste)
+- Page Création de compte
+- Page Formulaire de contact
+- Page CGU/CGV lorem
+
+Pages (User):
+- Page Gestion de compte (change psw, email, tel, adresse historiquePaiment)
+- Page facture (générée)
+- Page Assistance (page contact ?)
+- Page liste réunion prévues / historique réunions
+- Page gestion d'une réunion (crud users invites) // A utiliser avec Crud résas Admin aussi
+
+
+Pages (Admins):
+
+# Crud Comptes:
+	// pour  create passer par creation de compte
+	- Page liste users (gestion delete)
+	- Page user unique (gestion read/update/give admin) 
+	
+# Crud Salles:
+	- Page liste salles (gestion delete)
+	- Page salle unique (gestion read/update)
+	- Page creation de salle (create)
+	
+# Crud Résas:
+	- Page liste résas (delete)
+	- Page historique résas
+	- Page Prestations (liste)
+	- Page Prestation (carac)

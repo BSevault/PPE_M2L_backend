@@ -60,11 +60,11 @@ END //
 ------------------------------USERS PAIEMENT--------------------------------------
 
 
--- create user paiement
+-- create user paiement // route ok
 CREATE OR REPLACE PROCEDURE createUserPayment(IN p_id_user INT, IN p_qte INT, IN p_id_reservation INT, IN p_id_produit INT)
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
-	IF p_id_produit != null
+	IF p_id_produit != 1
 	THEN
 		INSERT INTO paiements (qte, id_user, id_reservation, id_produit, total)
 		VALUES (p_qte, p_id_user, p_id_reservation, p_id_produit,
@@ -77,7 +77,7 @@ BEGIN
 		SET r.is_paid = 1
 		WHERE p_id_reservation = r.id;
 		INSERT INTO paiements (qte, id_user, id_reservation, id_produit, total)
-		VALUES (p_qte, p_id_user, p_id_reservation, p_id_produit,
+		VALUES (1, p_id_user, p_id_reservation, p_id_produit,
 		(
 			SELECT s.prix FROM salles s, reservations r
 			WHERE p_id_reservation = r.id
@@ -88,7 +88,7 @@ BEGIN
 END //
 
 
--- get user payments services (historique)
+-- get user payments services (historique) // route ok
 CREATE OR REPLACE PROCEDURE getServicesPaymentsByUserId(IN p_user_id INT)
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
@@ -98,7 +98,7 @@ BEGIN
 	AND p.id_produit IS NOT NULL;
 END //
 
-    -- get user payments salles (historique)
+    -- get user payments salles (liste des resa non payées) // à router
 CREATE OR REPLACE PROCEDURE getAccountResaToPay()
 BEGIN
 	SELECT u.id, u.nom, u.prenom, u.email, u.tel, u.ddn, u.adresse, r.id, r.date_resa, s.nom, s.prix
@@ -110,7 +110,7 @@ BEGIN
 	WHERE r.is_paid = 0;
 END //
 
--- voir ses historiques paiements - pertinent ?
+-- voir ses historiques paiements groupés par reservation - pertinent ?
 CREATE OR REPLACE PROCEDURE getHistoriquePaiement (IN p_user_id int)
 BEGIN
 	SELECT s.nom, r.date_resa, SUM(p.total), r.is_paid FROM paiements p

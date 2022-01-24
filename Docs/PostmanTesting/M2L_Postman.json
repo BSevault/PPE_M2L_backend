@@ -384,7 +384,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"date\": 20240312,\r\n    \"user_id\": 21,\r\n    \"salle_id\": 2,\r\n    \"is_paid\": 0\r\n}",
+									"raw": "{\r\n    \"date\": 20240312,\r\n    \"salle_id\": 2,\r\n    \"is_paid\": 0\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -418,7 +418,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3001/users/:user_id/reservations",
+									"raw": "localhost:3001/users/:user_id/reservation",
 									"host": [
 										"localhost"
 									],
@@ -426,12 +426,12 @@
 									"path": [
 										"users",
 										":user_id",
-										"reservations"
+										"reservation"
 									],
 									"variable": [
 										{
 											"key": "user_id",
-											"value": null
+											"value": "1"
 										}
 									]
 								}
@@ -562,7 +562,7 @@
 									"variable": [
 										{
 											"key": "user_id",
-											"value": "4"
+											"value": "1"
 										}
 									]
 								}

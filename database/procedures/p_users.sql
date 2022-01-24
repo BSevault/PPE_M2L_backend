@@ -138,21 +138,28 @@ BEGIN
 	INSERT INTO reservations (date_resa, id_user, id_salle, is_paid) VALUES (p_date, p_user_id, p_salle_id, p_is_paid);
 END //
 
--- update user reservation (set is_paid via create paiement) // ok route
-CREATE OR REPLACE PROCEDURE updateReservation (IN p_date VARCHAR(255), IN p_user_id int, IN p_salle_id int)
+-- update user reservation (set is_paid via pay reservation) // ok route
+CREATE OR REPLACE PROCEDURE updateReservation (IN p_date VARCHAR(255), IN p_resa_id int, IN p_salle_id int)
 BEGIN
 	UPDATE reservations 
 	SET date_resa = p_date, id_salle = p_salle_id
-	WHERE id_user = p_user_id;
+	WHERE id = p_resa_id;
+END //
+
+-- pay reservation
+CREATE OR REPLACE PROCEDURE toggleReservationIsPaid (IN p_date VARCHAR(255), IN p_salle_id INT, IN p_user_id INT)
+BEGIN
+	UPDATE reservations
+	set is_paid = !is_paid
+	WHERE date_resa = p_date AND id_salle = p_salle_id AND id_user = p_user_id;
 END //
 
 -- delete user reservation (bloqué post date du jour) // ok route
-CREATE OR REPLACE PROCEDURE deleteReservation (IN p_date VARCHAR(255), IN p_user_id int, IN p_salle VARCHAR(255))
+	-- // autre solution possible : declare salle id 1 as deleted/inactive salles
+CREATE OR REPLACE PROCEDURE deleteReservation (IN p_user_id INT, IN p_resa_id INT)
 BEGIN
-	DELETE r FROM reservations r
-	INNER JOIN salles s
-	ON s.nom = p_salle
-	WHERE id_user = p_user_id AND date_resa = p_date;
+	DELETE FROM reservations
+	WHERE id = p_resa_id AND id_user = p_user_id AND date_resa > DATE(NOW());
 END //
 
 -- voir ses réservations // ok route
@@ -165,14 +172,15 @@ BEGIN
 END //
 
     -- voir les comptes qui ont une reservation à venir (admin)
-CREATE OR REPLACE PROCEDURE getAccountResa(IN p_date_resa int)
-BEGIN
-	SELECT u.id, u.nom, u.prenom, u.email, u.tel, u.ddn, u.adresse 
-	FROM users u
-	INNER JOIN reservations r
-	ON u.id = r.id
-	WHERE date_resa > p_date_resa;
-END //
+		-- buggée mais innutile pour l'instant
+-- CREATE OR REPLACE PROCEDURE getAccountResa()
+-- BEGIN
+-- 	SELECT u.id, u.nom, u.prenom, u.email, u.tel, u.ddn, u.adresse 
+-- 	FROM users u
+-- 	INNER JOIN reservations r
+-- 	ON u.id = r.id
+-- 	WHERE date_resa >= DATE(NOW())
+-- END //
 
 -- get user reservations (participants: (nom/prénom))
 CREATE OR REPLACE PROCEDURE getUserReservations (IN p_user_id INT)

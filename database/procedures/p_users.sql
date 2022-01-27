@@ -297,13 +297,13 @@ BEGIN
 END //
 
 -- cas covid positif
-CREATE OR REPLACE PROCEDURE isCovid (IN p_user_id int)
+CREATE OR REPLACE PROCEDURE isCovid (IN p_user_id int, IN p_date_positive DATE)
 BEGIN
 	UPDATE participants
 	SET covid_positive = 1
     WHERE id_user = p_user_id AND id_reservation IN (
 		SELECT id FROM reservations
-		WHERE date_resa BETWEEN DATE(NOW()) AND ADDDATE(DATE(NOW()), INTERVAL 10 DAY)
+		WHERE date_resa BETWEEN DATE(p_date_positive) AND ADDDATE(DATE(p_date_positive), INTERVAL 10 DAY)
 	);
 END //
 

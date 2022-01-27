@@ -2,7 +2,7 @@ const { call } = require('../../utils');
 
 module.exports = {
 
-    // si paiement d'une réservation, p_id_produit doit être null
+    // si paiement d'une réservation, p_id_produit doit être 1
     createUserPayment: async (req, res) => {
         const { user_id } = req.params;
         const params = Object.values(req.body);

@@ -240,7 +240,7 @@ END //
     -- participations avant date du jour (exclus)
 CREATE OR REPLACE PROCEDURE getUserParticipationBefore (IN p_user_id INT)
 BEGIN
-	SELECT s.nom, r.date_resa, u.nom, u.prenom FROM reservations r
+	SELECT s.nom nom_salle, r.date_resa, u.nom, u.prenom FROM reservations r
 	INNER JOIN participants p
 	ON p.id_reservation = r.id
 	INNER JOIN salles s
@@ -253,7 +253,7 @@ END //
     -- participations après date du jour (inclus)
 CREATE OR REPLACE PROCEDURE getUserParticipationAfter (IN p_user_id INT)
 BEGIN
-	SELECT s.nom, r.date_resa, u.nom, u.prenom FROM reservations r
+	SELECT s.nom nom_salle, r.date_resa, u.nom, u.prenom FROM reservations r
 	INNER JOIN participants p
 	ON p.id_reservation = r.id
 	INNER JOIN salles s
@@ -269,11 +269,11 @@ BEGIN
 	INSERT INTO participants (covid_positive, id_user, id_reservation) VALUES (0, p_id_user, p_id_resa);
 END //
 
--- update user participation (set covid state)
+-- update user participation (set covid state) to delete
 CREATE OR REPLACE PROCEDURE updateParticipantCovidState (IN p_id_user INT, IN p_id_reservation INT, IN p_covid_state INT)
 BEGIN
 	UPDATE participants
-	SET covide_state = p_covid_state
+	SET covid_positive = p_covid_state
 	WHERE id_user = p_id_user AND id_reservation = p_id_reservation;
 END //
 
@@ -297,13 +297,13 @@ BEGIN
 END //
 
 -- cas covid positif
-CREATE OR REPLACE PROCEDURE isCovid (IN p_user_id int)
+CREATE OR REPLACE PROCEDURE isCovid (IN p_user_id int, IN p_date_positive DATE)
 BEGIN
 	UPDATE participants
 	SET covid_positive = 1
     WHERE id_user = p_user_id AND id_reservation IN (
 		SELECT id FROM reservations
-		WHERE date_resa BETWEEN DATE(NOW()) AND ADDDATE(DATE(NOW()), INTERVAL 10 DAY)
+		WHERE date_resa BETWEEN DATE(p_date_positive) AND ADDDATE(DATE(p_date_positive), INTERVAL 10 DAY)
 	);
 END //
 

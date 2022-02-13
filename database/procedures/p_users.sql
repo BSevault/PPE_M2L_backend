@@ -52,10 +52,10 @@ BEGIN
 END //
 
 -- get one user by email and password when log in
-CREATE OR REPLACE PROCEDURE getAccountIdByEmail(IN p_email VARCHAR(255), IN p_password VARCHAR(255))
+CREATE OR REPLACE PROCEDURE getAccountIdByEmail(IN p_email VARCHAR(255))
 BEGIN
     SELECT id FROM users 
-	WHERE email = p_email AND password = SHA1(p_password);
+	WHERE email = p_email;
 END //
     
 

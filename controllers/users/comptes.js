@@ -27,24 +27,35 @@ module.exports = {
         const { email, password } = req.body;
         await call(res, async (connexion) =>{
 
-            const result = await connexion.query("CALL getAccountIdByEmail(?, ?)", [email, password]);
-            const id_user = result[0][0].id;
+            const resultId = await connexion.query("CALL getAccountIdByEmail(?)", [email]);
+            const id_user = resultId[0][0].id;
 
-            if (isInteger(id_user)) {
-                const user = await connexion.query("CALL getOneAccount(?)", [id_user]);
-                return res.status(200).json({ success: user[0][0]});
+            if (isInteger(id_user) && resultId[0].length === 1) {
+                const checkPwd = await connexion.query("CALL checkUserPassword(?,?)", [id_user, password]);
+
+                if (id_user === checkPwd[0][0].id) {
+                    const user = await connexion.query("CALL getOneAccount(?)", [id_user]);
+                    return res.status(200).json({ success: user[0][0]});
+                }
             }
 
             return res.status(401).json({ error: "Email ou mot de passe invalide" });
-
         });
     },
 
     createAccount: async (req, res) => {
         const params = Object.values(req.body); // transform object into array
         await call(res, async (connexion) => {
-            const result = await connexion.query("CALL createAccount(?,?,?,?,?,?,?)", params);
-            return res.status(200).json({ success: result });
+
+            const checkEmail = await connexion.query("CALL getAccountIdByEmail(?)", [ params[2] ]);
+            console.log(checkEmail[0][0]);
+            if (checkEmail[0][0] === undefined) {
+
+                const result = await connexion.query("CALL createAccount(?,?,?,?,?,?,?)", params);
+                return res.status(200).json({ success: result });
+            }
+
+            return res.status(401).json({ error: "Un compte est déjà ouvert avec cette email" });
         });
     },
 

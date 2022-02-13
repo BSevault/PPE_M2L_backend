@@ -6,13 +6,18 @@ const {
     getOneAccount,
     updateAccount,
     activeStatusUser,
-    checkUserPassword
+    checkUserPassword,
+    getAccountIdByEmail
 } = require('../../controllers/users/comptes');
 
 router
     .route('/')     // registration
     .get(getAllAccount)
     .post(createAccount)
+
+router
+    .route('/login')
+    .post(getAccountIdByEmail)
     
 router
     .route('/:user_id')

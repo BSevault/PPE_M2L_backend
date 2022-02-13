@@ -1,3 +1,4 @@
+const { isInteger } = require('lodash');
 const { call } = require('../../utils');
 
 module.exports = {
@@ -18,6 +19,23 @@ module.exports = {
 
             const result = await connexion.query("CALL getOneAccount(?)", [user_id]);
             return res.status(200).json({ success: result[0]});
+
+        });
+    },
+
+    getAccountIdByEmail : async (req, res) => {
+        const { email, password } = req.body;
+        await call(res, async (connexion) =>{
+
+            const result = await connexion.query("CALL getAccountIdByEmail(?, ?)", [email, password]);
+            const id_user = result[0][0].id;
+
+            if (isInteger(id_user)) {
+                const user = await connexion.query("CALL getOneAccount(?)", [id_user]);
+                return res.status(200).json({ success: user[0][0]});
+            }
+
+            return res.status(401).json({ error: "Email ou mot de passe invalide" });
 
         });
     },

@@ -8,8 +8,13 @@ const {
     deleteReservation,
     getBeforeReservation,
     getFutureReservation,
-    getReservationCovid
+    getReservationCovid,
+    getReservationsCancel
 } = require('../../controllers/users/reservations');
+
+router
+    .route('/')
+    .get(getReservationsCancel)
 
 router
     .route('/:user_id/reservation')

@@ -33,7 +33,7 @@ module.exports = {
             if (isInteger(id_user) && resultId[0].length === 1) {
                 const checkPwd = await connexion.query("CALL checkUserPassword(?,?)", [id_user, password]);
 
-                if (id_user === checkPwd[0][0].id) {
+                if (checkPwd[0][0] != undefined && id_user === checkPwd[0][0].id) {
                     const user = await connexion.query("CALL getOneAccount(?)", [id_user]);
                     return res.status(200).json({ success: user[0][0]});
                 }

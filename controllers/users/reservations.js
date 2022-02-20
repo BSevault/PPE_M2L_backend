@@ -17,6 +17,14 @@ module.exports = {
         });
     },
 
+    getReservationsCancel: async (req, res) => {
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL getReservationsCancel");
+            console.log(result);
+            return res.status(200).json({ success: result[0] });
+        });
+    },
+
     createReservation: async (req, res) => {
         const { user_id } = req.params;
         const { date, salle_id, is_paid } = req.body;

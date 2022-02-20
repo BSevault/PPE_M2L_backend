@@ -32,7 +32,7 @@ app
     .use('/users', routes_users_comptes)
     .use('/users', routes_users_paiements)
     .use('/users', routes_users_participations)
-    .use('/users', routes_users_reservations)
+    .use('/reservations', routes_users_reservations)
     .use('/users', routes_users_tickets)
 
     .use('/users', routes_users); // delete this after refacto routes users

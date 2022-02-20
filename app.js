@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get('/api', (req, res) => {
+app.get('/api', ( _ , res) => {
     res.status(200).json({success: "Bonjour, vous êtes sur l'api M2L"});
 });
 

@@ -51,7 +51,12 @@ BEGIN
     WHERE USERS.id = p_id AND password = SHA1(p_password);
 END //
 
-
+-- get one user by email and password when log in
+CREATE OR REPLACE PROCEDURE getAccountIdByEmail(IN p_email VARCHAR(255))
+BEGIN
+    SELECT id FROM users 
+	WHERE email = p_email;
+END //
     
 
 
@@ -216,7 +221,13 @@ BEGIN
 	WHERE covid_positive = 1 AND id_reservation = p_id_resa;  
 END //
 
-    
+-- CREATE OR REPLACE PROCEDURE getReservationsCancel()
+-- BEGIN
+-- 	SELECT r.id as id_reservation, s.nom as nom_salle, r.date_resa, r.motif_annul FROM reservations r
+-- 	INNER JOIN salles s
+-- 	ON r.id_salle = s.id
+-- 	WHERE is_annule = 1;
+-- END //
 
 
 

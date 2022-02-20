@@ -9,12 +9,12 @@ const {
     getBeforeReservation,
     getFutureReservation,
     getReservationCovid,
-    getReservationsCancel
+    // getReservationsCancel
 } = require('../../controllers/users/reservations');
 
-router
-    .route('/')
-    .get(getReservationsCancel)
+// router
+//     .route('/')
+//     .get(getReservationsCancel)
 
 router
     .route('/:user_id/reservation')

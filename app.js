@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get('/api', (req, res) => {
+app.get('/api', ( _ , res) => {
     res.status(200).json({success: "Bonjour, vous êtes sur l'api M2L"});
 });
 
@@ -32,7 +32,7 @@ app
     .use('/users', routes_users_comptes)
     .use('/users', routes_users_paiements)
     .use('/users', routes_users_participations)
-    .use('/reservations', routes_users_reservations)
+    .use('/users', routes_users_reservations)
     .use('/users', routes_users_tickets)
 
     .use('/users', routes_users); // delete this after refacto routes users

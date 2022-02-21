@@ -9,20 +9,22 @@
     "dev": "cross-env NODE_ENV=dev nodemon app.js",
     "integrateDB": "cross-env mariadb -u root -p <./database/schema.sql",
     "integrateDummy": "cross-env mariadb -u root -p <./database/dummy_datas.sql",
+    "integrateLightDummy": "cross-env mariadb -u root -p <./database/light_dummy_datas.sql",
     "integrateProduitsProc": "cross-env mariadb -u root -p <./database/procedures/p_produits.sql",
     "integrateSallesProc": "cross-env mariadb -u root -p <./database/procedures/p_salles.sql",
     "integrateUsersProc": "cross-env mariadb -u root -p <./database/procedures/p_users.sql",
     "integrateProcedures": "cross-env npm run integrateProduitsProc & npm run integrateSallesProc & npm run integrateUsersProc",
-    "resetDB": "cross-env npm run integrateDB & npm run integrateDummy & npm run integrateProcedures"
+    "resetDB": "cross-env npm run integrateDB & npm run integrateDummy & npm run integrateProcedures",
+    "resetDBLight": "cross-env npm run integrateDB & npm run integrateLightDummy & npm run integrateProcedures"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BSevault/PPE3-4_M2L.git"
+    "url": "git+https://github.com/BSevault/PPE_M2L_backend.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BSevault/PPE3-4_M2L/issues"
+    "url": "https://github.com/BSevault/PPE_M2L_backend/issues"
   },
   "homepage": "https://github.com/BSevault/PPE3-4_M2L#readme",
   "devDependencies": {

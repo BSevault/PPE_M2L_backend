@@ -356,6 +356,16 @@ BEGIN
 	WHERE id = p_ticket_id;
 END //
 
+	-- toggle ticket status
+CREATE OR REPLACE PROCEDURE toggleTicketStatus (IN p_ticket_id INT, IN p_user_id INT)
+BEGIN
+	UPDATE tickets
+	SET
+		statut = !statut
+	WHERE id_user = p_user_id AND id = p_ticket_id;
+END //
+
+
     -- delete // ok route
 CREATE OR REPLACE PROCEDURE deleteOneUserTicket (IN p_ticket_id int, IN p_user_id int)
 BEGIN

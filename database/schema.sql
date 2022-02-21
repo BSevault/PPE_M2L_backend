@@ -46,6 +46,7 @@ CREATE TABLE TICKETS(
    id_user INT NOT NULL,
    id_salle INT,
    id_produit INT,
+   statut BOOLEAN NOT NULL DEFAULT 0, -- 0: en cours ; 1: terminé
    PRIMARY KEY(id),
    FOREIGN KEY(id_salle) REFERENCES SALLES(id),
    FOREIGN KEY(id_produit) REFERENCES PRODUITS(id),

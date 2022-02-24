@@ -39,6 +39,8 @@ app
 
 
 const PORT = process.env.PORT;
+// console.log(PORT);
+// console.log(process.env.USER);
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });

@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod": "cross-env NODE_ENV=prod node app.js",
     "dev": "cross-env NODE_ENV=dev nodemon app.js",
+    "devlinux":"cross-env NODE_ENV=devlinux nodemon app.js",
     "integrateDB": "cross-env mariadb -u root -p <./database/schema.sql",
     "integrateDummy": "cross-env mariadb -u root -p <./database/dummy_datas.sql",
     "integrateLightDummy": "cross-env chcp 65001 | mariadb -u root -p <./database/light_dummy_datas.sql",

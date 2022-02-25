@@ -2403,3 +2403,10 @@ INSERT INTO `PAIEMENTS` (`id`, `qte`, `total`, `id_user`, `id_reservation`, `id_
 UPDATE PAIEMENTS, PRODUITS
 SET total = PRODUITS.prix * PAIEMENTS.qte
 WHERE PAIEMENTS.id_produit = PRODUITS.id;
+
+
+ALTER TABLE USERS
+ADD is_admin BOOLEAN NOT NULL
+DEFAULT 0;
+
+UPDATE USERS SET is_admin=1 WHERE id=1;

@@ -69,6 +69,15 @@ module.exports = {
         });
     },
 
+    changePassword: async(req, res) => {
+        const { user_id } = req.params;
+        const { old_password, new_password } = req.body;
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL changePassword(?,?,?)", [user_id, old_password, new_password]);
+            return res.status(200).json({ success: result });
+        });
+    },
+
     activeStatusUser: async (req, res) => {
         const { user_id } = req.params;
         await call(res, async (connexion) => {

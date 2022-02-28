@@ -5,6 +5,7 @@ const {
     createAccount,
     getOneAccount,
     updateAccount,
+    changePassword,
     activeStatusUser,
     checkUserPassword,
     getAccountIdByEmail
@@ -24,6 +25,7 @@ router
     .get(getOneAccount)
     .put(updateAccount)
     .patch(checkUserPassword)
+    .post(changePassword)
 
 router  
     .route('/:user_id/active')

@@ -13,13 +13,23 @@ BEGIN
 END //
 
 -- update user // ok route
-CREATE OR REPLACE PROCEDURE updateAccount(IN p_id int, IN p_nom VARCHAR(255), IN p_prenom VARCHAR(255), IN p_email VARCHAR(255), IN p_tel VARCHAR(50), IN p_password VARCHAR(255), IN p_ddn VARCHAR(255), IN p_adresse VARCHAR(255))
+CREATE OR REPLACE PROCEDURE updateAccount(IN p_id int, IN p_nom VARCHAR(255), IN p_prenom VARCHAR(255), IN p_email VARCHAR(255), IN p_tel VARCHAR(50), IN p_ddn VARCHAR(255), IN p_adresse VARCHAR(255))
 BEGIN
 	UPDATE USERS
 	SET
-		nom = p_nom, prenom = p_prenom, email = p_email, tel = p_tel, password = SHA1(p_password), ddn = p_ddn, adresse = p_adresse
+		nom = p_nom, prenom = p_prenom, email = p_email, tel = p_tel, ddn = p_ddn, adresse = p_adresse
 	WHERE
 		id = p_id;
+END //
+
+-- update user password
+CREATE OR REPLACE PROCEDURE changePassword(IN p_id INT, IN p_old_password VARCHAR(255), IN p_new_password VARCHAR(255))
+BEGIN
+	UPDATE USERS
+	SET
+		password = SHA1(p_new_password)
+	WHERE
+		id = p_id AND SHA1(p_old_password) = password;
 END //
 
 -- active status user // ok route

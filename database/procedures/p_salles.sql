@@ -11,7 +11,7 @@ END //
 -- Voir SALLES active
 CREATE OR REPLACE PROCEDURE getActiveSalles ()
 BEGIN
-	SELECT id, nom from SALLES
+	SELECT id, nom, description, capacite, prix from SALLES
 	WHERE is_active = 1;
 END //
 

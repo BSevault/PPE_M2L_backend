@@ -34,8 +34,4 @@ VALUES
 ('Minute maid orange', 'Canette de jus d\'orange 33cl', 500, '2.30');
 
 
-ALTER TABLE USERS
-ADD is_admin BOOLEAN NOT NULL
-DEFAULT 0;
-
 UPDATE USERS SET is_admin=1 WHERE id=1;

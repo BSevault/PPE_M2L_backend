@@ -15,6 +15,7 @@ CREATE TABLE USERS(
    ddn DATE NOT NULL,
    adresse VARCHAR(255),
    is_active BOOLEAN NOT NULL DEFAULT 1,
+   is_admin BOOLEAN NOT NULL DEFAULT 0,
    PRIMARY KEY(id)
 );
 

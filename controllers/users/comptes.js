@@ -64,7 +64,7 @@ module.exports = {
         const params = Object.values(req.body);
         params.unshift(user_id);
         await call(res, async (connexion) => {
-            const result = await connexion.query("CALL updateAccount(?,?,?,?,?,?,?,?)", params);
+            const result = await connexion.query("CALL updateAccount(?,?,?,?,?,?,?)", params);
             return res.status(200).json({ success: result });
         });
     },

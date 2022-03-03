@@ -1,6 +1,6 @@
 USE M2L_DB;
 
-INSERT INTO users (nom, prenom, email, tel, password, ddn, adresse)
+INSERT INTO USERS (nom, prenom, email, tel, password, ddn, adresse)
 VALUES
 ('test1_nom', 'test1_prenom', 'test1@email.com','0123456789', SHA1('test1'), '1981-01-01', 'test1_adresse'),
 ('test2_nom', 'test2_prenom', 'test2@email.com','0234567891', SHA1('test2'), '1982-01-01', 'test2_adresse'),
@@ -9,7 +9,7 @@ VALUES
 ('test5_nom', 'test5_prenom', 'test5@email.com','0567891234', SHA1('test5'), '1985-01-01', 'test5_adresse'),
 ('test6_nom', 'test6_prenom', 'test6@email.com','0678912345', SHA1('test6'), '1986-01-01', 'test6_adresse');
 
-INSERT INTO salles (nom, description, capacite, prix)
+INSERT INTO SALLES (nom, description, capacite, prix)
 VALUES 
 ('Majorelle', 'Service de sonorisation et vidéo projecteur disponible', 30, 2000),
 ('Restauration et convivialité', 'Service de sonorisation et vidéo projecteur disponible', 50, 3000),
@@ -22,7 +22,7 @@ VALUES
 ('Corbin', 'Vidéo projecteur disponible', 20, 1000),
 ('Baccarat', 'Vidéo projecteur disponible', 20, 1000);
 
-INSERT INTO produits (nom_produit, description, qte_dispo, prix)
+INSERT INTO PRODUITS (nom_produit, description, qte_dispo, prix)
 VALUES 
 ('Paiement salle', 'Paiement de réservation', 1, '1'),
 ('Vidéoprojecteur', 'Paiement de location d\'un vidéoprojecteur', 1, '50'),
@@ -35,3 +35,19 @@ VALUES
 
 
 UPDATE USERS SET is_admin=1 WHERE id=1;
+
+
+INSERT INTO RESERVATIONS (date_resa, is_paid, id_user, id_salle)
+VALUES
+('1986-01-01', 1, 1, 1),
+('2023-01-01', 1, 1, 1),
+('1986-01-01', 2, 2, 2),
+('2023-01-01', 2, 2, 2);
+
+
+INSERT INTO PARTICIPANTS (covid_positive, id_user, id_reservation)
+VALUES
+(0, 1, 1),
+(0, 2, 1),
+(1, 1, 2),
+(0, 2, 2);

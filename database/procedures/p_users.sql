@@ -147,6 +147,11 @@ END //
 ------------------------------USERS RESERVATION------------------------------------
 
 
+CREATE OR REPLACE PROCEDURE getAllReservations ()
+BEGIN
+	SELECT date_resa, is_paid, id_user, id_salle FROM RESERVATIONS
+END //
+
 -- create user reservation // ok route
 CREATE OR REPLACE PROCEDURE createReservation (IN p_date VARCHAR(255), IN p_user_id int, IN p_salle_id int, IN p_is_paid BOOLEAN)
 BEGIN

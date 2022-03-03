@@ -9,6 +9,13 @@ const { call } = require('../../utils');
 
 // ------ RESERVATION -------
 module.exports = {
+    getAllReservations: async ( _ , res) => {
+        await call(res,  async (connexion) => {
+            const result = await connexion.query("CALL getAllReservations()");
+            return res.status(200).json({ success: result[0]});
+        });
+    },
+
     getReservations: async (req, res) => {
         const { user_id } = req.params;
         await call(res, async (connexion) => {

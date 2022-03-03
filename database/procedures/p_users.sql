@@ -149,7 +149,7 @@ END //
 
 CREATE OR REPLACE PROCEDURE getAllReservations ()
 BEGIN
-	SELECT date_resa, is_paid, id_user, id_salle FROM RESERVATIONS
+	SELECT date_resa, is_paid, id_user, id_salle FROM RESERVATIONS;
 END //
 
 -- create user reservation // ok route

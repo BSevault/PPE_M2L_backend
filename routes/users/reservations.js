@@ -14,7 +14,7 @@ const {
 } = require('../../controllers/users/reservations');
 
 router
-    .route('/reservations')
+    .route('/all/reservations')
     .get(getAllReservations)
 
 router

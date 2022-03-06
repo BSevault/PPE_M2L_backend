@@ -9,6 +9,7 @@ VALUES
 ('test5_nom', 'test5_prenom', 'test5@email.com','0567891234', SHA1('test5'), '1985-01-01', 'test5_adresse'),
 ('test6_nom', 'test6_prenom', 'test6@email.com','0678912345', SHA1('test6'), '1986-01-01', 'test6_adresse');
 
+INSERT INTO SALLES VALUES (1, 'N.A.', 'N.A.', 0, 0, 0);
 INSERT INTO SALLES (nom, description, capacite, prix)
 VALUES 
 ('Majorelle', 'Service de sonorisation et vidéo projecteur disponible', 30, 2000),
@@ -22,6 +23,7 @@ VALUES
 ('Corbin', 'Vidéo projecteur disponible', 20, 1000),
 ('Baccarat', 'Vidéo projecteur disponible', 20, 1000);
 
+INSERT INTO PRODUITS VALUES (1, 'N.A.', 'N.A.', 0, 0, 0);
 INSERT INTO PRODUITS (nom_produit, description, qte_dispo, prix)
 VALUES 
 ('Paiement salle', 'Paiement de réservation', 1, '1'),

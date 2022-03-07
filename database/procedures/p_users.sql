@@ -185,7 +185,7 @@ END //
 -- voir ses réservations // ok route
 CREATE OR REPLACE PROCEDURE getReservations (IN p_user_id int)
 BEGIN
-	SELECT s.nom, r.date_resa, r.is_paid FROM RESERVATIONS r
+	SELECT r.id, s.nom, r.date_resa, r.is_paid FROM RESERVATIONS r
 	INNER JOIN SALLES s
 	ON r.id_salle = s.id
 	WHERE r.id_user = p_user_id;
@@ -205,7 +205,7 @@ END //
 -- get user reservations (participants: (nom/prénom))
 CREATE OR REPLACE PROCEDURE getUserReservations (IN p_user_id INT)
 BEGIN
-	SELECT s.nom, s.description, r.date_resa, s.prix, is_paid  FROM RESERVATIONS r
+	SELECT r.id, s.nom, s.description, r.date_resa, s.prix, is_paid  FROM RESERVATIONS r
 	INNER JOIN SALLES s
 	ON r.id_salle = s.id
 	WHERE r.id_user = p_user_id;
@@ -214,7 +214,7 @@ END //
     -- reservations avant date du jour (exclus) 
 CREATE OR REPLACE PROCEDURE getBeforeReservation (IN p_user_id int)
 BEGIN
-	SELECT s.nom, s.description, r.date_resa, s.prix, is_paid  FROM RESERVATIONS r
+	SELECT r.id, s.nom, s.description, r.date_resa, s.prix, is_paid  FROM RESERVATIONS r
 	INNER JOIN SALLES s
 	ON r.id_salle = s.id
 	WHERE r.id_user = p_user_id AND date_resa < DATE(NOW());
@@ -223,7 +223,7 @@ END //
     -- reservations après date du jour (inclus)
 CREATE OR REPLACE PROCEDURE getFutureReservation (IN p_user_id int)
 BEGIN
-	SELECT s.nom, s.description, r.date_resa, s.prix, is_paid  FROM RESERVATIONS r
+	SELECT r.id, s.nom, s.description, r.date_resa, s.prix, is_paid  FROM RESERVATIONS r
 	INNER JOIN SALLES s
 	ON r.id_salle = s.id
 	WHERE r.id_user = p_user_id AND date_resa >= DATE(NOW());

@@ -2,12 +2,23 @@ require('dotenv').config({ path: `./config/${process.env.NODE_ENV}.env`});
 
 const express = require('express');
 const cors = require('cors');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+
 
 const app = express();
 
 //middleware
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
+
+app.use(session({
+    secret: 'ma_session_super_secret_key',
+    saveUninitialized: false,
+    resave: false,
+    cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }
+}));
 
 app.get('/api', ( _ , res) => {
     res.status(200).json({success: "Bonjour, vous êtes sur l'api M2L"});

@@ -1,506 +1,1180 @@
 {
-    "info": {
-        "_postman_id": "e90c96da-e28f-4a59-8b94-be7f3d2f92a8",
-        "name": "PPE_M2L",
-        "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
-    },
-    "item": [
-        {
-            "name": "Salles",
-            "item": [
-                {
-                    "name": "getAllSalles",
-                    "id": "eab892d7-cdbf-46db-a012-057a58b4d540",
-                    "request": {
-                        "method": "GET",
-                        "header": [],
-                        "url": "localhost:3001/salles/all"
-                    },
-                    "response": []
-                },
-                {
-                    "name": "getActiveSalles",
-                    "id": "edff9ca5-a5f1-441c-bc17-2a9634998233",
-                    "request": {
-                        "method": "GET",
-                        "header": [],
-                        "url": "localhost:3001/salles"
-                    },
-                    "response": []
-                },
-                {
-                    "name": "getOneSalle",
-                    "id": "91d1db22-6275-4e6a-a12c-98f62d5eb450",
-                    "request": {
-                        "method": "GET",
-                        "header": [],
-                        "url": {
-                            "raw": "localhost:3001/salles/:salle_id",
-                            "host": ["localhost"],
-                            "port": "3001",
-                            "path": ["salles", ":salle_id"],
-                            "variable": [
-                                {
-                                    "id": "76d37815-4e0e-4f58-b33b-0cf64a524064",
-                                    "key": "salle_id",
-                                    "value": "1"
-                                }
-                            ]
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "GetSalleResas",
-                    "id": "628a0dfa-1f7d-4bde-854f-e4921694f54e",
-                    "request": {
-                        "method": "GET",
-                        "header": [],
-                        "url": {
-                            "raw": "localhost:3001/salles/:salle_id/reservations",
-                            "host": ["localhost"],
-                            "port": "3001",
-                            "path": ["salles", ":salle_id", "reservations"],
-                            "variable": [
-                                {
-                                    "id": "e767d1c3-6f1f-4828-a052-a400b89bd39a",
-                                    "key": "salle_id",
-                                    "value": "9"
-                                }
-                            ]
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "createSalle",
-                    "id": "5ad81333-7987-4659-b09b-14a90a3a822e",
-                    "request": {
-                        "method": "POST",
-                        "header": [],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\r\n    \"nom\": \"salle de bob\",\r\n    \"desc\": \"test aaaaaaaaaaaa\",\r\n    \"capa\": 30,\r\n    \"prix\": 12.1,\r\n    \"is_active\": 1\r\n}",
-                            "options": { "raw": { "language": "json" } }
-                        },
-                        "url": "localhost:3001/salles/"
-                    },
-                    "response": []
-                },
-                {
-                    "name": "updateSalle",
-                    "id": "e30b4095-e456-46fa-bd02-fdb6c99d07e8",
-                    "request": {
-                        "method": "PUT",
-                        "header": [],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\r\n    \"nom\": \"salle de bob\",\r\n    \"desc\": \"test update description\",\r\n    \"capa\": 31,\r\n    \"prix\": 13.1,\r\n    \"is_active\": 0\r\n}",
-                            "options": { "raw": { "language": "json" } }
-                        },
-                        "url": {
-                            "raw": "localhost:3001/salles/:salle_id",
-                            "host": ["localhost"],
-                            "port": "3001",
-                            "path": ["salles", ":salle_id"],
-                            "variable": [
-                                {
-                                    "id": "34d9ae52-451b-4ee7-b70f-90d9e9b2109f",
-                                    "key": "salle_id",
-                                    "value": "32"
-                                }
-                            ]
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "toggleStatusSalle",
-                    "id": "0103cf56-f344-4047-b712-0cf14e1f05f4",
-                    "request": {
-                        "method": "PATCH",
-                        "header": [],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "",
-                            "options": { "raw": { "language": "json" } }
-                        },
-                        "url": {
-                            "raw": "localhost:3001/salles/:salle_id",
-                            "host": ["localhost"],
-                            "port": "3001",
-                            "path": ["salles", ":salle_id"],
-                            "variable": [
-                                {
-                                    "id": "7a02e6cf-55cf-4d37-ae49-8d1d949ad62d",
-                                    "key": "salle_id",
-                                    "value": "33"
-                                }
-                            ]
-                        }
-                    },
-                    "response": []
-                }
-            ],
-            "id": "5a23148f-120b-4c95-a9e9-6a2843715b4f"
-        },
-        {
-            "name": "Produits",
-            "item": [
-                {
-                    "name": "getAllProducts",
-                    "id": "9cb9d2e1-24b4-403b-a802-77950ed767ca",
-                    "request": {
-                        "method": "GET",
-                        "header": [],
-                        "url": "http://localhost:3001/produits"
-                    },
-                    "response": []
-                },
-                {
-                    "name": "getProductById",
-                    "id": "843b8a6f-6e30-4a19-b996-c54dab605f3a",
-                    "request": {
-                        "method": "GET",
-                        "header": [],
-                        "url": {
-                            "raw": "http://localhost:3001/produits/:id",
-                            "protocol": "http",
-                            "host": ["localhost"],
-                            "port": "3001",
-                            "path": ["produits", ":id"],
-                            "variable": [
-                                {
-                                    "id": "f6e0e556-e1eb-4141-9c95-f3348176aea6",
-                                    "key": "id",
-                                    "value": "9"
-                                }
-                            ]
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "createUserPayment",
-                    "id": "ec4f3e8c-bc17-4a76-ba39-5cf0504755b1",
-                    "request": {
-                        "method": "POST",
-                        "header": [],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\r\n    \"nom_produit\": \"cigashit\",\r\n    \"description\": \"la drogue c'est mal voyez\",\r\n    \"qte_dispo\": 42,\r\n    \"prix\": 5\r\n}",
-                            "options": { "raw": { "language": "json" } }
-                        },
-                        "url": "http://localhost:3001/produits/"
-                    },
-                    "response": []
-                },
-                {
-                    "name": "updateProductById",
-                    "id": "39e1fb61-d9b2-454d-a465-ce04c52fbe67",
-                    "request": {
-                        "method": "PUT",
-                        "header": [],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\r\n    \"nom_produit\": \"cigashit\",\r\n    \"description\": \"la drogue c'est vraiment mal voyez\",\r\n    \"qte_dispo\": 10,\r\n    \"prix\": 10\r\n}",
-                            "options": { "raw": { "language": "json" } }
-                        },
-                        "url": {
-                            "raw": "http://localhost:3001/produits/:id",
-                            "protocol": "http",
-                            "host": ["localhost"],
-                            "port": "3001",
-                            "path": ["produits", ":id"],
-                            "variable": [
-                                {
-                                    "id": "ffab1c27-cdf9-4433-a995-0c3611de4d1c",
-                                    "key": "id",
-                                    "value": "51"
-                                }
-                            ]
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "updateProductQtyById",
-                    "id": "86f7994e-6e99-4b69-a97c-f26c5411d965",
-                    "request": {
-                        "method": "PATCH",
-                        "header": [],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\r\n    \"qte_dispo\": 10\r\n}",
-                            "options": { "raw": { "language": "json" } }
-                        },
-                        "url": {
-                            "raw": "http://localhost:3001/produits/:id",
-                            "protocol": "http",
-                            "host": ["localhost"],
-                            "port": "3001",
-                            "path": ["produits", ":id"],
-                            "variable": [
-                                {
-                                    "id": "4906a5df-b662-4625-a889-b0101f442d2c",
-                                    "key": "id",
-                                    "value": "51"
-                                }
-                            ]
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "toggleProductIsActiveById",
-                    "id": "6d083333-3b36-470e-b03a-4a4c13f82f59",
-                    "request": {
-                        "method": "DELETE",
-                        "header": [],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "",
-                            "options": { "raw": { "language": "json" } }
-                        },
-                        "url": {
-                            "raw": "http://localhost:3001/produits/:id",
-                            "protocol": "http",
-                            "host": ["localhost"],
-                            "port": "3001",
-                            "path": ["produits", ":id"],
-                            "variable": [
-                                {
-                                    "id": "40255982-2b1f-40fd-807e-86816c2cc6a4",
-                                    "key": "id",
-                                    "value": "51"
-                                }
-                            ]
-                        }
-                    },
-                    "response": []
-                }
-            ],
-            "id": "e300b873-9631-4533-918a-0d825af1b743"
-        },
-        {
-            "name": "User",
-            "item": [
-                {
-                    "name": "Paiements",
-                    "item": [
-                        {
-                            "name": "createUserPayment",
-                            "id": "2dd49842-e980-4a22-b755-335f906204f2",
-                            "request": {
-                                "method": "POST",
-                                "header": [],
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "{\r\n    \"qte\": 10,\r\n    \"id_reservation\": 12,\r\n    \"id_produit\": 1\r\n}",
-                                    "options": { "raw": { "language": "json" } }
-                                },
-                                "url": {
-                                    "raw": "http://localhost:3001/users/:user_id/paiements",
-                                    "protocol": "http",
-                                    "host": ["localhost"],
-                                    "port": "3001",
-                                    "path": ["users", ":user_id", "paiements"],
-                                    "variable": [
-                                        { "key": "user_id", "value": "1" }
-                                    ]
-                                }
-                            },
-                            "response": []
-                        },
-                        {
-                            "name": "getServicesPaymentsByUserId",
-                            "id": "6eb0ffbd-51c5-49c8-8f13-81c2e5f4d083",
-                            "request": {
-                                "method": "GET",
-                                "header": [],
-                                "url": {
-                                    "raw": "http://localhost:3001/users/:user_id/paiements",
-                                    "protocol": "http",
-                                    "host": ["localhost"],
-                                    "port": "3001",
-                                    "path": ["users", ":user_id", "paiements"],
-                                    "variable": [
-                                        {
-                                            "id": "9be2d3ae-06d3-43a0-b1d0-4854674c6b81",
-                                            "key": "user_id",
-                                            "value": "1"
-                                        }
-                                    ]
-                                }
-                            },
-                            "response": []
-                        }
-                    ],
-                    "id": "8469582f-6918-4e1f-9434-3515de8bd4b0"
-                },
-                {
-                    "name": "Participation",
-                    "item": [
-                        {
-                            "name": "createParticipant",
-                            "id": "353f744a-7cef-4cb2-a149-428f6ca07caa",
-                            "request": {
-                                "method": "POST",
-                                "header": [],
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "{\r\n    \"resa_id\": \"12\"\r\n}",
-                                    "options": { "raw": { "language": "json" } }
-                                },
-                                "url": {
-                                    "raw": "http://localhost:3001/users/:user_id/participations",
-                                    "protocol": "http",
-                                    "host": ["localhost"],
-                                    "port": "3001",
-                                    "path": [
-                                        "users",
-                                        ":user_id",
-                                        "participations"
-                                    ],
-                                    "variable": [
-                                        { "key": "user_id", "value": "1" }
-                                    ]
-                                }
-                            },
-                            "response": []
-                        },
-                        {
-                            "name": "getParticipationsBefore",
-                            "id": "82718bd6-a95a-47fa-95e7-945ab6f07aab",
-                            "request": {
-                                "method": "GET",
-                                "header": [],
-                                "url": {
-                                    "raw": "http://localhost:3001/users/:user_id/participations/before",
-                                    "protocol": "http",
-                                    "host": ["localhost"],
-                                    "port": "3001",
-                                    "path": [
-                                        "users",
-                                        ":user_id",
-                                        "participations",
-                                        "before"
-                                    ],
-                                    "variable": [
-                                        { "key": "user_id", "value": "40" }
-                                    ]
-                                }
-                            },
-                            "response": []
-                        },
-                        {
-                            "name": "getParticipationsAfter",
-                            "id": "d8d4e787-58fe-4b1f-a31f-510ea97942f1",
-                            "request": {
-                                "method": "GET",
-                                "header": [],
-                                "url": {
-                                    "raw": "http://localhost:3001/users/:user_id/participations/after",
-                                    "protocol": "http",
-                                    "host": ["localhost"],
-                                    "port": "3001",
-                                    "path": [
-                                        "users",
-                                        ":user_id",
-                                        "participations",
-                                        "after"
-                                    ],
-                                    "variable": [
-                                        { "key": "user_id", "value": "2" }
-                                    ]
-                                }
-                            },
-                            "response": []
-                        },
-                        {
-                            "name": "getParticipations",
-                            "id": "b04c40e5-8b98-4991-a75e-de6e1417bd6b",
-                            "request": {
-                                "method": "GET",
-                                "header": [],
-                                "url": {
-                                    "raw": "http://localhost:3001/users/:user_id/participations",
-                                    "protocol": "http",
-                                    "host": ["localhost"],
-                                    "port": "3001",
-                                    "path": [
-                                        "users",
-                                        ":user_id",
-                                        "participations"
-                                    ],
-                                    "variable": [
-                                        { "key": "user_id", "value": "1" }
-                                    ]
-                                }
-                            },
-                            "response": []
-                        },
-                        {
-                            "name": "deleteParticipation",
-                            "id": "44eaf17d-cc7f-4919-9439-e4f09846b4a7",
-                            "request": {
-                                "method": "PUT",
-                                "header": [],
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "{\r\n    \"date_positive\": \"20220201\"\r\n}",
-                                    "options": { "raw": { "language": "json" } }
-                                },
-                                "url": {
-                                    "raw": "http://localhost:3001/users/:user_id/participations",
-                                    "protocol": "http",
-                                    "host": ["localhost"],
-                                    "port": "3001",
-                                    "path": [
-                                        "users",
-                                        ":user_id",
-                                        "participations"
-                                    ],
-                                    "variable": [
-                                        { "key": "user_id", "value": "2" }
-                                    ]
-                                }
-                            },
-                            "response": []
-                        },
-                        {
-                            "name": "deleteParticipation",
-                            "id": "b3eaf87d-8e36-4f4c-9c34-3df161113dee",
-                            "request": {
-                                "method": "DELETE",
-                                "header": [],
-                                "body": {
-                                    "mode": "raw",
-                                    "raw": "{\r\n    \"id_resa\": 12\r\n}",
-                                    "options": { "raw": { "language": "json" } }
-                                },
-                                "url": {
-                                    "raw": "http://localhost:3001/users/:user_id/participations",
-                                    "protocol": "http",
-                                    "host": ["localhost"],
-                                    "port": "3001",
-                                    "path": [
-                                        "users",
-                                        ":user_id",
-                                        "participations"
-                                    ],
-                                    "variable": [
-                                        { "key": "user_id", "value": "1" }
-                                    ]
-                                }
-                            },
-                            "response": []
-                        }
-                    ],
-                    "id": "7904656b-9ea6-49e0-8275-84fc58500e10"
-                }
-            ],
-            "id": "2f11ee37-0356-4758-afe9-c16c7e59237f"
-        }
-    ]
+	"info": {
+		"_postman_id": "eeba7ef0-fd50-4c99-b684-a21d7566c368",
+		"name": "M2L",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Salles",
+			"item": [
+				{
+					"name": "getAllSalles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3001/salles/all"
+					},
+					"response": []
+				},
+				{
+					"name": "getActiveSalles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:3001/salles"
+					},
+					"response": []
+				},
+				{
+					"name": "getOneSalle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/salles/:salle_id",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"salles",
+								":salle_id"
+							],
+							"variable": [
+								{
+									"key": "salle_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSalleResas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/salles/:salle_id/reservations",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"salles",
+								":salle_id",
+								"reservations"
+							],
+							"variable": [
+								{
+									"key": "salle_id",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createSalle",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\": \"salle de bob\",\r\n    \"desc\": \"test aaaaaaaaaaaa\",\r\n    \"capa\": 30,\r\n    \"prix\": 12.1,\r\n    \"is_active\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3001/salles/"
+					},
+					"response": []
+				},
+				{
+					"name": "updateSalle",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\": \"salle de bob\",\r\n    \"desc\": \"test update description\",\r\n    \"capa\": 31,\r\n    \"prix\": 13.1,\r\n    \"is_active\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/salles/:salle_id",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"salles",
+								":salle_id"
+							],
+							"variable": [
+								{
+									"key": "salle_id",
+									"value": "32"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toggleStatusSalle",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/salles/:salle_id",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"salles",
+								":salle_id"
+							],
+							"variable": [
+								{
+									"key": "salle_id",
+									"value": "33"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Comptes",
+					"item": [
+						{
+							"name": "getAllAccount",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3001/users"
+							},
+							"response": []
+						},
+						{
+							"name": "changePassword",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"old_password\": \"test\",\r\n    \"new_password\": \"test1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/users/:user_id",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "503"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getOneAccount",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/users/:user_id",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateAccount",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nom\": \"Marta\",\r\n    \"prenom\": \"Jean\",\r\n    \"email\": \"jean.michel@gmail.com\",\r\n    \"tel\": \"06.12.32.36.16\",\r\n    \"password\": \"test\",\r\n    \"ddn\": \"19800620\",\r\n    \"adresse\": \"12 avenue des près 78000 Fontainebleau\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/users/:user_id",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "501"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createAccount",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nom\": \"Michel\",\r\n    \"prenom\": \"Jean\",\r\n    \"email\": \"jean.michel@gmail.com\",\r\n    \"tel\": \"06.12.32.36.16\",\r\n    \"password\": \"test\",\r\n    \"ddn\": \"19800620\",\r\n    \"adresse\": \"12 avenue des près 78000 Fontainebleau\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3001/users/"
+							},
+							"response": []
+						},
+						{
+							"name": "activeStatusUser",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/users/:user_id/active",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"active"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Paiements",
+					"item": [
+						{
+							"name": "getHistoriquePaiement",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nom\": \"Marta\",\r\n    \"prenom\": \"Jean\",\r\n    \"email\": \"jean.michel@gmail.com\",\r\n    \"tel\": \"06.12.32.36.16\",\r\n    \"password\": \"test\",\r\n    \"ddn\": \"19800620\",\r\n    \"adresse\": \"12 avenue des près 78000 Fontainebleau\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3001/users/1/paiements"
+							},
+							"response": []
+						},
+						{
+							"name": "createUserPayment",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"qte\": 10,\r\n    \"id_reservation\": 12,\r\n    \"id_produit\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/users/:user_id/paiements",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"paiements"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Participations",
+					"item": [
+						{
+							"name": "createParticipant",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"resa_id\": \"12\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/users/:user_id/participations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"participations"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getParticipationsBefore",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/users/:user_id/participations/before",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"participations",
+										"before"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "40"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getParticipationsAfter",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/users/:user_id/participations/after",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"participations",
+										"after"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getParticipations",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3001/users/:user_id/participations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"participations"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteParticipation",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date_positive\": \"20220201\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/users/:user_id/participations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"participations"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteParticipation",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_resa\": 12\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3001/users/:user_id/participations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"participations"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Reservations",
+					"item": [
+						{
+							"name": "createReservation",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": 20240312,\r\n    \"salle_id\": 2,\r\n    \"is_paid\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/users/:user_id/reservation",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"reservation"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getReservations",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/users/:user_id/reservation",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"reservation"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateReservation",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"20240101\",\r\n    \"salle_id\": 4,\r\n    \"resa_id\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/users/:user_id/reservation",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"reservation"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "toggleReservationIsPaid",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"20240101\",\r\n    \"salle_id\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/users/:user_id/reservation",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"reservation"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteReservation",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"resa_id\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/users/:user_id/reservation",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"reservation"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getFutureReservation",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/users/:user_id/reservations",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"reservations"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getBeforeReservation",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/users/:user_id/reservations/history",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"reservations",
+										"history"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getReservationCovid",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/users/:resa_id/covid_state",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":resa_id",
+										"covid_state"
+									],
+									"variable": [
+										{
+											"key": "resa_id",
+											"value": "50"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Tickets",
+					"item": [
+						{
+							"name": "createUserTickets",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date_probleme\": \"20000101\",\r\n    \"desc_ticket\": \"j'ai un bob sous le bras\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/users/:user_id/tickets",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"tickets"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getUserTickets Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/users/:user_id/tickets",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"tickets"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getOneUserTicket",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/users/:user_id/tickets/:ticket_id",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"tickets",
+										":ticket_id"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "75"
+										},
+										{
+											"key": "ticket_id",
+											"value": "75"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateOneUserTicket",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date_probleme\": \"20000101\",\r\n    \"desc_ticket\": \"la salle pue sa mère\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/users/:user_id/tickets/:ticket_id",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"tickets",
+										":ticket_id"
+									],
+									"query": [
+										{
+											"key": null,
+											"value": "75",
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "75"
+										},
+										{
+											"key": "ticket_id",
+											"value": "75"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteOneUserTicket",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3001/users/:user_id/tickets/:ticket_id",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"tickets",
+										":ticket_id"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": "75"
+										},
+										{
+											"key": "ticket_id",
+											"value": "75"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getClosedTickets",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3001/users/tickets/closed"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Produits",
+			"item": [
+				{
+					"name": "getAllProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:3001/produits"
+					},
+					"response": []
+				},
+				{
+					"name": "getProductById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/produits/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"produits",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createProduct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom_produit\": \"cigashit\",\r\n    \"description\": \"la drogue c'est mal voyez\",\r\n    \"qte_dispo\": 42,\r\n    \"prix\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:3001/produits/"
+					},
+					"response": []
+				},
+				{
+					"name": "updateProductById",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom_produit\": \"cigashit\",\r\n    \"description\": \"la drogue c'est vraiment mal voyez\",\r\n    \"qte_dispo\": 10,\r\n    \"prix\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/produits/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"produits",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "51"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProductQtyById",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"qte_dispo\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/produits/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"produits",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "51"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "toggleProductIsActiveById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/produits/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"produits",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "51"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
 }

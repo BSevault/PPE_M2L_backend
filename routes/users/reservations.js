@@ -40,6 +40,6 @@ router
 
 router
     .route('/reservation/participants')
-    .get(getResaParticipants)
+    .post(getResaParticipants)
 
 module.exports = router;

@@ -10,6 +10,7 @@ const {
     getFutureReservation,
     getReservationCovid,
     getAllReservations,
+    getResaParticipants
     // getReservationsCancel
 } = require('../../controllers/users/reservations');
 
@@ -37,5 +38,8 @@ router
     .route('/:resa_id/covid_state')
     .get(getReservationCovid)
 
+router
+    .route('/reservation/participants')
+    .get(getResaParticipants)
 
 module.exports = router;

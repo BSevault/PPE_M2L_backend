@@ -1,6 +1,7 @@
 const router = require('express-promise-router')();
 
 const {
+    userIsLogged,
     getAllAccount,
     createAccount,
     getOneAccount,
@@ -23,7 +24,7 @@ router
 router
     .route('/:user_id')
     .get(getOneAccount)
-    .put(updateAccount)
+    .put(userIsLogged, updateAccount)
     .patch(checkUserPassword)
     .post(changePassword)
 

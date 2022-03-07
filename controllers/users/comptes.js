@@ -110,6 +110,14 @@ module.exports = {
             }
 
         });
+    },
+
+    userIsLogged: async (req, res, next) => {
+        if (req?.session?.logged_user) {
+            return next();
+        } else {
+            return res.status(403).send()
+        }
     }
     
     

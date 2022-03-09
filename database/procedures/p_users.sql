@@ -315,10 +315,12 @@ END //
 -- get userTickets (historique)
 CREATE OR REPLACE PROCEDURE getUserTickets (IN p_user_id int)
 BEGIN
-	SELECT t.id, t.date_ticket, t.description, t.date_probleme, s.nom
+	SELECT t.id, t.date_ticket, t.date_probleme, s.nom, p.nom_produit, t.description
 	FROM TICKETS t
 	INNER JOIN SALLES s
 	ON t.id_salle = s.id
+	INNER JOIN PRODUITS p 
+	ON t.id_produit = p.id
 	WHERE t.id_user = p_user_id;
 END //
 

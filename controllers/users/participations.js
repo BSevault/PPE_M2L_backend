@@ -3,10 +3,9 @@ const { call } = require('../../utils');
 module.exports = {
 
     createParticipant: async (req, res) => {
-        const { user_id } = req.params;
-        const { resa_id } = req.body;
+        const { resa_id, email } = req.body;
         await call(res, async (connexion) => {
-            const result = await connexion.query("CALL createParticipation(?,?)", [user_id, resa_id] )
+            const result = await connexion.query("CALL createParticipation(?,?)", [email, resa_id] )
             return res.status(200).json({ success: result });
         });
     }, 

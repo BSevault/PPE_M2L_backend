@@ -156,7 +156,7 @@ END //
 CREATE OR REPLACE PROCEDURE createReservation (IN p_date VARCHAR(255), IN p_user_id int, IN p_salle_id int, IN p_is_paid BOOLEAN)
 BEGIN
 	INSERT INTO RESERVATIONS (date_resa, id_user, id_salle, is_paid) VALUES (p_date, p_user_id, p_salle_id, p_is_paid);
-	CALL createParticipation (p_user_id, (SELECT id FROM RESERVATIONS WHERE date_resa = p_date AND id_user = p_user_id AND id_salle = P_salle_id));
+	CALL createParticipationUserId (p_user_id, (SELECT id FROM RESERVATIONS WHERE date_resa = p_date AND id_user = p_user_id AND id_salle = P_salle_id));
 END //
 
 -- update user reservation (set is_paid via pay reservation) // ok route
@@ -290,19 +290,20 @@ BEGIN
 	WHERE p_user_id = p.id_user AND r.date_resa >= DATE(NOW());
 END //
 
--- create user participation
--- CREATE OR REPLACE PROCEDURE createParticipation (IN p_email VARCHAR(255), IN p_id_resa INT)
--- BEGIN
--- 	INSERT INTO PARTICIPANTS (covid_positive, id_user, id_reservation) 
--- 	VALUES (0, 
--- 			(SELECT id FROM USERS WHERE email = p_email), 
--- 			p_id_resa);
--- END //
+-- create user participation from email
+CREATE OR REPLACE PROCEDURE createParticipation (IN p_email VARCHAR(255), IN p_id_resa INT)
+BEGIN
+	INSERT INTO PARTICIPANTS (covid_positive, id_user, id_reservation) 
+	VALUES (0, 
+			(SELECT id FROM USERS WHERE email = p_email), 
+			p_id_resa);
+END //
 
-CREATE OR REPLACE PROCEDURE createParticipation (IN p_id_user INT, IN p_id_resa INT)
+CREATE OR REPLACE PROCEDURE createParticipationUserId (IN p_id_user INT, IN p_id_resa INT)
 BEGIN
 	INSERT INTO PARTICIPANTS (covid_positive, id_user, id_reservation) VALUES (0, p_id_user, p_id_resa);
 END //
+
 
 -- update user participation (set covid state) to delete
 CREATE OR REPLACE PROCEDURE updateParticipantCovidState (IN p_id_user INT, IN p_id_reservation INT, IN p_covid_state INT)

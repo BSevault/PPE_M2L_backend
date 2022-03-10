@@ -291,9 +291,12 @@ BEGIN
 END //
 
 -- create user participation
-CREATE OR REPLACE PROCEDURE createParticipation (IN p_id_user INT, IN p_id_resa INT)
+CREATE OR REPLACE PROCEDURE createParticipation (IN p_email VARCHAR(255), IN p_id_resa INT)
 BEGIN
-	INSERT INTO PARTICIPANTS (covid_positive, id_user, id_reservation) VALUES (0, p_id_user, p_id_resa);
+	INSERT INTO PARTICIPANTS (covid_positive, id_user, id_reservation) 
+	VALUES (0, 
+			(SELECT id FROM USERS WHERE email = p_email), 
+			p_id_resa);
 END //
 
 -- update user participation (set covid state) to delete

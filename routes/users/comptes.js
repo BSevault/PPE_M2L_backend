@@ -26,7 +26,7 @@ router
 
 router
     .route('/logout')
-    .get(userIsLogged, logout);  
+    .get(logout);  
     
 router
     .route('/:user_id')

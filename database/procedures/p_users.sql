@@ -314,18 +314,6 @@ BEGIN
 	WHERE p.id_user = p_id_user AND r.id = p_id_reservation and r.date_resa > DATE(NOW());
 END //
 
--- get userTickets (historique)
-CREATE OR REPLACE PROCEDURE getUserTickets (IN p_user_id int)
-BEGIN
-	SELECT t.id, t.date_ticket, t.date_probleme, s.nom, p.nom_produit, t.description
-	FROM TICKETS t
-	INNER JOIN SALLES s
-	ON t.id_salle = s.id
-	INNER JOIN PRODUITS p 
-	ON t.id_produit = p.id
-	WHERE t.id_user = p_user_id;
-END //
-
 -- cas covid positif
 CREATE OR REPLACE PROCEDURE isCovid (IN p_user_id int, IN p_date_positive DATE)
 BEGIN
@@ -357,22 +345,32 @@ END //
 -- get userTicket // ok route
 CREATE OR REPLACE PROCEDURE getOneUserTicket (IN p_user_id int, IN p_id int)
 BEGIN
-	SELECT t.date_ticket, t.description, t.date_probleme, s.nom
+	SELECT t.id, t.date_ticket, t.date_probleme, s.nom, p.nom_produit, t.description
 	FROM TICKETS t
 	INNER JOIN SALLES s
 	ON t.id_salle = s.id
+	INNER JOIN PRODUITS p 
+	ON t.id_produit = p.id
 	WHERE t.id_user = p_user_id AND t.id = p_id;
 END //
 
-    -- create // ok route
-CREATE OR REPLACE PROCEDURE createUserTicket (IN p_date_probleme date, IN p_description VARCHAR(255), IN p_user_id int)
+-- get userTickets (historique)
+CREATE OR REPLACE PROCEDURE getUserTickets (IN p_user_id int)
 BEGIN
-	INSERT INTO TICKETS (date_ticket, date_probleme, description, id_user, id_salle)
-	VALUES (NOW(), p_date_probleme, p_description, p_user_id, (
-		SELECT s.id FROM SALLES s 
-		INNER JOIN RESERVATIONS r 
-		ON s.id = r.id_salle 
-		WHERE r.date_resa = date_probleme));
+	SELECT t.id, t.date_ticket, t.date_probleme, s.nom, p.nom_produit, t.description
+	FROM TICKETS t
+	INNER JOIN SALLES s
+	ON t.id_salle = s.id
+	INNER JOIN PRODUITS p 
+	ON t.id_produit = p.id
+	WHERE t.id_user = p_user_id;
+END //
+
+    -- create // ok route
+CREATE OR REPLACE PROCEDURE createUserTicket (IN p_date_probleme date, IN p_description VARCHAR(255), IN p_id_user int, IN p_id_salle int, IN p_id_produit int)
+BEGIN
+	INSERT INTO TICKETS (date_ticket, date_probleme, description, id_user, id_salle, id_produit)
+	VALUES (NOW(), p_date_probleme, p_description, p_id_user, p_id_salle, p_id_produit);
 END //
 
 

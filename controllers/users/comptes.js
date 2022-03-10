@@ -137,7 +137,6 @@ module.exports = {
             return res.status(200).json({ success: { logged_user } });
         }
         return res.status(401).send();
-        
     },
 
 }

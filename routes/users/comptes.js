@@ -30,7 +30,7 @@ router
     
 router
     .route('/:user_id')
-    .get(userIsLogged, getOneAccount)
+    .get(getOneAccount)
     .put(userIsLogged, updateAccount)
     .patch(checkUserPassword)
     .post(userIsLogged, changePassword);

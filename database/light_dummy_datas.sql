@@ -49,6 +49,16 @@ VALUES
 ('2022-03-11', 0, 1, 5),
 ('2022-03-23', 0, 1, 4);
 
+INSERT INTO TICKETS (date_ticket, date_probleme, description, id_user, id_salle, id_produit, statut)
+VALUES
+('2022-02-17', '2022-02-02', 'description user5 ticket 2', 5, 7, 5, 0),
+('2022-02-12', '2022-02-03', 'description user5 ticket 1', 5, 1, 2, 0),
+('2022-03-07', '2022-02-25', 'description user3 ticket 1', 3, 1, 7, 0),
+('2022-03-17', '2022-03-05', 'description user5 ticket 3', 5, 5, 6, 0),
+('2022-02-25', '2022-02-06', 'description user2 ticket 1', 2, 2, 3, 0),
+('2022-03-30', '2022-02-01', 'description user2 ticket 2', 2, 2, 8, 0),
+('2022-03-15', '2022-03-01', 'description user2 ticket 3', 2, 1, 1, 0);
+
 
 INSERT INTO PARTICIPANTS (covid_positive, id_user, id_reservation)
 VALUES

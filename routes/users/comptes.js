@@ -23,8 +23,8 @@ router
     
 router
     .route('/:user_id')
-    .get(getOneAccount)
-    .put(userIsLogged, updateAccount)
+    .get(userIsLogged,getOneAccount)
+    .put(updateAccount)
     .patch(checkUserPassword)
     .post(changePassword)
 

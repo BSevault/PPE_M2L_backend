@@ -1,5 +1,6 @@
 const { isInteger } = require('lodash');
 const { call } = require('../../utils');
+const { updateOneUserTicket } = require('./tickets');
 
 module.exports = {
 
@@ -28,7 +29,7 @@ module.exports = {
         await call(res, async (connexion) =>{
 
             const resultId = await connexion.query("CALL getAccountIdByEmail(?)", [email]);
-            const id_user = resultId[0][0].id;
+            const id_user = resultId[0][0]?.id;
 
             if (isInteger(id_user) && resultId[0].length === 1) {
                 const checkPwd = await connexion.query("CALL checkUserPassword(?,?)", [id_user, password]);
@@ -113,7 +114,8 @@ module.exports = {
     },
 
     userIsLogged: async (req, res, next) => {
-        if (req?.session?.logged_user) {
+        if (req?.session?.logged_user && req?.params?.user_id !== undefined) {
+            console.log(req.params.user_id);
             return next();
         } else {
             return res.status(403).send()

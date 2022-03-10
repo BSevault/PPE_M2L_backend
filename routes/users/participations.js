@@ -1,5 +1,6 @@
 const router = require('express-promise-router')();
 
+const { userIsLogged } = require('../../controllers/users/comptes');
 const {
     createParticipant, 
     getParticipations,
@@ -12,16 +13,16 @@ const {
 router
     .route('/:user_id/participations')
     .post(createParticipant)
-    .get(getParticipations)
+    .get(userIsLogged, getParticipations)
     .put(updateParticipantCovidState)
     .delete(deleteParticipation)
 
 router
     .route('/:user_id/participations/before')
-    .get(getUserParticipationBefore)
+    .get(userIsLogged, getUserParticipationBefore)
 
 router
     .route('/:user_id/participations/after')
-    .get(getUserParticipationAfter)
+    .get(userIsLogged, getUserParticipationAfter)
 
 module.exports = router;

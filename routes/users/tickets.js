@@ -1,5 +1,6 @@
 const router = require('express-promise-router')();
 
+const { userIsLogged } = require('../../controllers/users/comptes');
 const {
     getUserTickets,
     getOneUserTicket,
@@ -11,12 +12,12 @@ const {
 
 router
     .route('/:user_id/tickets')
-    .get(getUserTickets)
+    .get(userIsLogged, getUserTickets)
     .post(createUserTicket)
 
 router
     .route('/:user_id/tickets/:ticket_id')
-    .get(getOneUserTicket)
+    .get(userIsLogged, getOneUserTicket)
     .put(updateOneUserTicket)
     .patch(toggleTicketStatus)
     .delete(deleteOneUserTicket)

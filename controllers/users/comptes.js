@@ -68,7 +68,7 @@ module.exports = {
         const params = Object.values(req.body);
         params.unshift(user_id);
         await call(res, async (connexion) => {
-            console.log(req?.session);
+            // console.log(req?.session);
             const result = await connexion.query("CALL updateAccount(?,?,?,?,?,?,?)", params);
             return res.status(200).json({ success: result });
         });
@@ -115,7 +115,7 @@ module.exports = {
 
     userIsLogged: async (req, res, next) => {
         if (req?.session?.logged_user && req?.params?.user_id !== 'undefined') {
-            console.log(req.params.user_id);
+            // console.log(req.params.user_id);
             return next();
         } else {
             return res.status(403).send()
@@ -126,7 +126,7 @@ module.exports = {
         // console.log(req.session);
         if (req?.session?.logged_user) {
             req.session.destroy();
-            console.log(req.session);
+            // console.log(req.session);
             return res.status(200).send()
         }
         return res.status(401).send()

@@ -9,27 +9,34 @@ const {
     changePassword,
     activeStatusUser,
     checkUserPassword,
-    getAccountIdByEmail
+    getAccountIdByEmail,
+    logout,
+    checkLoginStatus
 } = require('../../controllers/users/comptes');
 
 router
     .route('/')     // registration
     .get(getAllAccount)
-    .post(createAccount)
+    .post(createAccount);
 
 router
     .route('/login')
-    .post(getAccountIdByEmail)
+    .get(checkLoginStatus)
+    .post(getAccountIdByEmail);
+
+router
+    .route('/logout')
+    .get(userIsLogged, logout);  
     
 router
     .route('/:user_id')
-    .get(getOneAccount)
+    .get(userIsLogged, getOneAccount)
     .put(userIsLogged, updateAccount)
     .patch(checkUserPassword)
-    .post(changePassword)
+    .post(userIsLogged, changePassword);
 
 router  
     .route('/:user_id/active')
-    .patch(activeStatusUser)
+    .patch(activeStatusUser);
 
 module.exports = router;

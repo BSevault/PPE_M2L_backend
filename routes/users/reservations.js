@@ -1,5 +1,6 @@
 const router = require('express-promise-router')();
 
+const { userIsLogged } = require('../../controllers/users/comptes');
 const {
     getReservations,
     createReservation,
@@ -28,7 +29,7 @@ router
 
 router
     .route('/:user_id/reservations')
-    .get(getFutureReservation)
+    .get(userIsLogged, getFutureReservation)
 
 router
     .route('/:user_id/reservations/history')

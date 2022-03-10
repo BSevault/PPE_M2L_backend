@@ -156,6 +156,8 @@ END //
 CREATE OR REPLACE PROCEDURE createReservation (IN p_date VARCHAR(255), IN p_user_id int, IN p_salle_id int, IN p_is_paid BOOLEAN)
 BEGIN
 	INSERT INTO RESERVATIONS (date_resa, id_user, id_salle, is_paid) VALUES (p_date, p_user_id, p_salle_id, p_is_paid);
+	-- SET p_id_resa = (SELECT id FROM RESERVATIONS WHERE date_resa = p_date AND id_user = p_user_id AND id_salle = P_salle_id);
+	CALL createParticipation (p_user_id, (SELECT id FROM RESERVATIONS WHERE date_resa = p_date AND id_user = p_user_id AND id_salle = P_salle_id));
 END //
 
 -- update user reservation (set is_paid via pay reservation) // ok route

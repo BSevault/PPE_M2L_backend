@@ -1,3 +1,4 @@
+const { result } = require('lodash');
 const { call } = require('../../utils');
 
 module.exports = {
@@ -21,9 +22,10 @@ module.exports = {
     
         createUserTicket : async (req, res) => {
             const { user_id } = req.params;
-            const { date_probleme, desc_ticket } = req.body;
+            const { date_probleme, description, id_user, id_salle, id_produit } = req.body;
             await call(res, async (connexion) => {
-                await connexion.query("CALL createUserTicket(?,?,?)", [date_probleme, desc_ticket, user_id]);
+                const result = await connexion.query("CALL createUserTicket(?,?,?,?,?)", [date_probleme, description, id_user, id_salle, id_produit]);
+                console.log(result);
                 return res.status(200).json({ success: "Ticket créé"});
             });
         },

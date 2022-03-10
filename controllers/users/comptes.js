@@ -114,7 +114,7 @@ module.exports = {
     },
 
     userIsLogged: async (req, res, next) => {
-        if (req?.session?.logged_user && req?.params?.user_id !== undefined) {
+        if (req?.session?.logged_user && req?.params?.user_id !== 'undefined') {
             console.log(req.params.user_id);
             return next();
         } else {

@@ -61,10 +61,9 @@ module.exports = {
     },
 
     deleteParticipation: async (req, res) => {
-        const { user_id } = req.params;
-        const { id_resa } = req.body
+        const { user_id, resa_id } = req.body
         await call(res, async (connexion) => {
-            const result = await connexion.query("CALL deleteParticipation(?,?)", [user_id, id_resa])
+            const result = await connexion.query("CALL deleteParticipation(?,?)", [user_id, resa_id])
             return res.status(200).json({ success: result });
         });
     }

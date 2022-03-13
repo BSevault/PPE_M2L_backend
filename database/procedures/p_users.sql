@@ -177,10 +177,10 @@ END //
 
 -- delete user reservation (bloqué post date du jour) // ok route
 	-- // autre solution possible : declare salle id 1 as deleted/inactive salles
-CREATE OR REPLACE PROCEDURE deleteReservation (IN p_user_id INT, IN p_resa_id INT)
+CREATE OR REPLACE PROCEDURE deleteReservation (IN p_resa_id INT)
 BEGIN
 	DELETE FROM RESERVATIONS
-	WHERE id = p_resa_id AND id_user = p_user_id AND date_resa > DATE(NOW());
+	WHERE id = p_resa_id AND date_resa > DATE(NOW());
 END //
 
 -- voir ses réservations // ok route

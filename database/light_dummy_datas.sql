@@ -42,12 +42,12 @@ UPDATE USERS SET is_admin=1 WHERE id=1;
 INSERT INTO RESERVATIONS (date_resa, is_paid, id_user, id_salle)
 VALUES
 ('1986-01-01', 1, 1, 7),
-('2023-01-01', 1, 1, 7),
-('1986-01-01', 2, 2, 2),
-('2022-03-09', 0, 2, 5),
-('2022-03-10', 0, 1, 4),
-('2022-03-11', 0, 1, 5),
-('2022-03-23', 0, 1, 4);
+('2023-01-01', 1, 1, 7);
+-- ('1986-01-01', 2, 2, 2),
+-- ('2022-03-09', 0, 2, 5),
+-- ('2022-03-10', 0, 1, 4),
+-- ('2022-03-11', 0, 1, 5),
+-- ('2022-03-23', 0, 1, 4);
 
 INSERT INTO TICKETS (date_ticket, date_probleme, description, id_user, id_salle, id_produit, statut)
 VALUES

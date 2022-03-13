@@ -50,10 +50,9 @@ module.exports = {
     },
 
     deleteReservation: async (req, res) => {
-        const { user_id } = req.params;
         const { resa_id } = req.body; 
         await call(res, async (connexion) => {
-            const result = await connexion.query("CALL deleteReservation(?,?)", [user_id, resa_id]);
+            const result = await connexion.query("CALL deleteReservation(?)", [resa_id]);
             return res.status(200).json({ success: result });
         });
     },

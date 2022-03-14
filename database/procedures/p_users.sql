@@ -379,7 +379,7 @@ CREATE OR REPLACE PROCEDURE createUserTicket (IN p_date_probleme date, IN p_desc
 BEGIN
 	INSERT INTO TICKETS (date_ticket, date_probleme, description, id_user, id_salle, id_produit)
 	VALUES (NOW(), p_date_probleme, p_description, p_id_user, p_id_salle, p_id_produit)
-	RETURN id;
+	RETURNING id;
 END //
 
 

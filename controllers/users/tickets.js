@@ -22,11 +22,11 @@ module.exports = {
     
         createUserTicket : async (req, res) => {
             const { user_id } = req.params;
-            const { date_probleme, description, id_user, id_salle, id_produit } = req.body;
+            const { date_probleme, description, id_salle, id_produit } = req.body;
             await call(res, async (connexion) => {
-                const result = await connexion.query("CALL createUserTicket(?,?,?,?,?)", [date_probleme, description, id_user, id_salle, id_produit]);
+                const result = await connexion.query("CALL createUserTicket(?,?,?,?,?)", [date_probleme, description, user_id, id_salle, id_produit]);
                 console.log(result);
-                return res.status(200).json({ success: "Ticket créé"});
+                return res.status(200).json({ success: result[0]});
             });
         },
     

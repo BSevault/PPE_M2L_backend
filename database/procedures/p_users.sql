@@ -79,7 +79,7 @@ END //
 CREATE OR REPLACE PROCEDURE createUserPayment(IN p_id_user INT, IN p_qte INT, IN p_id_reservation INT, IN p_id_produit INT)
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
-	IF p_id_produit != 1
+	IF p_id_produit != 2
 	THEN
 		INSERT INTO PAIEMENTS (qte, id_user, id_reservation, id_produit, total)
 		VALUES (p_qte, p_id_user, p_id_reservation, p_id_produit,
@@ -87,6 +87,9 @@ BEGIN
 			SELECT p_qte*p.prix FROM PRODUITS p
 			WHERE p_id_produit = p.id
 		));
+		UPDATE PRODUITS p
+		SET qte_dispo = ( SELECT qte_dispo FROM PRODUITS WHERE id = p_id_produit) - p_qte
+		WHERE id = p_id_produit;
 	ELSE
 		UPDATE RESERVATIONS r
 		SET r.is_paid = 1
@@ -100,6 +103,15 @@ BEGIN
 		));
 		
 	END IF;
+END //
+
+-- get all paiements for id_resa
+CREATE OR REPLACE PROCEDURE getPaymentsByResaId(in p_resa_id INT)
+NOT DETERMINISTIC CONTAINS SQL
+BEGIN
+	SELECT id, qte, total, (SELECT nom_produit FROM PRODUITS WHERE id = id_produit) as nom_produit
+	FROM paiements
+	WHERE id_reservation = p_resa_id;
 END //
 
 

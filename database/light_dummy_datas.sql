@@ -66,3 +66,11 @@ VALUES
 (0, 2, 1),
 (1, 1, 2),
 (0, 2, 2);
+
+INSERT INTO PAIEMENTS (qte, total, id_user, id_reservation, id_produit)
+VALUES 
+(3, 6.9, 1, 2, 9),
+(13, 29.9, 1, 2, 7),
+(13, 72.8, 1, 2, 4),
+(1, 800, 1, 2, 2),
+(1, 2.3, 2, 2, 8);

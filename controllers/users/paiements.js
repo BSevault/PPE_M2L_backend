@@ -18,6 +18,14 @@ module.exports = {
             const result = await connexion.query("CALL getServicesPaymentsByUserId(?)", [user_id] )
             return res.status(200).json({ success: result[0] });
         });
+    },
+
+    getPaymentsByResaId: async (req, res) => {
+        const { resa_id } = req.params;
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL getPaymentsByResaId(?)", [resa_id] );
+            return res.status(200).json({ success: result[0] });
+        })
     }
 
     // get user payment salles (à faire) => getAccountResaToPay()

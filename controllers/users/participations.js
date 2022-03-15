@@ -34,7 +34,7 @@ module.exports = {
             if (result[0].length < 1) {
                 return res.status(300).json({ error: "Aucune participation" });
             } else {
-                return res.status(200).json({ success: result[0] });
+                return res.status(200).json({ success: result });
             }
         });
     },
@@ -46,7 +46,7 @@ module.exports = {
             if (result[0].length < 1) {
                 return res.status(300).json({ error: "Aucune participation" });
             } else {
-                return res.status(200).json({ success: result[0] });
+                return res.status(200).json({ success: result });
             }
         });
     },

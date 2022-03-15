@@ -13,16 +13,17 @@ const {
 router
     .route('/:user_id/participations')
     .post(createParticipant)
-    .get(userIsLogged, getParticipations)
+    .get(userIsLogged, getUserParticipationBefore)
+    // .get(userIsLogged, getParticipations)
     .put(updateParticipantCovidState)
     .delete(deleteParticipation)
 
-router
-    .route('/:user_id/participations/before')
-    .get(userIsLogged, getUserParticipationBefore)
+// router
+//     .route('/:user_id/participations/before')
+//     .get(userIsLogged, getUserParticipationBefore)
 
 router
-    .route('/:user_id/participations/after')
+    .route('/:user_id/participations/history')
     .get(userIsLogged, getUserParticipationAfter)
 
 module.exports = router;

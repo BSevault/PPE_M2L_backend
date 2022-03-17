@@ -79,7 +79,7 @@ END //
 CREATE OR REPLACE PROCEDURE createUserPayment(IN p_id_user INT, IN p_qte INT, IN p_id_reservation INT, IN p_id_produit INT)
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
-	IF p_id_produit != 2
+	IF p_id_produit != 2 AND p_id_produit != 1
 	THEN
 		INSERT INTO PAIEMENTS (qte, id_user, id_reservation, id_produit, total)
 		VALUES (p_qte, p_id_user, p_id_reservation, p_id_produit,
@@ -91,9 +91,6 @@ BEGIN
 		SET qte_dispo = ( SELECT qte_dispo FROM PRODUITS WHERE id = p_id_produit) - p_qte
 		WHERE id = p_id_produit;
 	ELSE
-		UPDATE RESERVATIONS r
-		SET r.is_paid = 1
-		WHERE p_id_reservation = r.id;
 		INSERT INTO PAIEMENTS (qte, id_user, id_reservation, id_produit, total)
 		VALUES (1, p_id_user, p_id_reservation, p_id_produit,
 		(
@@ -170,6 +167,7 @@ CREATE OR REPLACE PROCEDURE createReservation (IN p_date VARCHAR(255), IN p_user
 BEGIN
 	INSERT INTO RESERVATIONS (date_resa, id_user, id_salle, is_paid) VALUES (p_date, p_user_id, p_salle_id, p_is_paid);
 	CALL createParticipationUserId (p_user_id, (SELECT id FROM RESERVATIONS WHERE date_resa = p_date AND id_user = p_user_id AND id_salle = P_salle_id));
+	CALL createUserPayment(p_user_id, 1, (SELECT id FROM RESERVATIONS WHERE date_resa = p_date AND id_user = p_user_id AND id_salle = P_salle_id), 2);
 END //
 
 -- update user reservation (set is_paid via pay reservation) // ok route

@@ -376,7 +376,7 @@ END //
 -- get userTickets (historique)
 CREATE OR REPLACE PROCEDURE getUserTickets (IN p_user_id int)
 BEGIN
-	SELECT t.id, t.date_ticket, t.date_probleme, s.nom, p.nom_produit, t.description
+	SELECT t.id, t.date_ticket, t.date_probleme, s.nom, p.nom_produit, t.description, t.is_resolved
 	FROM TICKETS t
 	INNER JOIN SALLES s
 	ON t.id_salle = s.id
@@ -386,11 +386,12 @@ BEGIN
 END //
 
     -- create // ok route
-CREATE OR REPLACE PROCEDURE createUserTicket (IN p_date_probleme date, IN p_description VARCHAR(255), IN p_id_user int, IN p_id_salle int, IN p_id_produit int)
+CREATE OR REPLACE PROCEDURE createUserTicket (IN p_date_probleme date, IN p_description TEXT, IN p_id_user int, IN p_id_salle int, IN p_id_produit int)
 BEGIN
 	INSERT INTO TICKETS (date_ticket, date_probleme, description, id_user, id_salle, id_produit)
-	VALUES (NOW(), p_date_probleme, p_description, p_id_user, p_id_salle, p_id_produit)
-	RETURNING id;
+	VALUES (NOW(), p_date_probleme, p_description, p_id_user, p_id_salle, p_id_produit);
+	SELECT max(id) id FROM TICKETS
+		WHERE id_user = p_id_user;
 END //
 
 
@@ -407,7 +408,7 @@ CREATE OR REPLACE PROCEDURE toggleTicketStatus (IN p_ticket_id INT, IN p_user_id
 BEGIN
 	UPDATE TICKETS
 	SET
-		statut = !statut
+		is_resolved = !is_resolved
 	WHERE id_user = p_user_id AND id = p_ticket_id;
 END //
 

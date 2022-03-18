@@ -13,7 +13,7 @@ const {
 router
     .route('/:user_id/participations')
     .post(createParticipant)
-    .get(userIsLogged, getUserParticipationBefore)
+    .get(userIsLogged, getUserParticipationAfter)
     // .get(userIsLogged, getParticipations)
     .put(updateParticipantCovidState)
     .delete(deleteParticipation)
@@ -24,6 +24,6 @@ router
 
 router
     .route('/:user_id/participations/history')
-    .get(userIsLogged, getUserParticipationAfter)
+    .get(userIsLogged, getUserParticipationBefore)
 
 module.exports = router;

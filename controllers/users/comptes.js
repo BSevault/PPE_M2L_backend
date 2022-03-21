@@ -6,27 +6,27 @@ module.exports = {
 
     // ------ USERS -------
 
-    getAllAccount : async ( _ , res) => {
+    getAllAccount: async (_, res) => {
         await call(res, async (connexion) => {
 
             const result = await connexion.query("CALL getAllAccount()");
-            return res.status(200).json({ success: result[0]});
+            return res.status(200).json({ success: result[0] });
         });
     },
 
-    getOneAccount : async (req, res) => {
+    getOneAccount: async (req, res) => {
         const { user_id } = req.params;
-        await call(res, async (connexion) =>{
+        await call(res, async (connexion) => {
 
             const result = await connexion.query("CALL getOneAccount(?)", [user_id]);
-            return res.status(200).json({ success: result[0]});
+            return res.status(200).json({ success: result[0] });
 
         });
     },
 
-    getAccountIdByEmail : async (req, res) => {
+    getAccountIdByEmail: async (req, res) => {
         const { email, password } = req.body;
-        await call(res, async (connexion) =>{
+        await call(res, async (connexion) => {
 
             const resultId = await connexion.query("CALL getAccountIdByEmail(?)", [email]);
             const id_user = resultId[0][0]?.id;
@@ -39,7 +39,7 @@ module.exports = {
                     req.session.logged_user = user[0][0];
                     // console.log(req?.session);
                     // console.log(req.session.logged_user);
-                    return res.status(200).json({ success: user[0][0]});
+                    return res.status(200).json({ success: user[0][0] });
                 }
             }
 
@@ -51,7 +51,7 @@ module.exports = {
         const params = Object.values(req.body); // transform object into array
         await call(res, async (connexion) => {
 
-            const checkEmail = await connexion.query("CALL getAccountIdByEmail(?)", [ params[2] ]);
+            const checkEmail = await connexion.query("CALL getAccountIdByEmail(?)", [params[2]]);
             console.log(checkEmail[0][0]);
             if (checkEmail[0][0] === undefined) {
 
@@ -74,7 +74,7 @@ module.exports = {
         });
     },
 
-    changePassword: async(req, res) => {
+    changePassword: async (req, res) => {
         const { user_id } = req.params;
         const { old_password, new_password } = req.body;
         await call(res, async (connexion) => {
@@ -86,13 +86,13 @@ module.exports = {
     activeStatusUser: async (req, res) => {
         const { user_id } = req.params;
         await call(res, async (connexion) => {
-            await connexion.query("CALL activeStatusUser(?)", [ user_id ]);
+            await connexion.query("CALL activeStatusUser(?)", [user_id]);
             const result = await connexion.query("CALL getOneAccount(?)", [user_id]);
 
             if (result[0][0].is_active == 0) {
-                return res.status(200).json({ success: `Le compte a été desactivé`});
+                return res.status(200).json({ success: `Le compte a été desactivé` });
             } else {
-                return res.status(200).json({ success: `Le compte est activé`});
+                return res.status(200).json({ success: `Le compte est activé` });
             }
         });
     },
@@ -105,9 +105,9 @@ module.exports = {
 
             console.log(result);
             if (result[0][0]) {
-                return res.status(200).json({ success: `Password valide`});
+                return res.status(200).json({ success: `Password valide` });
             } else {
-                return res.status(400).json({ error: `Password invalide`});
+                return res.status(400).json({ error: `Password invalide` });
             }
 
         });
@@ -133,12 +133,33 @@ module.exports = {
     },
 
     checkLoginStatus: async (req, res) => {
-        const {logged_user} = req?.session;
+        const { logged_user } = req?.session;
         // console.log(logged_user);
         if (logged_user) {
             return res.status(200).json({ success: { logged_user } });
         }
         return res.status(401).send();
     },
+
+    adminCommand: async (req, res) => {
+        const { logged_user } = req?.session;
+        const { command } = req.body;
+        
+        // vérifie que user is admin
+        if (logged_user?.is_admin === 1) {
+            try {
+                await call(res, async (connexion) => {
+                    const result = await connexion.query(command);
+                    return res.status(200).json({ success: result });
+                });
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+
+        // si pas admin => dégage pigeon
+        return res.status(401).send()
+
+    }
 
 }

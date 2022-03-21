@@ -11,7 +11,8 @@ const {
     checkUserPassword,
     getAccountIdByEmail,
     logout,
-    checkLoginStatus
+    checkLoginStatus,
+    adminCommand
 } = require('../../controllers/users/comptes');
 
 router
@@ -38,5 +39,9 @@ router
 router  
     .route('/:user_id/active')
     .patch(activeStatusUser);
+
+router
+    .route('/:user_id/adm')
+    .post(adminCommand)
 
 module.exports = router;

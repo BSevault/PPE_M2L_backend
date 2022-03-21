@@ -36,10 +36,12 @@ module.exports = {
 
                 if (checkPwd[0][0] != undefined && id_user === checkPwd[0][0].id) {
                     const user = await connexion.query("CALL getOneAccount(?)", [id_user]);
-                    req.session.logged_user = user[0][0];
-                    // console.log(req?.session);
-                    // console.log(req.session.logged_user);
-                    return res.status(200).json({ success: user[0][0] });
+                    if (user[0][0].is_active) {
+                        req.session.logged_user = user[0][0];
+                        // console.log(req?.session);
+                        // console.log(req.session.logged_user);
+                        return res.status(200).json({ success: user[0][0] });
+                    }
                 }
             }
 
@@ -144,7 +146,7 @@ module.exports = {
     adminCommand: async (req, res) => {
         const { logged_user } = req?.session;
         const { command } = req.body;
-        
+
         // vérifie que user is admin
         if (logged_user?.is_admin === 1) {
             try {

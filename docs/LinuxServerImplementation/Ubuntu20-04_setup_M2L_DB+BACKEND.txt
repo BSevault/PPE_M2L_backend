@@ -61,6 +61,10 @@ sudo mariadb -u root -p <./database/procedures/p_users.sql
 
 sudo mariadb -u root -p <./database/permissions.sql
 
+## Lancer le serveur en mode developpement (linux) ##
+
+npm run devlinux
+
 
 
 

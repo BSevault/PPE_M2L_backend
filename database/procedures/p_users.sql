@@ -107,7 +107,7 @@ CREATE OR REPLACE PROCEDURE getPaymentsByResaId(in p_resa_id INT)
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
 	SELECT id, qte, total, (SELECT nom_produit FROM PRODUITS WHERE id = id_produit) as nom_produit
-	FROM paiements
+	FROM PAIEMENTS
 	WHERE id_reservation = p_resa_id
 	ORDER by qte;
 END //

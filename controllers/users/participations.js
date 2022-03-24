@@ -46,6 +46,7 @@ module.exports = {
             if (result[0].length < 1) {
                 return res.status(300).json({ error: "Aucune participation" });
             } else {
+                console.log(result);
                 return res.status(200).json({ success: result });
             }
         });

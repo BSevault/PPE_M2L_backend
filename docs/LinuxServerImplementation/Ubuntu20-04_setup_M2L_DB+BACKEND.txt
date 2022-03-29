@@ -1,0 +1,73 @@
+## install NodeJs ##
+
+# install nvm
+
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash 
+
+# restart the shell 
+
+source ~/.bashrc
+
+# install latest node 
+
+nvm install 16.14.2
+
+
+## Install mariadb ##
+
+# get latest updates
+
+sudo apt update
+
+# install mariadb server
+
+sudo apt install mariadb-server
+
+# setup mariadb 
+
+sudo mysql_secure_installation
+
+	prompts:
+		enter
+		y
+			root
+			root
+		y
+		y
+		y
+		y
+
+## Clone backend ##
+
+# Clone le repo dans un dossier nommé PPE_M2L_backend
+
+git clone https://github.com/BSevault/PPE_M2L_backend.git
+
+# install les packages 
+
+npm install
+
+## DB Integration ##
+
+sudo mariadb -u root -p <./database/schema.sql
+
+sudo mariadb -u root -p <./database/light_dummy_datas.sql
+
+sudo mariadb -u root -p <./database/procedures/p_produits.sql
+
+sudo mariadb -u root -p <./database/procedures/p_salles.sql
+
+sudo mariadb -u root -p <./database/procedures/p_users.sql
+
+sudo mariadb -u root -p <./database/permissions.sql
+
+## Lancer le serveur en mode developpement (linux) ##
+
+npm run devlinux
+
+
+
+
+
+
+

@@ -376,7 +376,7 @@ END //
 -- get userTickets (historique)
 CREATE OR REPLACE PROCEDURE getUserTickets (IN p_user_id int)
 BEGIN
-	SELECT t.id, t.date_ticket, t.date_probleme, s.nom, p.nom_produit, t.description, t.is_resolved
+	SELECT t.id, t.date_ticket, t.date_probleme, s.nom, p.nom_produit, t.description, t.is_resolved, t.is_active
 	FROM TICKETS t
 	INNER JOIN SALLES s
 	ON t.id_salle = s.id
@@ -412,6 +412,14 @@ BEGIN
 	WHERE id_user = p_user_id AND id = p_ticket_id;
 END //
 
+	-- toggle ticket active status
+CREATE OR REPLACE PROCEDURE toggleTicketActiveStatus (IN p_ticket_id INT, IN p_user_id INT)
+BEGIN
+	UPDATE TICKETS
+	SET
+		is_active = !is_active
+	WHERE id_user = p_user_id AND id = p_ticket_id;
+END //
 
     -- delete // ok route
 CREATE OR REPLACE PROCEDURE deleteOneUserTicket (IN p_ticket_id int, IN p_user_id int)

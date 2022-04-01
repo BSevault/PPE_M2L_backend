@@ -7,7 +7,8 @@ const {
     createUserTicket,
     updateOneUserTicket,
     deleteOneUserTicket,
-    toggleTicketStatus
+    toggleTicketStatus,
+    toggleTicketActiveStatus
 } = require('../../controllers/users/tickets');
 
 router
@@ -20,6 +21,6 @@ router
     .get(userIsLogged, getOneUserTicket)
     .put(updateOneUserTicket)
     .patch(toggleTicketStatus)
-    .delete(deleteOneUserTicket)
+    .delete(userIsLogged, toggleTicketActiveStatus)
 
 module.exports = router;

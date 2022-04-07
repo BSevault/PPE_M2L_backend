@@ -278,7 +278,7 @@ END //
     -- participations avant date du jour (exclus)
 CREATE OR REPLACE PROCEDURE getUserParticipationBefore (IN p_user_id INT)
 BEGIN
-	SELECT s.nom nom_salle, r.date_resa, u.nom, u.prenom, u.email FROM RESERVATIONS r
+	SELECT s.nom nom_salle, r.date_resa, u.nom, u.prenom, u.email, r.is_covid FROM RESERVATIONS r
 	INNER JOIN PARTICIPANTS p
 	ON p.id_reservation = r.id
 	INNER JOIN SALLES s

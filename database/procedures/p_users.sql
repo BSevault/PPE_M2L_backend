@@ -165,7 +165,7 @@ END //
 -- create user reservation // ok route
 CREATE OR REPLACE PROCEDURE createReservation (IN p_date VARCHAR(255), IN p_user_id int, IN p_salle_id int, IN p_is_paid BOOLEAN)
 BEGIN
-	INSERT INTO RESERVATIONS (date_resa, id_user, id_salle, is_paid) VALUES (p_date, p_user_id, p_salle_id, p_is_paid);
+	INSERT INTO RESERVATIONS (date_resa, id_user, id_salle, is_paid, is_covid) VALUES (p_date, p_user_id, p_salle_id, p_is_paid, 0);
 	CALL createParticipationUserId (p_user_id, (SELECT id FROM RESERVATIONS WHERE date_resa = p_date AND id_user = p_user_id AND id_salle = P_salle_id));
 	CALL createUserPayment(p_user_id, 1, (SELECT id FROM RESERVATIONS WHERE date_resa = p_date AND id_user = p_user_id AND id_salle = P_salle_id), 2);
 END //
@@ -197,7 +197,7 @@ END //
 -- voir ses réservations // ok route
 CREATE OR REPLACE PROCEDURE getReservations (IN p_user_id int)
 BEGIN
-	SELECT r.id, s.nom, r.date_resa, r.is_paid FROM RESERVATIONS r
+	SELECT r.id, s.nom, r.date_resa, r.is_paid, is_covid FROM RESERVATIONS r
 	INNER JOIN SALLES s
 	ON r.id_salle = s.id
 	WHERE r.id_user = p_user_id;
@@ -217,7 +217,7 @@ END //
 -- get user reservations (participants: (nom/prénom))
 CREATE OR REPLACE PROCEDURE getUserReservations (IN p_user_id INT)
 BEGIN
-	SELECT r.id, s.nom, s.description, r.date_resa, s.prix, is_paid  FROM RESERVATIONS r
+	SELECT r.id, s.nom, s.description, r.date_resa, s.prix, is_paid, is_covid  FROM RESERVATIONS r
 	INNER JOIN SALLES s
 	ON r.id_salle = s.id
 	WHERE r.id_user = p_user_id;
@@ -226,7 +226,7 @@ END //
     -- reservations avant date du jour (exclus) 
 CREATE OR REPLACE PROCEDURE getBeforeReservation (IN p_user_id int)
 BEGIN
-	SELECT r.id, s.nom, s.description, r.date_resa, s.prix, is_paid  FROM RESERVATIONS r
+	SELECT r.id, s.nom, s.description, r.date_resa, s.prix, is_paid, is_covid  FROM RESERVATIONS r
 	INNER JOIN SALLES s
 	ON r.id_salle = s.id
 	WHERE r.id_user = p_user_id AND date_resa < DATE(NOW());

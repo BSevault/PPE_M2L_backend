@@ -37,6 +37,8 @@ const routes_users_paiements = require('./routes/users/paiements');
 const routes_users_participations = require('./routes/users/participations');
 const routes_users_reservations = require('./routes/users/reservations');
 const routes_users_tickets = require('./routes/users/tickets');
+// routes flutter
+const routes_flutter = require('./routes/flutter/flutter');
 
 const routes_users = require('./routes/routes_users'); // delete this after refacto routes users
 
@@ -50,6 +52,8 @@ app
     .use('/users', routes_users_participations)
     .use('/users', routes_users_reservations)
     .use('/users', routes_users_tickets)
+    // routes flutter
+    .use('/flutter', routes_flutter)
 
     .use('/users', routes_users); // delete this after refacto routes users
 

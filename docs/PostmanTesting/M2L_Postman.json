@@ -232,7 +232,7 @@
 									"variable": [
 										{
 											"key": "user_id",
-											"value": "2"
+											"value": "1"
 										}
 									]
 								}
@@ -316,6 +316,32 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"test1@email.com\",\r\n    \"password\":\"test1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3001/flutter/login"
+							},
+							"response": []
+						},
+						{
+							"name": "TestCorsRefused",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
 						}
 					]
 				},
@@ -376,6 +402,15 @@
 										}
 									]
 								}
+							},
+							"response": []
+						},
+						{
+							"name": "getPaymentByResaId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "localhost:3001/users/paiements/1"
 							},
 							"response": []
 						}
@@ -824,6 +859,27 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "getResaParticipants",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id_resa\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:3001/users/reservation/participants"
+							},
+							"response": []
 						}
 					]
 				},
@@ -1010,6 +1066,49 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "generalAdmin",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"command\": \"CALL getAllAccount()\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3001/users/:user_id/adm",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"users",
+										":user_id",
+										"adm"
+									],
+									"variable": [
+										{
+											"key": "user_id",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
@@ -1171,6 +1270,29 @@
 								}
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Flutter",
+			"item": [
+				{
+					"name": "http://locahost:3001/api",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test1@email.com\",\r\n    \"password\": \"test1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3001/flutter/login"
 					},
 					"response": []
 				}

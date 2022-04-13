@@ -26,4 +26,12 @@ module.exports = {
             return res.status(401).json({ error: "Email ou mot de passe invalide" });
         });
     },
+
+    getFutureReservation: async (req, res) => {
+        const { user_id } = req.params;
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL getFutureReservation(?)", [user_id]);
+            return res.status(200).json({ success: result });
+        });
+    },
 }

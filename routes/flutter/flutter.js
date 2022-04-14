@@ -2,7 +2,8 @@ const router = require('express-promise-router')();
 
 const {
     getAccountIdByEmail,
-    getFutureReservation
+    getFutureReservation,
+    getBeforeReservation
 } = require('../../controllers/flutter/flutter');
 
 router
@@ -12,6 +13,10 @@ router
 router
     .route('/:user_id/reservations')
     .get(getFutureReservation)
+
+router
+    .route('/:user_id/reservations/history')
+    .get(getBeforeReservation)
 
 
 router.route('/participation');

@@ -34,4 +34,12 @@ module.exports = {
             return res.status(200).json({ success: result });
         });
     },
+
+    getBeforeReservation: async (req, res) => {
+        const { user_id } = req.params;
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL getBeforeReservation(?)", [user_id]);
+            return res.status(200).json({ success: result });
+        });
+    },
 }

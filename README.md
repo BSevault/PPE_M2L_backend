@@ -2,7 +2,7 @@
 
 Cette API concerne :
 - Application web de réservations de salles de réunions. [Lien GitHub Front-end](https://github.com/BSevault/PPE_M2L_frontend)
-- Application mobile de confirmation des participants, de réservations de services et de déclaration de cas Covid-19. [Lien GitHub App Flutter](https://github.com/BSevault/PPE_M2L_mobile)
+- Application mobile de confirmation des participants, de réservations de services et de déclaration de cas Covid. [Lien GitHub App Flutter](https://github.com/BSevault/PPE_M2L_mobile)
 
 ## Installation
 ### Prérequis

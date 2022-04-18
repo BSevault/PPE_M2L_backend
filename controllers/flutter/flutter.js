@@ -51,4 +51,12 @@ module.exports = {
             return res.status(200).json({success: result});
         });
     },
+    getResaParticipants: async (req, res) => {
+        const { id_resa } = req.params;
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL getResaParticipants(?)", [id_resa] )
+            return res.status(200).json({ success: result });
+        });
+    },
+
 }

@@ -4,7 +4,9 @@ const {
     getAccountIdByEmail,
     getFutureReservation,
     getBeforeReservation, 
-    getAllProducts
+    getAllProducts,
+    getBeforeReservation,
+    getResaParticipants
 } = require('../../controllers/flutter/flutter');
 
 router
@@ -23,7 +25,10 @@ router
     .route('/produits')
     .get(getAllProducts);
 
-router.route('/participation');
+router
+    .route('/:id_resa/participants')
+    .get(getResaParticipants)
+    
 router.route('/ticket');
 router.route('/paiement');
 

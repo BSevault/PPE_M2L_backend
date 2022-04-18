@@ -6,7 +6,7 @@ Cette API concerne :
 
 ## Installation
 ### Prérequis
-Les logiciels ci-dessous sont nécessaire au fonctionnement de notre API, voici les commande pour vérifier qu'ils sont bien installés sur votre système. Sinon, télécharger les et suivez les étapes d'installation dupuis les liens mis à disposition.
+Les logiciels ci-dessous sont nécessaires au fonctionnement de notre API, voici les commandes pour vérifier qu'ils sont bien installés sur votre système. Sinon, télécharger les et suivez les étapes d'installation dupuis les liens mis à disposition.
 
 * Git `git --version` ou télécharger et installer [Git](https://git-scm.com/downloads)
 * NPM `npm --version` ou télécharger et installer [NPM](https://www.npmjs.com/package/download)
@@ -30,16 +30,16 @@ Créer un utilisateur `root` (avec des droits de création) sous MariaDB pour ex
 `npm run resetDBLight`
 
 ## Lancement
-Une fois les étapes de l'intallation effectuée, éxécutez la commande 
+Une fois les étapes de l'intallation effectuée, éxécuter la commande 
 `npm run prod` 
 depuis le dossier `PPE_M2L_backend`
 
 ### Test
-Pour vérifier que l'API est fonctionnel, voici ce que doit afficher votre console :
+Pour vérifier que l'API est fonctionnelle, voici ce que doit afficher votre console :
 <img src="./docs/capture/Capture%20d’écran%202022-04-14%20212447.png">
 
-Pour s'assurer que l'on peut bien communiquer avec notre API, ouvrez un navigateur web et taper l'url : `localhost:3001/api`
+Pour s'assurer que l'on peut bien communiquer avec notre API, ouvrir un navigateur web et taper l'url : `localhost:3001/api`
 
 Le résultat doit être <b>`{"success":"Bonjour, vous êtes sur l'api M2L"}`</b>.
 Si tel est le cas, tout est fonctionnel.
-Sinon vérifiez que tous les logiciels <b>prérequis</b> sont correctement installés. Si le problème persiste vous pouvez nous contacter par le bien de ce repo. 
+Sinon vérifier que tous les logiciels <b>prérequis</b> sont correctement installés. Si le problème persiste vous pouvez nous contacter par le bien de ce repo. 

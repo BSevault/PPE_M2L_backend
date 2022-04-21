@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors(
     {
         credentials: true,
-        origin: "http://192.168.43.45:3000"
+        origin: "*"
     }
 ));
 app.use(cookieParser());

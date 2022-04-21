@@ -26,7 +26,6 @@ app.use(session({
     cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }
 }));
 
-app.options('*', function (_,res) { res.sendStatus(200); });
 
 app.get('/api', ( _ , res) => {
     res.status(200).json({success: "Bonjour, vous êtes sur l'api M2L"});

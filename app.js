@@ -13,7 +13,8 @@ app.use(express.json());
 app.use(cors(
     {
         credentials: true,
-        origin: ["http://localhost:3000", "http://192.168.0.61:3000", "http://ec2-15-188-50-121.eu-west-3.compute.amazonaws.com", "http://15.188.50.121"]
+        // origin: ["http://localhost:3000", "http://192.168.0.61:3000", "http://ec2-15-188-50-121.eu-west-3.compute.amazonaws.com", "http://15.188.50.121"],
+        origin: "http://ec2-15-188-50-121.eu-west-3.compute.amazonaws.com"
     }
 ));
 app.use(cookieParser());
@@ -22,7 +23,7 @@ app.use(session({
     secret: 'ma_session_super_secret_key',
     saveUninitialized: false,
     resave: false,
-    cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24, domain: 'http://15.188.50.121/' }
+    cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }
 }));
 
 app.get('/api', ( _ , res) => {

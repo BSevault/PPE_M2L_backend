@@ -31,7 +31,11 @@ module.exports = {
         const { user_id } = req.params;
         await call(res, async (connexion) => {
             const result = await connexion.query("CALL getFutureReservation(?)", [user_id]);
-            return res.status(200).json({ success: result });
+            if (result[0].length < 1) {
+                return res.status(300).json({ error: "Aucune Réservations" });
+            } else {
+                return res.status(200).json({ success: result });
+            }
         });
     },
 
@@ -43,6 +47,18 @@ module.exports = {
         });
     },
 
+    getUserParticipationBefore: async (req, res) => {
+        const { user_id } = req.params;
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL getUserParticipationBefore(?)", user_id)
+            if (result[0].length < 1) {
+                return res.status(300).json({ error: "Aucune participation" });
+            } else {
+                return res.status(200).json({ success: result });
+            }
+        });
+    },
+
     // ------ PRODUITS -------
 
     getAllProducts: async ( _ , res) => {
@@ -51,6 +67,7 @@ module.exports = {
             return res.status(200).json({success: result});
         });
     },
+
     getResaParticipants: async (req, res) => {
         const { id_resa } = req.params;
         await call(res, async (connexion) => {

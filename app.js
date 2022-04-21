@@ -22,7 +22,7 @@ app.use(session({
     secret: 'ma_session_super_secret_key',
     saveUninitialized: false,
     resave: false,
-    cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24, domain: 'ec2-15-188-50-121.eu-west-3.compute.amazonaws.com' }
+    cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24, domain: 'http://ec2-15-188-50-121.eu-west-3.compute.amazonaws.com' }
 }));
 
 app.get('/api', ( _ , res) => {

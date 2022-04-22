@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const AWS = require('aws-sdk');
 
 
 const app = express();
@@ -18,6 +19,10 @@ app.use(cors(
     }
 ));
 app.use(cookieParser());
+
+AWS.config.update({
+    httpOptions: {keepAlive: true, maxSockets: Infinity}
+});
 
 app.use(session({
     secret: 'ma_session_super_secret_key',

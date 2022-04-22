@@ -25,10 +25,10 @@ app.use(cookieParser());
 app.use(session({
     store: new MariaDBStore({ pool: pool }),
     secret: 'ma_session_super_secret_key',
-    // proxy: true,
+    // // proxy: true,
     saveUninitialized: true,
     resave: false,
-    cookie: { httpOnly: false, maxAge: 1000 * 60 * 60 * 24 } // secure: false
+    // cookie: { httpOnly: false, maxAge: 1000 * 60 * 60 * 24 } // secure: false
 }));
 
 

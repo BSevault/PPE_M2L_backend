@@ -22,6 +22,8 @@ app.use(cors(
 ));
 app.use(cookieParser());
 
+// store bundle
+// ============================
 var options = {
     host: process.env.HOST,
     user: process.env.USER,
@@ -29,12 +31,14 @@ var options = {
     database: process.env.DATABASE,
     port: process.env.DB_PORT
 }
-
 var sessionStore = new MySQLStore(options);
+// =============================
 
 app.use(session({
+    // =========================
     // store: new MariaDBStore({ pool: pool }),
     store: sessionStore,
+    // =========================
     secret: 'ma_session_super_secret_key',
     // // proxy: true,
     saveUninitialized: false,

@@ -1,10 +1,10 @@
+// test https://docs.aws.amazon.com/fr_fr/sdk-for-javascript/v2/developer-guide/node-reusing-connections.html
 require('dotenv').config({ path: `./config/${process.env.NODE_ENV}.env`});
 
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-const AWS = require('aws-sdk');
 
 
 const app = express();
@@ -20,9 +20,6 @@ app.use(cors(
 ));
 app.use(cookieParser());
 
-AWS.config.update({
-    httpOptions: {keepAlive: true, maxSockets: Infinity}
-});
 
 app.use(session({
     secret: 'ma_session_super_secret_key',

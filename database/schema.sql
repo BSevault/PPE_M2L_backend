@@ -99,6 +99,12 @@ CREATE TABLE PARTICIPANTS(
    FOREIGN KEY(id_reservation) REFERENCES RESERVATIONS(id) ON DELETE CASCADE
 );
 
+CREATE TABLE session(
+  sid                     VARCHAR(100) PRIMARY KEY NOT NULL,   
+  session                 VARCHAR(2048) DEFAULT '{}',   
+  lastSeen                DATETIME DEFAULT NOW() 
+);
+
 -- INSERT INTO SALLES (nom, description, capacite, prix)
 -- VALUES 
 -- ('Majorelle', 'Service de sonorisation et vidéo projecteur disponible', 30, 2000),

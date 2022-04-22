@@ -4,6 +4,8 @@ require('dotenv').config({ path: `./config/${process.env.NODE_ENV}.env`});
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
+const MariaDBStore = require('express-session-mariadb-store');
+const pool = require('./config/database');
 const cookieParser = require('cookie-parser');
 
 
@@ -15,13 +17,13 @@ app.use(cors(
     {
         credentials: true,
         origin: ["http://localhost:3000", "http://192.168.0.61:3000", "http://ec2-15-188-50-121.eu-west-3.compute.amazonaws.com", "http://15.188.50.121", "http://192.168.1.46"]
-        // origin: "http://ec2-15-188-50-121.eu-west-3.compute.amazonaws.com"
     }
 ));
 app.use(cookieParser());
 
 
 app.use(session({
+    store: new MariaDBStore({ pool: pool }),
     secret: 'ma_session_super_secret_key',
     // proxy: true,
     saveUninitialized: true,

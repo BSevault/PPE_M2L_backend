@@ -347,7 +347,7 @@ END //
 -- get participations with resa_id
 CREATE OR REPLACE PROCEDURE getResaParticipants(IN p_resa_id INT)
 BEGIN
-	SELECT u.id, u.nom, u.prenom, u.email
+	SELECT u.id, u.nom, u.prenom, u.email, p.is_present
 	FROM USERS u
 	INNER JOIN PARTICIPANTS p
 	ON u.id = p.id_user

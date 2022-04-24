@@ -59,20 +59,38 @@ module.exports = {
         });
     },
 
+    getResaParticipants: async (req, res) => {
+        const { id_resa } = req.params;
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL getResaParticipants(?)", [id_resa] )
+            return res.status(200).json({ success: result });
+        });
+    },
+
+    updatePresentParticipations : async (req, res) => {
+        const { id_resa } = req.params;
+        const { id_user, is_present } = req.body;
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL updateIsPresentParticipants(?,?,?)", [id_resa, id_user, is_present]);
+            return res.status(200).json({ success: result });
+        })
+    },
+
+    updateCheckResa : async (req, res) => {
+        const { user_id } = req.params;
+        const { id_resa } = req.body;
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL updateCheckResa(?,?)", [id_resa, user_id]);
+            return res.status(200).json({ success: result });
+        })
+    },
+
     // ------ PRODUITS -------
 
     getAllProducts: async ( _ , res) => {
         await call(res, async (connexion) => {
             const result = await connexion.query("CALL getAllProducts()");
             return res.status(200).json({success: result});
-        });
-    },
-
-    getResaParticipants: async (req, res) => {
-        const { id_resa } = req.params;
-        await call(res, async (connexion) => {
-            const result = await connexion.query("CALL getResaParticipants(?)", [id_resa] )
-            return res.status(200).json({ success: result });
         });
     },
 

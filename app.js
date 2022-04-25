@@ -26,6 +26,7 @@ app.use(cors(
         origin: true,
     }
 ));
+app.set('trust proxy', 1)
 app.use(cookieParser());
 
 // store bundle

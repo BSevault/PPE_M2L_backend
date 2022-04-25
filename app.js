@@ -46,10 +46,10 @@ app.use(session({
     // store: sessionStore,
     // =========================
     secret: 'ma_session_super_secret_key',
-    proxy: true,
+    // proxy: true,
     saveUninitialized: false,
     resave: false,
-    cookie: { httpOnly: false, maxAge: 1000 * 60 * 60 * 24, sameSite: 'none', secure: true } // secure: false
+    cookie: { httpOnly: false, maxAge: 1000 * 60 * 60 * 24 } // secure: false
 }));
 
 

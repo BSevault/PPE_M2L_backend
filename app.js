@@ -58,7 +58,7 @@ app.set('trust proxy', 1)
 app.use(cookieSession({
     name: 'session',
     secret: 'cat on keyboard',
-  
+    sameSite: 'none',
     // Cookie Options
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
   }))

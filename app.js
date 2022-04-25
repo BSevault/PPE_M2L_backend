@@ -1,8 +1,12 @@
-require('dotenv').config({ path: `./config/${process.env.NODE_ENV}.env`});
+// test https://docs.aws.amazon.com/fr_fr/sdk-for-javascript/v2/developer-guide/node-reusing-connections.html
+require('dotenv').config({ path: `./config/${process.env.NODE_ENV}.env` });
 
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
+const MariaDBStore = require('express-session-mariadb-store');
+// const MySQLStore = require('express-mysql-session')(session);
+const pool = require('./config/database');
 const cookieParser = require('cookie-parser');
 
 
@@ -13,20 +17,45 @@ app.use(express.json());
 app.use(cors(
     {
         credentials: true,
-        origin: ["http://localhost:3000", "http://192.168.0.61:3000", "http://192.168.56.1:3000"]
+        //     origin: [
+        //         "http://localhost:3000", "http://192.168.0.61:3000", "http://ec2-15-188-50-121.eu-west-3.compute.amazonaws.com", 
+        //     "http://15.188.50.121", "http://192.168.1.46", "http://15.237.109.149:3000", 
+        //     "http://172.31.19.222:3000", "http://192.168.0.47:80", "http://192.168.0.47:3000", 
+        //     "http://192.168.0.47"
+        // ]
+        origin: true,
     }
 ));
+app.set('trust proxy', 1)
 app.use(cookieParser());
 
+// store bundle
+// ============================
+// var options = {
+//     host: process.env.HOST,
+//     user: process.env.USER,
+//     password: process.env.PASSWORD,
+//     database: process.env.DATABASE,
+//     port: process.env.DB_PORT
+// }
+// var sessionStore = new MySQLStore(options);
+// =============================
+
 app.use(session({
+    // =========================
+    store: new MariaDBStore({ pool: pool }),
+    // store: sessionStore,
+    // =========================
     secret: 'ma_session_super_secret_key',
+    // proxy: true,
     saveUninitialized: false,
     resave: false,
-    cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 }
+    cookie: { httpOnly: false, maxAge: 1000 * 60 * 60 * 24 } // secure: false
 }));
 
-app.get('/api', ( _ , res) => {
-    res.status(200).json({success: "Bonjour, vous êtes sur l'api M2L"});
+
+app.get('/api', (_, res) => {
+    res.status(200).json({ success: "Bonjour, vous êtes sur l'api M2L" });
 });
 
 

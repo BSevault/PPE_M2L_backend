@@ -6,7 +6,9 @@ const {
     getBeforeReservation,
     getAllProducts,
     getResaParticipants,
-    getUserParticipationBefore
+    getUserParticipationBefore,
+    updateCheckResa,
+    updatePresentParticipations
 } = require('../../controllers/flutter/flutter');
 
 router
@@ -15,7 +17,8 @@ router
 
 router
     .route('/:user_id/reservations')
-    .get(getFutureReservation);
+    .get(getFutureReservation)
+    .put(updateCheckResa);
 
 router
     .route('/:user_id/reservations/history')
@@ -32,6 +35,7 @@ router
 router
     .route('/:id_resa/participants')
     .get(getResaParticipants)
+    .put(updatePresentParticipations);
 
 router.route('/ticket');
 router.route('/paiement');

@@ -235,7 +235,7 @@ END //
     -- reservations après date du jour (inclus)
 CREATE OR REPLACE PROCEDURE getFutureReservation (IN p_user_id int)
 BEGIN
-	SELECT r.id, s.nom, s.description, r.date_resa, s.prix, is_paid  FROM RESERVATIONS r
+	SELECT r.id, s.nom, s.description, r.date_resa, s.prix, r.is_paid, r.check_participants  FROM RESERVATIONS r
 	INNER JOIN SALLES s
 	ON r.id_salle = s.id
 	WHERE r.id_user = p_user_id AND date_resa >= DATE(NOW());
@@ -347,13 +347,27 @@ END //
 -- get participations with resa_id
 CREATE OR REPLACE PROCEDURE getResaParticipants(IN p_resa_id INT)
 BEGIN
-	SELECT u.id, u.nom, u.prenom, u.email
+	SELECT u.id, u.nom, u.prenom, u.email, p.is_present
 	FROM USERS u
 	INNER JOIN PARTICIPANTS p
 	ON u.id = p.id_user
 	WHERE p.id_reservation = p_resa_id;
 
 END //
+
+CREATE OR REPLACE PROCEDURE updateIsPresentParticipants(IN p_resa_id INT, IN p_id_user INT, IN p_isPresent INT)
+BEGIN
+	UPDATE Participants
+	SET is_present = p_isPresent
+	WHERE id_user = p_id_user AND id_reservation = p_resa_id;
+END //
+
+CREATE OR REPLACE PROCEDURE updateCheckResa(IN p_resa_id INT, IN p_id_user INT)
+BEGIN
+	UPDATE Reservations
+	SET check_participants = 1
+	WHERE id = p_resa_id AND id_user = p_id_user;
+END//
 
 
 

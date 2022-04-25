@@ -357,14 +357,14 @@ END //
 
 CREATE OR REPLACE PROCEDURE updateIsPresentParticipants(IN p_resa_id INT, IN p_id_user INT, IN p_isPresent INT)
 BEGIN
-	UPDATE Participants
+	UPDATE PARTICIPANTS
 	SET is_present = p_isPresent
 	WHERE id_user = p_id_user AND id_reservation = p_resa_id;
 END //
 
 CREATE OR REPLACE PROCEDURE updateCheckResa(IN p_resa_id INT, IN p_id_user INT)
 BEGIN
-	UPDATE Reservations
+	UPDATE RESERVATIONS
 	SET check_participants = 1
 	WHERE id = p_resa_id AND id_user = p_id_user;
 END//

@@ -4,7 +4,7 @@ require('dotenv').config({ path: `./config/${process.env.NODE_ENV}.env` });
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
-const cookieSession = require('cookie-session');
+// const cookieSession = require('cookie-session');
 const MariaDBStore = require('express-session-mariadb-store');
 // const MySQLStore = require('express-mysql-session')(session);
 const pool = require('./config/database');
@@ -43,26 +43,28 @@ app.set('trust proxy', 1)
 // var sessionStore = new MySQLStore(options);
 // =============================
 
-// app.use(session({
-//     // =========================
-//     store: new MariaDBStore({ pool: pool }),
-//     // store: sessionStore,
-//     // =========================
-//     secret: 'ma_session_super_secret_key',
-//     // proxy: true,
-//     saveUninitialized: false,
-//     resave: false,
-//     cookie: { httpOnly: false, maxAge: 1000 * 60 * 60 * 24 } // secure: false
-// }));
+app.use(session({
+    // =========================
+    store: new MariaDBStore({ pool: pool }),
+    // store: sessionStore,
+    // =========================
+    secret: 'ma_session_super_secret_key',
+    // proxy: true,
+    saveUninitialized: false,
+    resave: false,
+    cookie: { path: '/', httpOnly: true, maxAge: 1000 * 60 * 60 * 24, secure: true, sameSite: 'none' },
+    rolling: true,
+     // secure: false
+}));
 
-app.use(cookieSession({
-    name: 'session',
-    secret: 'cat on keyboard',
-    // sameSite: 'none',
-    // secure: true,
-    // Cookie Options
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
-  }))
+// app.use(cookieSession({
+//     name: 'session',
+//     secret: 'cat on keyboard',
+//     // sameSite: 'none',
+//     // secure: true,
+//     // Cookie Options
+//     maxAge: 24 * 60 * 60 * 1000 // 24 hours
+//   }))
 
 app.get('/api', (_, res) => {
     res.status(200).json({ success: "Bonjour, vous êtes sur l'api M2L" });

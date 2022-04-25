@@ -59,6 +59,7 @@ app.use(cookieSession({
     name: 'session',
     secret: 'cat on keyboard',
     sameSite: 'none',
+    secure: true,
     // Cookie Options
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
   }))

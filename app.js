@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors(
     {
         credentials: true,
-        origin: ["http://localhost:3000", "http://192.168.0.61:3000", "http://ec2-15-188-50-121.eu-west-3.compute.amazonaws.com", "http://15.188.50.121", "http://192.168.1.46"]
+        origin: ["http://localhost:3000", "http://192.168.0.61:3000", "http://ec2-15-188-50-121.eu-west-3.compute.amazonaws.com", "http://15.188.50.121", "http://192.168.1.46", "http://15.237.109.149:3000"]
     }
 ));
 app.use(cookieParser());

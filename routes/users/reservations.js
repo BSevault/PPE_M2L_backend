@@ -21,7 +21,7 @@ router
 
 router
     .route('/:user_id/reservation')
-    .get(userIsLogged, getReservations)
+    .get(getReservations)
     .post(createReservation)
     .put(updateReservation)
     .patch(toggleReservationIsPaid)
@@ -29,15 +29,15 @@ router
 
 router
     .route('/:user_id/reservations')
-    .get(userIsLogged, getFutureReservation)
+    .get(getFutureReservation)
 
 router
     .route('/:user_id/reservations/history')
-    .get(userIsLogged, getBeforeReservation)
+    .get(getBeforeReservation)
 
 router
     .route('/:resa_id/covid_state')
-    .get(userIsLogged, getReservationCovid)
+    .get(getReservationCovid)
 
 router
     .route('/reservation/participants')

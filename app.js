@@ -7,7 +7,7 @@ const session = require('express-session');
 const MariaDBStore = require('express-session-mariadb-store');
 // const MySQLStore = require('express-mysql-session')(session);
 const pool = require('./config/database');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 
 
 const app = express();
@@ -27,7 +27,7 @@ app.use(cors(
     }
 ));
 app.set('trust proxy', 1)
-app.use(cookieParser());
+// app.use(cookieParser());
 
 // store bundle
 // ============================

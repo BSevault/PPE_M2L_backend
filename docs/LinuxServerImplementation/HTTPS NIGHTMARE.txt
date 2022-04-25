@@ -71,3 +71,9 @@ sudo systemctl restart apache2
 # (todo maybe)
 
 sudo chown -R :www-data /etc/letsencrypt/live/groupe-a.lemonravioli.ovhnp
+
+
+VM accessible depuis extérieur (en https)
+
+	Rediriger port 443 & 80 de l'extérieur vers la vm (via router)
+	Mettre les vm dans la dmz (équippement accessible depuis l'extérieur)

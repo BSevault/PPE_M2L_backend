@@ -77,3 +77,4 @@ VM accessible depuis extérieur (en https)
 
 	Rediriger port 443 & 80 de l'extérieur vers la vm (via router)
 	Mettre les vm dans la dmz (équippement accessible depuis l'extérieur)
+        (peut être) wamp + certificat autosigné 

@@ -39,6 +39,33 @@ sudo mysql_secure_installation
 
 ## Clone backend ##
 
+# generate SSH key
+
+ssh-keygen -t rsa
+
+# copy it to git repo
+
+cat ~/.ssh/id_rsa.pub
+
+# setting up the key to be used automatically
+
+sudo nano ~/.bashrc 
+
+# ajouter ça en haut du fichier
+
+------
+
+# Start the SSH agent
+eval `ssh-agent -s`
+# Add the SSH key
+ssh-add
+
+-------
+
+# execute le script
+
+source ~/.bashrc
+
 # Clone le repo dans un dossier nommé PPE_M2L_backend
 
 git clone https://github.com/BSevault/PPE_M2L_backend.git

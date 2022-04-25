@@ -6,7 +6,7 @@ Cette API concerne :
 
 ## Installation
 ### Prérequis
-Les logiciels ci-dessous sont nécessaires au fonctionnement de notre API, voici les commandes pour vérifier qu'ils sont bien installés sur votre système. Sinon, télécharger les et suivez les étapes d'installation dupuis les liens mis à disposition.
+Les logiciels ci-dessous sont nécessaires au fonctionnement de notre API, voici les commandes pour vérifier qu'ils sont bien installés sur votre système. Sinon, télécharger les et suivez les étapes d'installation depuis les liens mis à disposition.
 
 * Git `git --version` ou télécharger et installer [Git](https://git-scm.com/downloads)
 * NPM `npm --version` ou télécharger et installer [NPM](https://www.npmjs.com/package/download)

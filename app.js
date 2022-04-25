@@ -25,7 +25,7 @@ app.use(cors(
         //     "http://192.168.0.47"
         // ]
         origin: true,
-        methods:['GET', 'POST', 'PUT', 'DELETE'],
+        // methods:['GET', 'POST', 'PUT', 'DELETE'],
     }
 ));
 app.set('trust proxy', 1)

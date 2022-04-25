@@ -1,5 +1,5 @@
 // test https://docs.aws.amazon.com/fr_fr/sdk-for-javascript/v2/developer-guide/node-reusing-connections.html
-require('dotenv').config({ path: `./config/${process.env.NODE_ENV}.env`});
+require('dotenv').config({ path: `./config/${process.env.NODE_ENV}.env` });
 
 const express = require('express');
 const cors = require('cors');
@@ -17,7 +17,12 @@ app.use(express.json());
 app.use(cors(
     {
         credentials: true,
-        origin: ["http://localhost:3000", "http://192.168.0.61:3000", "http://ec2-15-188-50-121.eu-west-3.compute.amazonaws.com", "http://15.188.50.121", "http://192.168.1.46", "http://15.237.109.149:3000", "http://172.31.19.222:3000", "http://192.168.0.47:80", "http://192.168.0.47:3000", "http://192.168.0.47"]
+        origin: [
+            "http://localhost:3000", "http://192.168.0.61:3000", "http://ec2-15-188-50-121.eu-west-3.compute.amazonaws.com", 
+        "http://15.188.50.121", "http://192.168.1.46", "http://15.237.109.149:3000", 
+        "http://172.31.19.222:3000", "http://192.168.0.47:80", "http://192.168.0.47:3000", 
+        "http://192.168.0.47"
+    ]
     }
 ));
 app.use(cookieParser());
@@ -47,8 +52,8 @@ app.use(session({
 }));
 
 
-app.get('/api', ( _ , res) => {
-    res.status(200).json({success: "Bonjour, vous êtes sur l'api M2L"});
+app.get('/api', (_, res) => {
+    res.status(200).json({ success: "Bonjour, vous êtes sur l'api M2L" });
 });
 
 

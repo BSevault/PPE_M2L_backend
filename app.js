@@ -4,7 +4,7 @@ require('dotenv').config({ path: `./config/${process.env.NODE_ENV}.env` });
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
-// const MariaDBStore = require('express-session-mariadb-store');
+const MariaDBStore = require('express-session-mariadb-store');
 // const MySQLStore = require('express-mysql-session')(session);
 const pool = require('./config/database');
 const cookieParser = require('cookie-parser');
@@ -42,14 +42,14 @@ app.use(cookieParser());
 
 app.use(session({
     // =========================
-    // store: new MariaDBStore({ pool: pool }),
+    store: new MariaDBStore({ pool: pool }),
     // store: sessionStore,
     // =========================
     secret: 'ma_session_super_secret_key',
     proxy: true,
     saveUninitialized: false,
     resave: false,
-    cookie: { httpOnly: false, maxAge: 1000 * 60 * 60 * 24 } // secure: false
+    cookie: { httpOnly: false, maxAge: 1000 * 60 * 60 * 24, sameSite: 'none', secure: true } // secure: false
 }));
 
 

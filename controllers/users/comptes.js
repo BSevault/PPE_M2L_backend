@@ -39,7 +39,7 @@ module.exports = {
                     const user = await connexion.query("CALL getOneAccount(?)", [id_user]);
                     if (user[0][0].is_active) {
                         req.session.logged_user = user[0][0];
-                        req.session.save();
+                        // req.session.save();
                         console.log(req?.session);
                         // console.log(req.session.logged_user);
                         return res.status(200).json({ success: user[0][0] });

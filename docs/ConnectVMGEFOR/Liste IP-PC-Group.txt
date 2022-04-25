@@ -1,0 +1,45 @@
+PC 1: Groupe A & Groupe B
+
+    Win10 login: admin    ; pass: Gefor75!
+    Linux login: ubuntu ; pass: ubuntu
+
+    IP:    
+        LinA: 192.168.0.48
+        WinA: 192.168.0.46
+        
+        LinB: 192.168.0.49
+        WinB: 192.168.0.47
+        
+PC 2: Groupe B & Groupe C
+
+    Win10 login: admin    ; pass: Gefor75!
+    Linux login: gefor ;  pass: gefor
+
+    IP:    
+        LinB: 192.168.0.44
+        WinB: 192.168.0.42
+        
+        LinC: 192.168.0.43
+        WinC: 192.168.0.41
+
+
+
+J1
+    PM
+        Yasim       C P2
+        Joseph      A P1
+        Nordine     C P2
+        
+J2
+    AM
+        Guillaume   B P1
+        Ben         B P2
+    PM
+        Tommy       A P1
+        Matthieu    B P2
+        --Samira--
+        
+J3
+        Xavier      C P2
+        Yann        A P1
+        Younes      C P2

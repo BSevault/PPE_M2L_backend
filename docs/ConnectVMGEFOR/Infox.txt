@@ -1,0 +1,12 @@
+Connect to windows VM:
+    Lauch VM on host
+        Connect to host // admin, Gefor75!
+        Launch hyperV
+        Launch Machine A/B (credentials in "name")
+
+    Connect to VMs local
+        Connect to Gefore 2.4 / 5
+        Windows: Remote Desktop // Connection à distance 
+            IP machine + options username // admin, Gefore75!
+        Linux: Putty
+            Ip machine // ubuntu, ubuntu

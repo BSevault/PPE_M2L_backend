@@ -25,6 +25,7 @@ module.exports = {
     },
 
     getAccountIdByEmail: async (req, res) => {
+        console.log('tried to connect');
         const { email, password } = req.body;
         await call(res, async (connexion) => {
 

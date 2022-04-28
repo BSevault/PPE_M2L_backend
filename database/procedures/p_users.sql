@@ -9,7 +9,7 @@ DELIMITER //
 CREATE OR REPLACE PROCEDURE createAccount(IN p_nom VARCHAR(255), IN p_prenom VARCHAR(255), IN p_email VARCHAR(255), IN p_tel VARCHAR(50), IN p_password VARCHAR(255), IN p_ddn VARCHAR(255), IN p_adresse VARCHAR(255))
 BEGIN
 	INSERT INTO USERS(nom, prenom, email, tel, password, ddn, adresse)
-	VALUES (p_nom, p_prenom, p_email, p_tel, SHA1(p_password), p_ddn, p_adresse);
+	VALUES (p_nom, p_prenom, p_email, p_tel, MD5(p_password), p_ddn, p_adresse);
 END //
 
 -- update user // ok route
@@ -27,9 +27,9 @@ CREATE OR REPLACE PROCEDURE changePassword(IN p_id INT, IN p_old_password VARCHA
 BEGIN
 	UPDATE USERS
 	SET
-		password = SHA1(p_new_password)
+		password = MD5(p_new_password)
 	WHERE
-		id = p_id AND SHA1(p_old_password) = password;
+		id = p_id AND MD5(p_old_password) = password;
 END //
 
 -- active status user // ok route
@@ -58,7 +58,7 @@ CREATE OR REPLACE PROCEDURE checkUserPassword(IN p_id INT, IN p_password VARCHAR
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
     SELECT id FROM USERS
-    WHERE USERS.id = p_id AND password = SHA1(p_password);
+    WHERE USERS.id = p_id AND password = MD5(p_password);
 END //
 
 -- get one user by email and password when log in

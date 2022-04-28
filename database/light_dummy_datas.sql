@@ -2,13 +2,13 @@ USE M2L_DB;
 
 INSERT INTO USERS (nom, prenom, email, tel, password, ddn, adresse)
 VALUES
-('test1_nom', 'test1_prenom', 'test1@email.com','0123456789', SHA1('test1'), '1981-01-01', 'test1_adresse'),
-('test2_nom', 'test2_prenom', 'test2@email.com','0234567891', SHA1('test2'), '1982-01-01', 'test2_adresse'),
-('test3_nom', 'test3_prenom', 'test3@email.com','0345678912', SHA1('test3'), '1983-01-01', 'test3_adresse'),
-('test4_nom', 'test4_prenom', 'test4@email.com','0456789123', SHA1('test4'), '1984-01-01', 'test4_adresse'),
-('test5_nom', 'test5_prenom', 'test5@email.com','0567891234', SHA1('test5'), '1985-01-01', 'test5_adresse'),
-('test6_nom', 'test6_prenom', 'test6@email.com','0678912345', SHA1('test6'), '1986-01-01', 'test6_adresse'),
-('Marley', 'Bob', 'bob@gmail.com','0678912345', SHA1('marley'), '1987-01-01', 'marley_adresse');
+('test1_nom', 'test1_prenom', 'test1@email.com','0123456789', MD5('test1'), '1981-01-01', 'test1_adresse'),
+('test2_nom', 'test2_prenom', 'test2@email.com','0234567891', MD5('test2'), '1982-01-01', 'test2_adresse'),
+('test3_nom', 'test3_prenom', 'test3@email.com','0345678912', MD5('test3'), '1983-01-01', 'test3_adresse'),
+('test4_nom', 'test4_prenom', 'test4@email.com','0456789123', MD5('test4'), '1984-01-01', 'test4_adresse'),
+('test5_nom', 'test5_prenom', 'test5@email.com','0567891234', MD5('test5'), '1985-01-01', 'test5_adresse'),
+('test6_nom', 'test6_prenom', 'test6@email.com','0678912345', MD5('test6'), '1986-01-01', 'test6_adresse'),
+('Marley', 'Bob', 'bob@gmail.com','0678912345', MD5('marley'), '1987-01-01', 'marley_adresse');
 
 INSERT INTO SALLES VALUES (1, 'N.A.', 'N.A.', 0, 0, 0); --Première "vide" pour les tickets sans id_produit
 INSERT INTO SALLES (nom, description, capacite, prix)

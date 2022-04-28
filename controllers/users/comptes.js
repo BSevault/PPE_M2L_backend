@@ -130,7 +130,8 @@ module.exports = {
     logout: (req, res) => {
         // console.log(req.session);
         if (req?.session?.logged_user) {
-            req.session.destroy();
+            // req.session.destroy();
+            req.session = null;
             // console.log(req.session);
             return res.status(200).send()
         }

@@ -24,10 +24,56 @@ npm install
 La commande `npm install` va installer toutes les dépendences liées au projet.
 
 ### Base de données
+#### Création des utilisateurs
 
 Créer un utilisateur `root` (avec des droits de création) sous MariaDB pour exécuter la commande d'initialisation de la base de données.
 
-`npm run resetDBLight`
+Créer un fichier ***permissions.sql*** dans le dossier `./PPE_M2L_backend/database/`
+Dans celui-ci on va créer un utilisateur "webapp" qui n'aura que les droits d'exécution de procédures stockées sur notre base de données.
+
+Script SQL à inclure dans le fichier ***permissions.sql*** :
+
+```sql
+CREATE OR REPLACE USER 'webapp'@'localhost' IDENTIFIED BY 'Zod€7c@arT48';
+GRANT EXECUTE ON M2L_DB.* TO 'webapp'@'localhost';
+```
+Le mot de passe `Zod€7c@arT48` est à titre indicatif, vous pouvez mettre celui que vous désirez.
+
+#### Création des variables d'environnements
+
+Créer un fichier ***prod.env*** dans le dossier `./PPE_M2L_backend/config/`
+Ce fichier va contenir les variables de connexion à la base de données.
+Exemple de de fichier .env
+
+```js
+#General
+PORT=3001               -> Port d'écoute du serveur Express
+
+#Database
+HOST=localhost          -> Adresse de la base de données
+USER=webapp             -> Utilisateur de la base de donneés
+PASSWORD=Zod€7c@arT48   -> Mot de passe de l'utilisateur de la base de données
+DATABASE=m2l_db         -> Nom de la base de données dans MariaDB
+DB_PORT=3306            -> Port d'écoute de la base de données.
+```
+
+#### Initialisation de la base de données
+Pour créer la base de données, insérer les procédures SQL et des données tests, et créer l'utilisateur webapp
+
+##### Sous Windows
+Exécutez le script : `npm run resetDBLight`
+
+##### Sous Linux 
+Exécutez la série de scripts :
+
+``` bash
+sudo mariadb -u root -p <./database/schema.sql
+sudo mariadb -u root -p <./database/light_dummy_datas.sql
+sudo mariadb -u root -p <./database/procedures/p_produits.sql
+sudo mariadb -u root -p <./database/procedures/p_salles.sql
+sudo mariadb -u root -p <./database/procedures/p_users.sql
+sudo mariadb -u root -p <./database/permissions.sql
+```
 
 ## Lancement
 Une fois les étapes de l'intallation effectuée, éxécuter la commande 

@@ -78,3 +78,33 @@ VM accessible depuis extérieur (en https)
 	Rediriger port 443 & 80 de l'extérieur vers la vm (via router)
 	Mettre les vm dans la dmz (équippement accessible depuis l'extérieur)
         (peut être) wamp + certificat autosigné 
+
+
+
+=============================================================================
+
+## PM2 (autorun api)
+
+# install pm2
+
+npm i -g pm2
+
+# run script 
+
+pm2 start npm --name "3mBackendM2L" -- run prodlinux
+
+# add pm2 to startup 
+
+pm2 startup
+
+# run the command at the bottom line of last command
+
+//
+
+# save the processes
+
+pm2 save
+
+# check processes
+
+pm2 ls

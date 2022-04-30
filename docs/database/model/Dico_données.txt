@@ -4,9 +4,11 @@ USERS
 	prenom VARCHAR :prenom user
 	ddn VARCHAR : date de naissance user
 	email VARCHAR : email user
-	password VARCHAR : password hashé en SHA1
-	telephone VARCHAR : telephone user
+	PASSWORD VARCHAR : password hashé en SHA1
+	tel VARCHAR : telephone user
 	adresse VARCHAR : adresse user
+	is_active BOOL : statut actif ou inactif d'un utilisateur
+	is_admin BOOL : statut administrateur d'un utilisateur
 
 SALLES
 	id INT PRIMARY KEY
@@ -14,6 +16,7 @@ SALLES
 	description VARCHAR : description de la salle
 	capacite INT : capacité maximum de la salle en nombre de personnes
 	prix FLOAT : prix d'une réservation de la salle
+	is_active BOOL : statut actif ou  inactif d'une salle
 
 PRODUITS
 	id INT PRIMARY KEY
@@ -21,12 +24,14 @@ PRODUITS
 	description VARCHAR :description du produits
 	qte_dispo INT : stock disponible
 	prix FLOAT ; prix du produit
+	is_active BOOL : statut actif ou  inactif d'un produit
 
-	TICKETS
+TICKETS
 	id INT PRIMARY KEY
 	date_ticket DATETIME : date de rédaction du ticket
 	date_probleme DATETIME : date de survenue du problème décrit dans le ticket
 	description VARCHAR : message du ticket
+	is_resolved BOOL : statut résolu ou non-résolu d'un ticket
 	#id_user INT FOREIGN KEY référence à USERS.id : user qui arédigé le ticket
 	#id_salle INT FOREIGN KEY référence à SALLES.id : salle concernée par le ticket
 	#id_produit INT FOREIGN KEY référence à PRODUITS.id : produit concerné par le ticket
@@ -35,13 +40,15 @@ RESERVATIONS
 	id INT PRIMARY KEY
 	date_resa DATETIME : date de réservation
 	is_paid BOOL : statut du paiement de la salle (payé ou non)
+	is_covid BOOL : statut covid positif d'une réservation
+	check_participants BOOl : statut terminé de la vérification de la présence des participants
 	#id_user INT FOREIGN KEY référence à USERS.id : id du user qui a fait la réservation
 	#id_salle INT FOREIGN KEY référence à SALLES.id : id de la salle concernée
 
 PAIEMENTS
 	id INT PRIMARY KEY
 	qte INT : quantité de produits achetés
-	total FLOAT : total du paiement
+	total FLOAT : montant total du paiement
 	#id_user INT FOREIGN KEY référence à USERS.id : quel user a réglé le paiement
 	#id_reservation INT FOREIGN KEY référence à RESERVATIONS.id : id de la réservation concernée
 	#id_produit INT FOREIGN KEY référence à PRODUITS.id: produit concerné, si null concerne le paiement d'une réservation
@@ -49,5 +56,6 @@ PAIEMENTS
 PARTICIPANTS
 	id INT PRIMARY KEY
 	covid_positive BOOL : statut covid d'un participant (positif ou négatif)
+	is_present BOOL : statut présent ou absent d'un participant à une réunion
 	#id_user INT FOREIGN KEY référence à USERS.id : id du user participant à la réservation
 	#id_reservation INT FOREIGN KEY référence à RESERVATIONS.id : réservation à laquelle participe le participant

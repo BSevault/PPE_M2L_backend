@@ -49,12 +49,10 @@ app.use(session({
     // store: sessionStore,
     // =========================
     secret: 'ma_session_super_secret_key',
-    // proxy: true,
     saveUninitialized: false,
     resave: false,
     cookie: { path: '/', httpOnly: true, maxAge: 1000 * 60 * 60 * 24, secure: true, sameSite: 'none' },
     rolling: true,
-     // secure: false
 }));
 
 // app.use(cookieSession({

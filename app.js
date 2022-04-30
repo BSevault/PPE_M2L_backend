@@ -31,7 +31,7 @@ app.use(cors(
 
 app.use(session({
     secret: 'ma_session_super_secret_key',
-
+    // store ?
     saveUninitialized: false,
     resave: false,
     cookie: { path: '/', httpOnly: true, maxAge: 1000 * 60 * 60 * 24, secure: true},

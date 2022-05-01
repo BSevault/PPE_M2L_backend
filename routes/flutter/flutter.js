@@ -40,5 +40,4 @@ router
 router.route('/ticket');
 router.route('/paiement');
 
-
 module.exports = router;

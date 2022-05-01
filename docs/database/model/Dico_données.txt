@@ -42,7 +42,7 @@ RESERVATIONS
 	is_paid BOOL : statut du paiement de la salle (payé ou non)
 	is_covid BOOL : statut covid positif d'une réservation
 	check_participants BOOl : statut terminé de la vérification de la présence des participants
-	#id_user INT FOREIGN KEY référence à USERS.id : id du user qui a fait la réservation
+	#id_user INT FOREIGN KEY c
 	#id_salle INT FOREIGN KEY référence à SALLES.id : id de la salle concernée
 
 PAIEMENTS

@@ -8,7 +8,8 @@ const {
     getResaParticipants,
     getUserParticipationBefore,
     updateCheckResa,
-    updatePresentParticipations
+    updatePresentParticipations,
+    createProductPayment
 } = require('../../controllers/flutter/flutter');
 
 router
@@ -30,7 +31,11 @@ router
 
 router
     .route('/produits')
-    .get(getAllProducts);
+    .get(getAllProducts)
+
+router
+    .route('/produits/:user_id/:resa_id')
+    .post(createProductPayment);
 
 router
     .route('/:id_resa/participants')

@@ -94,5 +94,14 @@ module.exports = {
         });
     },
 
+    createProductPayment: async (req, res) => {
+        const { user_id, resa_id } = req.params;
+        const { qte, produit_id } = req.body;
+        await call (res, async (connexion) => {
+            const result = await connexion.query("CALL createUserPayment(?,?,?,?)", [user_id, qte, resa_id, produit_id]);
+            return res.status(200).json({success: result});
+        });
+    }
+
 }
 

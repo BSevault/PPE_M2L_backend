@@ -40,7 +40,7 @@ module.exports = {
                     if (user[0][0].is_active) {
                         req.session.logged_user = user[0][0];
                         // req.session.save();
-                        // console.log(req?.session);
+                        console.log(req?.session);
                         // console.log(req.session.logged_user);
                         return res.status(200).json({ success: user[0][0] });
                     }
@@ -118,7 +118,7 @@ module.exports = {
     },
 
     userIsLogged: async (req, res, next) => {
-        // console.log(req?.session);
+        console.log(req?.session);
         if (req?.session?.logged_user && req?.params?.user_id !== 'undefined') {
             // console.log(req.params.user_id);
             return next();

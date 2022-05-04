@@ -82,7 +82,16 @@ module.exports = {
         await call(res, async (connexion) => {
             const result = await connexion.query("CALL updateCheckResa(?,?)", [id_resa, user_id]);
             return res.status(200).json({ success: result });
-        })
+        });
+    },
+
+    isCovid: async (req, res) => {
+        const { user_id } = req.params;
+        const { date_resa } = req.body;
+        await call(res, async (connexion) => {
+            const result = await connexion.query("CALL isCovid(?,?)", [user_id, date_resa]);
+            return res.status(200).json({ success: result });
+        });
     },
 
     // ------ PRODUITS -------

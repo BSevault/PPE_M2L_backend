@@ -9,7 +9,8 @@ const {
     getUserParticipationBefore,
     updateCheckResa,
     updatePresentParticipations,
-    createProductPayment
+    createProductPayment,
+    isCovid
 } = require('../../controllers/flutter/flutter');
 
 router
@@ -19,7 +20,7 @@ router
 router
     .route('/:user_id/reservations')
     .get(getFutureReservation)
-    .put(updateCheckResa);
+    .put(updateCheckResa);    
 
 router
     .route('/:user_id/reservations/history')
@@ -28,6 +29,7 @@ router
 router
     .route('/:user_id/participations/history')
     .get(getUserParticipationBefore)
+    .post(isCovid);
 
 router
     .route('/produits')

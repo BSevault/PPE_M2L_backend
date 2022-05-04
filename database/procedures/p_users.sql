@@ -343,6 +343,12 @@ BEGIN
 		SELECT id FROM RESERVATIONS
 		WHERE date_resa BETWEEN DATE(p_date_positive) AND ADDDATE(DATE(p_date_positive), INTERVAL 10 DAY)
 	);
+
+	UPDATE RESERVATIONS r
+	INNER JOIN PARTICIPANTS p
+	ON p.id_reservation = r.id
+	SET is_covid = 1
+	WHERE p.covid_positive = 1 AND p.is_present = 1 AND r.date_resa <= DATE(NOW());
 END //
 
 -- get participations with resa_id

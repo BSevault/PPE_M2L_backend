@@ -285,7 +285,7 @@ BEGIN
 	ON r.id_salle = s.id
 	INNER JOIN USERS u
 	ON u.id = r.id_user
-	WHERE p_user_id = p.id_user AND r.date_resa < DATE(NOW());
+	WHERE p_user_id = p.id_user AND r.date_resa < DATE(NOW()) AND p.is_present = 1;
 END //
         
     -- participations après date du jour (inclus)
@@ -310,9 +310,10 @@ BEGIN
 			p_id_resa);
 END //
 
+-- used when a reservation is created, to add admin to reservation list
 CREATE OR REPLACE PROCEDURE createParticipationUserId (IN p_id_user INT, IN p_id_resa INT)
 BEGIN
-	INSERT INTO PARTICIPANTS (covid_positive, id_user, id_reservation) VALUES (0, p_id_user, p_id_resa);
+	INSERT INTO PARTICIPANTS (covid_positive, id_user, id_reservation, is_present) VALUES (0, p_id_user, p_id_resa, 1);
 END //
 
 

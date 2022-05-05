@@ -34,7 +34,7 @@ app.use(session({
     // store ?
     saveUninitialized: false,
     resave: false,
-    cookie: { path: '/', httpOnly: true, maxAge: 1000 * 60 * 60 * 24, secure: true},
+    cookie: { path: '/', httpOnly: true, maxAge: 1000 * 60 * 60 * 24 },
 }));
 
 

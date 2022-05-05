@@ -52,7 +52,7 @@ app.use(session({
     // proxy: true,
     saveUninitialized: false,
     resave: false,
-    cookie: { path: '/', httpOnly: true, maxAge: 1000 * 60 * 60 * 24, secure: true, sameSite: 'none' },
+    cookie: { path: '/', httpOnly: true, maxAge: 1000 * 60 * 60 * 24, sameSite: 'none' },
     rolling: true,
      // secure: false
 }));

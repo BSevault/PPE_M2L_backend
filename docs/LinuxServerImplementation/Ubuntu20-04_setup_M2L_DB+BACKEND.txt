@@ -95,6 +95,23 @@ sudo mariadb -u root -p <./database/permissions.sql
 npm run devlinux
 
 
+mariadb -u root -p <./database/schema.sql
+
+mariadb -u root -p <./database/light_dummy_datas.sql
+
+mariadb -u root -p <./database/procedures/p_produits.sql
+
+mariadb -u root -p <./database/procedures/p_salles.sql
+
+mariadb -u root -p <./database/procedures/p_users.sql
+
+mariadb -u root -p <./database/permissions.sql
+
+## Lancer le serveur en mode prod (linux gefor lnsh) ##
+
+npm run prodgefor
+
+
 
 
 

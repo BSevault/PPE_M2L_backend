@@ -9,6 +9,8 @@
     "dev": "cross-env NODE_ENV=dev nodemon app.js",
     "devlinux": "cross-env NODE_ENV=devlinux nodemon app.js",
     "prodlinux": "cross-env NODE_ENV=prodlinux node app.js",
+    "devgefor": "cross-env NODE_ENV=devgefor nodemon app.js",
+    "prodgefor": "cross-env NODE_ENV=prodgefor node app.js",
     "integrateDB": "cross-env mariadb -u root -p <./database/schema.sql",
     "integrateDummy": "cross-env mariadb -u root -p <./database/dummy_datas.sql",
     "integrateLightDummy": "cross-env chcp 65001 | mariadb -u root -p <./database/light_dummy_datas.sql",

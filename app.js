@@ -14,19 +14,23 @@ const app = express();
 
 //middleware
 app.use(express.json());
-app.use(cors(
-    {
-        credentials: true,
-        //     origin: [
-        //         "http://localhost:3000", "http://192.168.0.61:3000", "http://ec2-15-188-50-121.eu-west-3.compute.amazonaws.com", 
-        //     "http://15.188.50.121", "http://192.168.1.46", "http://15.237.109.149:3000", 
-        //     "http://172.31.19.222:3000", "http://192.168.0.47:80", "http://192.168.0.47:3000", 
-        //     "http://192.168.0.47"
-        // ]
-        origin: true,
-        // methods:['GET', 'POST', 'PUT', 'DELETE'],
-    }
-));
+if (process.env.NODE_ENV == 'dev') {
+    app.use(cors(
+        {
+            credentials: true,
+            //     origin: [
+            //         "http://localhost:3000", "http://192.168.0.61:3000", "http://ec2-15-188-50-121.eu-west-3.compute.amazonaws.com", 
+            //     "http://15.188.50.121", "http://192.168.1.46", "http://15.237.109.149:3000", 
+            //     "http://172.31.19.222:3000", "http://192.168.0.47:80", "http://192.168.0.47:3000", 
+            //     "http://192.168.0.47"
+            // ]
+            // origin: true,
+            origin: 'localhost:3000',
+            // methods:['GET', 'POST', 'PUT', 'DELETE'],
+        }
+    ));
+}
+
 
 
 app.use(session({
@@ -34,7 +38,7 @@ app.use(session({
     // store ?
     saveUninitialized: false,
     resave: false,
-    cookie: { path: '/', httpOnly: true, maxAge: 1000 * 60 * 60 * 24 },
+    cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 },
 }));
 
 

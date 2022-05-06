@@ -20,7 +20,9 @@
     "integretaPermissionsDB": "cross-env mariadb -u root -p <./database/permissions.sql",
     "integrateProcedures": "cross-env npm run integrateProduitsProc & npm run integrateSallesProc & npm run integrateUsersProc",
     "resetDB": "cross-env npm run integrateDB & npm run integrateDummy & npm run integrateProcedures",
-    "resetDBLight": "cross-env npm run integrateDB & npm run integrateLightDummy & npm run integrateProcedures & npm run integretaPermissionsDB"
+    "resetDBLight": "cross-env npm run integrateDB & npm run integrateLightDummy & npm run integrateProcedures & npm run integretaPermissionsDB",
+    "resetBash": "resetDB.sh",
+    "resetWin": "resetDB.sh windows"
   },
   "repository": {
     "type": "git",

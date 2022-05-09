@@ -74,6 +74,8 @@ VALUES
 ('2022-03-30', '2022-02-01', 'description user2 ticket 2', 2, 2, 8, 0),
 ('2022-03-15', '2022-03-01', 'description user2 ticket 3', 2, 1, 1, 0);
 
+CALL createUserTicket('2022-02-17', 'description user5 ticket 2 é è ï Ë', 5, 7, 5);
+
 
 INSERT INTO PARTICIPANTS (covid_positive, id_user, id_reservation)
 VALUES

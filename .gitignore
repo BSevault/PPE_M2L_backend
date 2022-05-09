@@ -2,8 +2,8 @@ node_modules
 *.pem
 
 # remove # later on next line
-#*.env
+*.env
 .vscode/settings.json
-Ubuntu*
+# Ubuntu*
 
 *.sh

@@ -22,7 +22,7 @@
     "resetDB": "cross-env npm run integrateDB & npm run integrateDummy & npm run integrateProcedures",
     "resetDBLight": "cross-env npm run integrateDB & npm run integrateProcedures & npm run integretaPermissionsDB & npm run integrateLightDummy",
     "resetBash": "./resetDB.sh",
-    "resetWin": "resetDB.sh windows"
+    "resetWin": "resetDB.sh"
   },
   "repository": {
     "type": "git",

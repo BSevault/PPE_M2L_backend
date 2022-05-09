@@ -52,7 +52,7 @@ VALUES
 
 INSERT INTO TICKETS (date_ticket, date_probleme, description, id_user, id_salle, id_produit, is_resolved)
 VALUES
-('2022-02-17', '2022-02-02', 'description user5 ticket 2', 5, 7, 5, 0),
+('2022-02-17', '2022-02-02', 'description user5 ticket 2 é è ï Ë', 5, 7, 5, 0),
 ('2022-02-12', '2022-02-03', 'description user5 ticket 1', 5, 1, 2, 0),
 ('2022-03-07', '2022-02-25', 'description user3 ticket 1', 3, 1, 7, 0),
 ('2022-03-17', '2022-03-05', 'description user5 ticket 3', 5, 4, 3, 0),

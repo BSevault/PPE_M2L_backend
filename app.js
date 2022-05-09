@@ -7,13 +7,15 @@ const session = require('express-session');
 
 
 const pool = require('./config/database');
-// const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 
 
 const app = express();
 
 //middleware
 app.use(express.json());
+app.use(cookieParser());
+
 if (process.env.NODE_ENV == 'dev') {
     app.use(cors(
         {
@@ -24,8 +26,8 @@ if (process.env.NODE_ENV == 'dev') {
             //     "http://172.31.19.222:3000", "http://192.168.0.47:80", "http://192.168.0.47:3000", 
             //     "http://192.168.0.47"
             // ]
-            // origin: true,
-            origin: 'localhost:3000',
+            origin: true,
+            // origin: 'localhost:3000',
             // methods:['GET', 'POST', 'PUT', 'DELETE'],
         }
     ));

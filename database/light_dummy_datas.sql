@@ -11,18 +11,30 @@ VALUES
 ('Marley', 'Bob', 'bob@gmail.com','0678912345', MD5('marley'), '1987-01-01', 'marley_adresse');
 
 INSERT INTO SALLES VALUES (1, 'N.A.', 'N.A.', 0, 0, 0); --Première "vide" pour les tickets sans id_produit
-INSERT INTO SALLES (nom, description, capacite, prix)
-VALUES 
-('Majorelle', 'Service de sonorisation et vidéo projecteur disponible', 30, 2000),
-('Restauration et convivialité', 'Service de sonorisation et vidéo projecteur disponible', 50, 3000),
-('Grüber', 'Vidéo projecteur disponible', 20, 1000),
-('Lamour', 'Service de sonorisation et vidéo projecteur disponible', 25, 1500),
-('Amphithéâtre', 'Service de sonorisation et vidéo projecteur disponible', 100, 3500),
-('Longwy', 'Vidéo projecteur disponible', 15, 800),
-('Daum', 'Vidéo projecteur disponible', 20, 1000),
-('Gallé', 'Vidéo projecteur disponible', 20, 1000),
-('Corbin', 'Vidéo projecteur disponible', 20, 1000),
-('Baccarat', 'Vidéo projecteur disponible', 20, 1000);
+
+CALL createSalle ('Majorelle', 'Service de sonorisation et vidéo projecteur disponible', 30, 2000, 1);
+CALL createSalle ('Restauration et convivialité', 'Service de sonorisation et vidéo projecteur disponible', 50, 3000, 1);
+CALL createSalle ('Grüber', 'Vidéo projecteur disponible', 20, 1000, 1);
+CALL createSalle ('Lamour', 'Service de sonorisation et vidéo projecteur disponible', 25, 1500, 1);
+CALL createSalle ('Amphithéâtre', 'Service de sonorisation et vidéo projecteur disponible', 100, 3500, 1);
+CALL createSalle ('Longwy', 'Vidéo projecteur disponible', 15, 800, 1);
+CALL createSalle ('Daum', 'Vidéo projecteur disponible', 20, 1000, 1);
+CALL createSalle ('Gallé', 'Vidéo projecteur disponible', 20, 1000, 1);
+CALL createSalle ('Corbin', 'Vidéo projecteur disponible', 20, 1000, 1);
+CALL createSalle ('Baccarat', 'Vidéo projecteur disponible', 20, 1000, 1);
+
+-- INSERT INTO SALLES (nom, description, capacite, prix)
+-- VALUES 
+-- ('Majorelle', 'Service de sonorisation et vidéo projecteur disponible', 30, 2000),
+-- ('Restauration et convivialité', 'Service de sonorisation et vidéo projecteur disponible', 50, 3000),
+-- ('Grüber', 'Vidéo projecteur disponible', 20, 1000),
+-- ('Lamour', 'Service de sonorisation et vidéo projecteur disponible', 25, 1500),
+-- ('Amphithéâtre', 'Service de sonorisation et vidéo projecteur disponible', 100, 3500),
+-- ('Longwy', 'Vidéo projecteur disponible', 15, 800),
+-- ('Daum', 'Vidéo projecteur disponible', 20, 1000),
+-- ('Gallé', 'Vidéo projecteur disponible', 20, 1000),
+-- ('Corbin', 'Vidéo projecteur disponible', 20, 1000),
+-- ('Baccarat', 'Vidéo projecteur disponible', 20, 1000);
 
 INSERT INTO PRODUITS VALUES (1, 'N.A.', 'N.A.', 0, 0, 0); --Première "vide" pour les tickets sans id_produit
 INSERT INTO PRODUITS (nom_produit, description, qte_dispo, prix)

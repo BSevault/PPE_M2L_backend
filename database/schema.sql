@@ -23,7 +23,7 @@ CREATE TABLE USERS(
 CREATE TABLE SALLES(
    id INT NOT NULL AUTO_INCREMENT,
    nom TEXT NOT NULL,
-   description VARCHAR(255),
+   description TEXT,
    capacite INT NOT NULL,
    prix FLOAT NOT NULL,
    is_active BOOLEAN NOT NULL DEFAULT 1,

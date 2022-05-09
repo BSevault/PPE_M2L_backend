@@ -61,19 +61,23 @@ DB_PORT=3306            -> Port d'écoute de la base de données.
 Pour créer la base de données, insérer les procédures SQL et des données tests, et créer l'utilisateur webapp
 
 ##### Sous Windows
-Exécutez le script : `npm run resetDBLight`
+Exécutez le script : `npm run resetWin`
+Et entrez votre mot de passe d’utilisateur root MariaDB
 
 ##### Sous Linux 
 Exécutez la série de scripts :
 
 ``` bash
 sudo mariadb -u root -p <./database/schema.sql
-sudo mariadb -u root -p <./database/light_dummy_datas.sql
 sudo mariadb -u root -p <./database/procedures/p_produits.sql
 sudo mariadb -u root -p <./database/procedures/p_salles.sql
 sudo mariadb -u root -p <./database/procedures/p_users.sql
 sudo mariadb -u root -p <./database/permissions.sql
+sudo mariadb -u root -p <./database/light_dummy_datas.sql
 ```
+
+Ou utilisez le script suivant : `npm run resetLinux`
+Et entrez votre mot de passe d’utilisateur root MariaDB
 
 ## Lancement
 Une fois les étapes de l'intallation effectuée, éxécuter la commande 

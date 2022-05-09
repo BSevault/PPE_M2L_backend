@@ -65,7 +65,10 @@ Exécutez le script : `npm run resetWin`
 Et entrez votre mot de passe d’utilisateur root MariaDB
 
 ##### Sous Linux 
-Exécutez la série de scripts :
+Exécutez le script : `npm run resetLinux`
+Et entrez votre mot de passe d’utilisateur root MariaDB
+
+Ou exécutez la série de commandes :
 
 ``` bash
 sudo mariadb -u root -p <./database/schema.sql
@@ -75,9 +78,6 @@ sudo mariadb -u root -p <./database/procedures/p_users.sql
 sudo mariadb -u root -p <./database/permissions.sql
 sudo mariadb -u root -p <./database/light_dummy_datas.sql
 ```
-
-Ou utilisez le script suivant : `npm run resetLinux`
-Et entrez votre mot de passe d’utilisateur root MariaDB
 
 ## Lancement
 Une fois les étapes de l'intallation effectuée, éxécuter la commande 

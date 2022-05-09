@@ -12,16 +12,16 @@ VALUES
 
 INSERT INTO SALLES VALUES (1, 'N.A.', 'N.A.', 0, 0, 0); --Première "vide" pour les tickets sans id_produit
 
-CALL createSalle ('Majorelle', 'Service de sonorisation et vidéo projecteur disponible', 30, 2000, 1);
-CALL createSalle ('Restauration et convivialité', 'Service de sonorisation et vidéo projecteur disponible', 50, 3000, 1);
-CALL createSalle ('Grüber', 'Vidéo projecteur disponible', 20, 1000, 1);
-CALL createSalle ('Lamour', 'Service de sonorisation et vidéo projecteur disponible', 25, 1500, 1);
-CALL createSalle ('Amphithéâtre', 'Service de sonorisation et vidéo projecteur disponible', 100, 3500, 1);
-CALL createSalle ('Longwy', 'Vidéo projecteur disponible', 15, 800, 1);
-CALL createSalle ('Daum', 'Vidéo projecteur disponible', 20, 1000, 1);
-CALL createSalle ('Gallé', 'Vidéo projecteur disponible', 20, 1000, 1);
-CALL createSalle ('Corbin', 'Vidéo projecteur disponible', 20, 1000, 1);
-CALL createSalle ('Baccarat', 'Vidéo projecteur disponible', 20, 1000, 1);
+CALL createSalle('Majorelle', 'Service de sonorisation et vidéo projecteur disponible', 30, 2000, 1);
+CALL createSalle('Restauration et convivialité', 'Service de sonorisation et vidéo projecteur disponible', 50, 3000, 1);
+CALL createSalle('Grüber', 'Vidéo projecteur disponible', 20, 1000, 1);
+CALL createSalle('Lamour', 'Service de sonorisation et vidéo projecteur disponible', 25, 1500, 1);
+CALL createSalle('Amphithéâtre', 'Service de sonorisation et vidéo projecteur disponible', 100, 3500, 1);
+CALL createSalle('Longwy', 'Vidéo projecteur disponible', 15, 800, 1);
+CALL createSalle('Daum', 'Vidéo projecteur disponible', 20, 1000, 1);
+CALL createSalle('Gallé', 'Vidéo projecteur disponible', 20, 1000, 1);
+CALL createSalle('Corbin', 'Vidéo projecteur disponible', 20, 1000, 1);
+CALL createSalle('Baccarat', 'Vidéo projecteur disponible', 20, 1000, 1);
 
 -- INSERT INTO SALLES (nom, description, capacite, prix)
 -- VALUES 
@@ -62,7 +62,7 @@ VALUES
 -- ('2022-03-11', 0, 1, 5),
 -- ('2022-03-23', 0, 1, 4);
 
-INSERT INTO TICKETS (date_ticket, date_probleme, TEXT description, id_user, id_salle, id_produit, is_resolved)
+INSERT INTO TICKETS (date_ticket, date_probleme, description, id_user, id_salle, id_produit, is_resolved)
 VALUES
 ('2022-02-17', '2022-02-02', 'description user5 ticket 2 é è ï Ë', 5, 7, 5, 0),
 ('2022-02-12', '2022-02-03', 'description user5 ticket 1', 5, 1, 2, 0),

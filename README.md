@@ -34,10 +34,10 @@ Dans celui-ci on va créer un utilisateur "webapp" qui n'aura que les droits d'e
 Script SQL à inclure dans le fichier ***permissions.sql*** :
 
 ```sql
-CREATE OR REPLACE USER 'webapp'@'localhost' IDENTIFIED BY 'Zod€7c@arT48';
+CREATE OR REPLACE USER 'webapp'@'localhost' IDENTIFIED BY 'PopCorn2Bret@gn€';
 GRANT EXECUTE ON M2L_DB.* TO 'webapp'@'localhost';
 ```
-Le mot de passe `Zod€7c@arT48` est à titre indicatif, vous pouvez mettre celui que vous désirez.
+Le mot de passe `PopCorn2Bret@gn€` est à titre indicatif, vous pouvez mettre celui que vous désirez.
 
 #### Création des variables d'environnements
 

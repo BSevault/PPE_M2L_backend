@@ -88,4 +88,4 @@ Pour s'assurer que l'on peut bien communiquer avec notre API, ouvrir un navigate
 
 Le résultat doit être <b>`{"success":"Bonjour, vous êtes sur l'api M2L"}`</b>.
 Si tel est le cas, tout est fonctionnel.
-Sinon vérifier que tous les logiciels <b>prérequis</b> sont correctement installés. Si le problème persiste vous pouvez nous contacter par le bien de ce repo. 
+Sinon vérifier que tous les logiciels <b>prérequis</b> sont correctement installés. Si le problème persiste vous pouvez nous contacter par le biais de ce repo. 

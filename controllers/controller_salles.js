@@ -14,7 +14,7 @@ module.exports = {
         await call(res, async (connexion) => {
             const result = await connexion.query("CALL getActiveSalles();");
             console.log(result[0]);
-            res.setHeader("content-type", "application/json ; charset=utf-8");
+            res.set({ 'content-type': 'application/json; charset=utf-8' });
             return res.status(200).json({ success: result[0] });
         });
     },

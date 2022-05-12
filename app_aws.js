@@ -4,45 +4,67 @@ require('dotenv').config({ path: `./config/${process.env.NODE_ENV}.env` });
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
-
-
+// const cookieSession = require('cookie-session');
+const MariaDBStore = require('express-session-mariadb-store');
+// const MySQLStore = require('express-mysql-session')(session);
 const pool = require('./config/database');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 
 
 const app = express();
 
 //middleware
 app.use(express.json());
-app.use(cookieParser());
+app.use(cors(
+    {
+        credentials: true,
+        //     origin: [
+        //         "http://localhost:3000", "http://192.168.0.61:3000", "http://ec2-15-188-50-121.eu-west-3.compute.amazonaws.com", 
+        //     "http://15.188.50.121", "http://192.168.1.46", "http://15.237.109.149:3000", 
+        //     "http://172.31.19.222:3000", "http://192.168.0.47:80", "http://192.168.0.47:3000", 
+        //     "http://192.168.0.47"
+        // ]
+        origin: true,
+        // methods:['GET', 'POST', 'PUT', 'DELETE'],
+    }
+));
+app.set('trust proxy', 1)
+// app.use(cookieParser());
 
-if (process.env.NODE_ENV == 'dev') {
-    app.use(cors(
-        {
-            credentials: true,
-            //     origin: [
-            //         "http://localhost:3000", "http://192.168.0.61:3000", "http://ec2-15-188-50-121.eu-west-3.compute.amazonaws.com", 
-            //     "http://15.188.50.121", "http://192.168.1.46", "http://15.237.109.149:3000", 
-            //     "http://172.31.19.222:3000", "http://192.168.0.47:80", "http://192.168.0.47:3000", 
-            //     "http://192.168.0.47"
-            // ]
-            origin: true,
-            // origin: 'localhost:3000',
-            // methods:['GET', 'POST', 'PUT', 'DELETE'],
-        }
-    ));
-}
-
-
+// store bundle
+// ============================
+// var options = {
+//     host: process.env.HOST,
+//     user: process.env.USER,
+//     password: process.env.PASSWORD,
+//     database: process.env.DATABASE,
+//     port: process.env.DB_PORT
+// }
+// var sessionStore = new MySQLStore(options);
+// =============================
 
 app.use(session({
+    // =========================
+    store: new MariaDBStore({ pool: pool }),
+    // store: sessionStore,
+    // =========================
     secret: 'ma_session_super_secret_key',
-    // store ?
+    // proxy: true,
     saveUninitialized: false,
     resave: false,
-    cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 },
+    cookie: { path: '/', httpOnly: true, maxAge: 1000 * 60 * 60 * 24, secure: true, sameSite: 'none' },
+    rolling: true,
+     // secure: false
 }));
 
+// app.use(cookieSession({
+//     name: 'session',
+//     secret: 'cat on keyboard',
+//     // sameSite: 'none',
+//     // secure: true,
+//     // Cookie Options
+//     maxAge: 24 * 60 * 60 * 1000 // 24 hours
+//   }))
 
 app.get('/api', (_, res) => {
     res.status(200).json({ success: "Bonjour, vous êtes sur l'api M2L" });

@@ -43,5 +43,6 @@ router
 router
     .route('/:user_id/adm')
     .post(adminCommand)
+    
 
 module.exports = router;

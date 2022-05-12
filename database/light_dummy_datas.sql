@@ -2,26 +2,39 @@ USE M2L_DB;
 
 INSERT INTO USERS (nom, prenom, email, tel, password, ddn, adresse)
 VALUES
-('test1_nom', 'test1_prenom', 'test1@email.com','0123456789', SHA1('test1'), '1981-01-01', 'test1_adresse'),
-('test2_nom', 'test2_prenom', 'test2@email.com','0234567891', SHA1('test2'), '1982-01-01', 'test2_adresse'),
-('test3_nom', 'test3_prenom', 'test3@email.com','0345678912', SHA1('test3'), '1983-01-01', 'test3_adresse'),
-('test4_nom', 'test4_prenom', 'test4@email.com','0456789123', SHA1('test4'), '1984-01-01', 'test4_adresse'),
-('test5_nom', 'test5_prenom', 'test5@email.com','0567891234', SHA1('test5'), '1985-01-01', 'test5_adresse'),
-('test6_nom', 'test6_prenom', 'test6@email.com','0678912345', SHA1('test6'), '1986-01-01', 'test6_adresse');
+('test1_nom', 'test1_prenom', 'test1@email.com','0123456789', MD5('test1'), '1981-01-01', 'test1_adresse'),
+('test2_nom', 'test2_prenom', 'test2@email.com','0234567891', MD5('test2'), '1982-01-01', 'test2_adresse'),
+('test3_nom', 'test3_prenom', 'test3@email.com','0345678912', MD5('test3'), '1983-01-01', 'test3_adresse'),
+('test4_nom', 'test4_prenom', 'test4@email.com','0456789123', MD5('test4'), '1984-01-01', 'test4_adresse'),
+('test5_nom', 'test5_prenom', 'test5@email.com','0567891234', MD5('test5'), '1985-01-01', 'test5_adresse'),
+('test6_nom', 'test6_prenom', 'test6@email.com','0678912345', MD5('test6'), '1986-01-01', 'test6_adresse'),
+('Marley', 'Bob', 'bob@gmail.com','0678912345', MD5('marley'), '1987-01-01', 'marley_adresse');
 
 INSERT INTO SALLES VALUES (1, 'N.A.', 'N.A.', 0, 0, 0); --Première "vide" pour les tickets sans id_produit
-INSERT INTO SALLES (nom, description, capacite, prix)
-VALUES 
-('Majorelle', 'Service de sonorisation et vidéo projecteur disponible', 30, 2000),
-('Restauration et convivialité', 'Service de sonorisation et vidéo projecteur disponible', 50, 3000),
-('Grüber', 'Vidéo projecteur disponible', 20, 1000),
-('Lamour', 'Service de sonorisation et vidéo projecteur disponible', 25, 1500),
-('Amphithéâtre', 'Service de sonorisation et vidéo projecteur disponible', 100, 3500),
-('Longwy', 'Vidéo projecteur disponible', 15, 800),
-('Daum', 'Vidéo projecteur disponible', 20, 1000),
-('Gallé', 'Vidéo projecteur disponible', 20, 1000),
-('Corbin', 'Vidéo projecteur disponible', 20, 1000),
-('Baccarat', 'Vidéo projecteur disponible', 20, 1000);
+
+CALL createSalle('Majorelle', 'Service de sonorisation et vidéo projecteur disponible', 30, 2000, 1);
+CALL createSalle('Restauration et convivialité', 'Service de sonorisation et vidéo projecteur disponible', 50, 3000, 1);
+CALL createSalle('Grüber', 'Vidéo projecteur disponible', 20, 1000, 1);
+CALL createSalle('Lamour', 'Service de sonorisation et vidéo projecteur disponible', 25, 1500, 1);
+CALL createSalle('Amphithéâtre', 'Service de sonorisation et vidéo projecteur disponible', 100, 3500, 1);
+CALL createSalle('Longwy', 'Vidéo projecteur disponible', 15, 800, 1);
+CALL createSalle('Daum', 'Vidéo projecteur disponible', 20, 1000, 1);
+CALL createSalle('Gallé', 'Vidéo projecteur disponible', 20, 1000, 1);
+CALL createSalle('Corbin', 'Vidéo projecteur disponible', 20, 1000, 1);
+CALL createSalle('Baccarat', 'Vidéo projecteur disponible', 20, 1000, 1);
+
+-- INSERT INTO SALLES (nom, description, capacite, prix)
+-- VALUES 
+-- ('Majorelle', 'Service de sonorisation et vidéo projecteur disponible', 30, 2000),
+-- ('Restauration et convivialité', 'Service de sonorisation et vidéo projecteur disponible', 50, 3000),
+-- ('Grüber', 'Vidéo projecteur disponible', 20, 1000),
+-- ('Lamour', 'Service de sonorisation et vidéo projecteur disponible', 25, 1500),
+-- ('Amphithéâtre', 'Service de sonorisation et vidéo projecteur disponible', 100, 3500),
+-- ('Longwy', 'Vidéo projecteur disponible', 15, 800),
+-- ('Daum', 'Vidéo projecteur disponible', 20, 1000),
+-- ('Gallé', 'Vidéo projecteur disponible', 20, 1000),
+-- ('Corbin', 'Vidéo projecteur disponible', 20, 1000),
+-- ('Baccarat', 'Vidéo projecteur disponible', 20, 1000);
 
 INSERT INTO PRODUITS VALUES (1, 'N.A.', 'N.A.', 0, 0, 0); --Première "vide" pour les tickets sans id_produit
 INSERT INTO PRODUITS (nom_produit, description, qte_dispo, prix)
@@ -51,7 +64,7 @@ VALUES
 
 INSERT INTO TICKETS (date_ticket, date_probleme, description, id_user, id_salle, id_produit, is_resolved)
 VALUES
-('2022-02-17', '2022-02-02', 'description user5 ticket 2', 5, 7, 5, 0),
+('2022-02-17', '2022-02-02', 'description user5 ticket 2 é è ï Ë', 5, 7, 5, 0),
 ('2022-02-12', '2022-02-03', 'description user5 ticket 1', 5, 1, 2, 0),
 ('2022-03-07', '2022-02-25', 'description user3 ticket 1', 3, 1, 7, 0),
 ('2022-03-17', '2022-03-05', 'description user5 ticket 3', 5, 4, 3, 0),
@@ -60,6 +73,8 @@ VALUES
 ('2022-02-25', '2022-02-06', 'description user2 ticket 1', 2, 2, 3, 0),
 ('2022-03-30', '2022-02-01', 'description user2 ticket 2', 2, 2, 8, 0),
 ('2022-03-15', '2022-03-01', 'description user2 ticket 3', 2, 1, 1, 0);
+
+CALL createUserTicket('2022-02-17', 'description user5 ticket 2 é è ï Ë', 5, 7, 5);
 
 
 INSERT INTO PARTICIPANTS (covid_positive, id_user, id_reservation)

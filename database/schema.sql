@@ -2,6 +2,7 @@
 DROP DATABASE IF EXISTS M2L_DB;
 
 CREATE DATABASE M2L_DB;
+-- DEFAULT CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
 
 USE M2L_DB;
 
@@ -21,8 +22,8 @@ CREATE TABLE USERS(
 
 CREATE TABLE SALLES(
    id INT NOT NULL AUTO_INCREMENT,
-   nom VARCHAR(255) NOT NULL,
-   description VARCHAR(255),
+   nom TEXT NOT NULL,
+   description TEXT,
    capacite INT NOT NULL,
    prix FLOAT NOT NULL,
    is_active BOOLEAN NOT NULL DEFAULT 1,
@@ -61,6 +62,8 @@ CREATE TABLE RESERVATIONS(
    id_user INT NOT NULL,
    id_salle INT NOT NULL,
    is_paid BOOLEAN NOT NULL DEFAULT 0,
+   is_covid BOOLEAN NOT NULL DEFAULT 0,
+   check_participants BOOLEAN NOT NULL DEFAULT false,
    PRIMARY KEY(id),
    FOREIGN KEY(id_salle) REFERENCES SALLES(id),
    FOREIGN KEY(id_user) REFERENCES USERS(id)
@@ -94,9 +97,16 @@ CREATE TABLE PARTICIPANTS(
    covid_positive BOOLEAN NOT NULL,
    id_user INT NOT NULL,
    id_reservation INT NOT NULL,
+   is_present BOOLEAN NOT NULL DEFAULT false,
    PRIMARY KEY(id),
    FOREIGN KEY(id_user) REFERENCES USERS(id),
    FOREIGN KEY(id_reservation) REFERENCES RESERVATIONS(id) ON DELETE CASCADE
+);
+
+CREATE TABLE session(
+  sid                     VARCHAR(100) PRIMARY KEY NOT NULL,   
+  session                 VARCHAR(2048) DEFAULT '{}',   
+  lastSeen                DATETIME DEFAULT NOW() 
 );
 
 -- INSERT INTO SALLES (nom, description, capacite, prix)

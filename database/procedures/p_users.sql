@@ -9,7 +9,7 @@ DELIMITER //
 CREATE OR REPLACE PROCEDURE createAccount(IN p_nom VARCHAR(255), IN p_prenom VARCHAR(255), IN p_email VARCHAR(255), IN p_tel VARCHAR(50), IN p_password VARCHAR(255), IN p_ddn VARCHAR(255), IN p_adresse VARCHAR(255))
 BEGIN
 	INSERT INTO USERS(nom, prenom, email, tel, password, ddn, adresse)
-	VALUES (p_nom, p_prenom, p_email, p_tel, SHA1(p_password), p_ddn, p_adresse);
+	VALUES (p_nom, p_prenom, p_email, p_tel, MD5(p_password), p_ddn, p_adresse);
 END //
 
 -- update user // ok route
@@ -27,9 +27,9 @@ CREATE OR REPLACE PROCEDURE changePassword(IN p_id INT, IN p_old_password VARCHA
 BEGIN
 	UPDATE USERS
 	SET
-		password = SHA1(p_new_password)
+		password = MD5(p_new_password)
 	WHERE
-		id = p_id AND SHA1(p_old_password) = password;
+		id = p_id AND MD5(p_old_password) = password;
 END //
 
 -- active status user // ok route
@@ -58,7 +58,7 @@ CREATE OR REPLACE PROCEDURE checkUserPassword(IN p_id INT, IN p_password VARCHAR
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
     SELECT id FROM USERS
-    WHERE USERS.id = p_id AND password = SHA1(p_password);
+    WHERE USERS.id = p_id AND password = MD5(p_password);
 END //
 
 -- get one user by email and password when log in
@@ -165,7 +165,7 @@ END //
 -- create user reservation // ok route
 CREATE OR REPLACE PROCEDURE createReservation (IN p_date VARCHAR(255), IN p_user_id int, IN p_salle_id int, IN p_is_paid BOOLEAN)
 BEGIN
-	INSERT INTO RESERVATIONS (date_resa, id_user, id_salle, is_paid) VALUES (p_date, p_user_id, p_salle_id, p_is_paid);
+	INSERT INTO RESERVATIONS (date_resa, id_user, id_salle, is_paid, is_covid) VALUES (p_date, p_user_id, p_salle_id, p_is_paid, 0);
 	CALL createParticipationUserId (p_user_id, (SELECT id FROM RESERVATIONS WHERE date_resa = p_date AND id_user = p_user_id AND id_salle = P_salle_id));
 	CALL createUserPayment(p_user_id, 1, (SELECT id FROM RESERVATIONS WHERE date_resa = p_date AND id_user = p_user_id AND id_salle = P_salle_id), 2);
 END //
@@ -197,7 +197,7 @@ END //
 -- voir ses réservations // ok route
 CREATE OR REPLACE PROCEDURE getReservations (IN p_user_id int)
 BEGIN
-	SELECT r.id, s.nom, r.date_resa, r.is_paid FROM RESERVATIONS r
+	SELECT r.id, s.nom, r.date_resa, r.is_paid, is_covid FROM RESERVATIONS r
 	INNER JOIN SALLES s
 	ON r.id_salle = s.id
 	WHERE r.id_user = p_user_id;
@@ -217,7 +217,7 @@ END //
 -- get user reservations (participants: (nom/prénom))
 CREATE OR REPLACE PROCEDURE getUserReservations (IN p_user_id INT)
 BEGIN
-	SELECT r.id, s.nom, s.description, r.date_resa, s.prix, is_paid  FROM RESERVATIONS r
+	SELECT r.id, s.nom, s.description, r.date_resa, s.prix, is_paid, is_covid  FROM RESERVATIONS r
 	INNER JOIN SALLES s
 	ON r.id_salle = s.id
 	WHERE r.id_user = p_user_id;
@@ -226,7 +226,7 @@ END //
     -- reservations avant date du jour (exclus) 
 CREATE OR REPLACE PROCEDURE getBeforeReservation (IN p_user_id int)
 BEGIN
-	SELECT r.id, s.nom, s.description, r.date_resa, s.prix, is_paid  FROM RESERVATIONS r
+	SELECT r.id, s.nom, s.description, r.date_resa, s.prix, is_paid, is_covid  FROM RESERVATIONS r
 	INNER JOIN SALLES s
 	ON r.id_salle = s.id
 	WHERE r.id_user = p_user_id AND date_resa < DATE(NOW());
@@ -235,7 +235,7 @@ END //
     -- reservations après date du jour (inclus)
 CREATE OR REPLACE PROCEDURE getFutureReservation (IN p_user_id int)
 BEGIN
-	SELECT r.id, s.nom, s.description, r.date_resa, s.prix, is_paid  FROM RESERVATIONS r
+	SELECT r.id, s.nom, s.description, r.date_resa, s.prix, r.is_paid, r.check_participants  FROM RESERVATIONS r
 	INNER JOIN SALLES s
 	ON r.id_salle = s.id
 	WHERE r.id_user = p_user_id AND date_resa >= DATE(NOW());
@@ -278,14 +278,14 @@ END //
     -- participations avant date du jour (exclus)
 CREATE OR REPLACE PROCEDURE getUserParticipationBefore (IN p_user_id INT)
 BEGIN
-	SELECT s.nom nom_salle, r.date_resa, u.nom, u.prenom, u.email FROM RESERVATIONS r
+	SELECT s.nom nom_salle, r.date_resa, u.nom, u.prenom, u.email, r.is_covid FROM RESERVATIONS r
 	INNER JOIN PARTICIPANTS p
 	ON p.id_reservation = r.id
 	INNER JOIN SALLES s
 	ON r.id_salle = s.id
 	INNER JOIN USERS u
 	ON u.id = r.id_user
-	WHERE p_user_id = p.id_user AND r.date_resa < DATE(NOW());
+	WHERE p_user_id = p.id_user AND r.date_resa < DATE(NOW()) AND p.is_present = 1;
 END //
         
     -- participations après date du jour (inclus)
@@ -310,9 +310,10 @@ BEGIN
 			p_id_resa);
 END //
 
+-- used when a reservation is created, to add admin to reservation list
 CREATE OR REPLACE PROCEDURE createParticipationUserId (IN p_id_user INT, IN p_id_resa INT)
 BEGIN
-	INSERT INTO PARTICIPANTS (covid_positive, id_user, id_reservation) VALUES (0, p_id_user, p_id_resa);
+	INSERT INTO PARTICIPANTS (covid_positive, id_user, id_reservation, is_present) VALUES (0, p_id_user, p_id_resa, 1);
 END //
 
 
@@ -342,18 +343,38 @@ BEGIN
 		SELECT id FROM RESERVATIONS
 		WHERE date_resa BETWEEN DATE(p_date_positive) AND ADDDATE(DATE(p_date_positive), INTERVAL 10 DAY)
 	);
+
+	UPDATE RESERVATIONS r
+	INNER JOIN PARTICIPANTS p
+	ON p.id_reservation = r.id
+	SET is_covid = 1
+	WHERE p.covid_positive = 1 AND p.is_present = 1 AND r.date_resa <= DATE(NOW());
 END //
 
 -- get participations with resa_id
 CREATE OR REPLACE PROCEDURE getResaParticipants(IN p_resa_id INT)
 BEGIN
-	SELECT u.id, u.nom, u.prenom, u.email
+	SELECT u.id, u.nom, u.prenom, u.email, p.is_present
 	FROM USERS u
 	INNER JOIN PARTICIPANTS p
 	ON u.id = p.id_user
 	WHERE p.id_reservation = p_resa_id;
 
 END //
+
+CREATE OR REPLACE PROCEDURE updateIsPresentParticipants(IN p_resa_id INT, IN p_id_user INT, IN p_isPresent INT)
+BEGIN
+	UPDATE PARTICIPANTS
+	SET is_present = p_isPresent
+	WHERE id_user = p_id_user AND id_reservation = p_resa_id;
+END //
+
+CREATE OR REPLACE PROCEDURE updateCheckResa(IN p_resa_id INT, IN p_id_user INT)
+BEGIN
+	UPDATE RESERVATIONS
+	SET check_participants = 1
+	WHERE id = p_resa_id AND id_user = p_id_user;
+END//
 
 
 

@@ -6,7 +6,7 @@ DELIMITER //
 CREATE OR REPLACE PROCEDURE getAllProducts()
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
-    SELECT id, nom_produit, description, qte_dispo, prix
+    SELECT id, nom_produit, description, qte_dispo, prix, is_active
     FROM PRODUITS;
 END //
 
@@ -14,7 +14,7 @@ END //
 CREATE OR REPLACE PROCEDURE getProductById(IN p_id INT)
 NOT DETERMINISTIC CONTAINS SQL
 BEGIN
-    SELECT id, nom_produit, description, qte_dispo, prix
+    SELECT id, nom_produit, description, qte_dispo, prix, is_active
     FROM PRODUITS
     WHERE id = p_id;
 END //

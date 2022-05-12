@@ -1,0 +1,25 @@
+Trame pour la documentation du projet
+
+conception
+	Doc fonctionnel => contexte m2l => "le client nous a demandé...blablabla"
+	intro de l'équipe
+	choix des technos
+	dérouler des étapes de la conception de l'appli
+		=> choix du projet -> analyse du besoin client et reformulation
+		=> use case
+		=> BDD, schéma entité association/MLD
+		=> procédures
+		=> backend
+		=> tests postman du backend -> tests unitaires + tests d'intégrations
+		=> frontend
+		=> découpage du frontend en composant
+
+	
+	gestion de projet
+		=> repartition des tâches
+		=> gantt
+
+doc technique readme
+	npm install
+	éditer le fichier .env
+		-> quoi éditer dedans.

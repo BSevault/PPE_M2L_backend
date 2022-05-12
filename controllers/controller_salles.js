@@ -5,6 +5,7 @@ module.exports = {
     getAllSalles: async (_, res) => {
         await call(res, async (connexion) => {
             const result = await connexion.query("CALL getAllSalles();");
+            console.log(result[0]);
             return res.status(200).json({ success: result[0]});
         });
     },
@@ -12,6 +13,8 @@ module.exports = {
     getActiveSalles: async (_, res) => {
         await call(res, async (connexion) => {
             const result = await connexion.query("CALL getActiveSalles();");
+            console.log(result[0]);
+            res.set({ 'content-type': 'application/json; charset=utf-8' });
             return res.status(200).json({ success: result[0] });
         });
     },
@@ -57,6 +60,5 @@ module.exports = {
             return res.status(200).json({ success: result });
         });
     }
-
 
 }

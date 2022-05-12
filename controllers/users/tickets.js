@@ -8,6 +8,7 @@ module.exports = {
             const { user_id } = req.params;
             await call(res, async (connexion) => {
                 const result = await connexion.query("CALL getUserTickets(?)", [user_id]);
+                console.log(result[0]);
                 return res.status(200).json({ success: result[0] });
             });
         },

@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod": "cross-env NODE_ENV=prod node app.js",
     "dev": "cross-env NODE_ENV=dev nodemon app.js",
-    "devlinux": "cross-env NODE_ENV=devlinux nodemon app.js",
+    "devlinux": "cross-env NODE_ENV=devlinux nodemon app_aws.js",
+    "prodlinux": "cross-env NODE_ENV=prodlinux node app_aws.js",
+    "devgefor": "cross-env NODE_ENV=devgefor nodemon app.js",
+    "prodgefor": "cross-env NODE_ENV=prodgefor node app.js",
     "integrateDB": "cross-env mariadb -u root -p <./database/schema.sql",
     "integrateDummy": "cross-env mariadb -u root -p <./database/dummy_datas.sql",
     "integrateLightDummy": "cross-env chcp 65001 | mariadb -u root -p <./database/light_dummy_datas.sql",
@@ -17,7 +20,9 @@
     "integretaPermissionsDB": "cross-env mariadb -u root -p <./database/permissions.sql",
     "integrateProcedures": "cross-env npm run integrateProduitsProc & npm run integrateSallesProc & npm run integrateUsersProc",
     "resetDB": "cross-env npm run integrateDB & npm run integrateDummy & npm run integrateProcedures",
-    "resetDBLight": "cross-env npm run integrateDB & npm run integrateLightDummy & npm run integrateProcedures & npm run integretaPermissionsDB"
+    "resetDBLight": "cross-env npm run integrateDB & npm run integrateProcedures & npm run integretaPermissionsDB & npm run integrateLightDummy",
+    "resetBash": "./resetDB.sh",
+    "resetWin": "resetDB.sh windows"
   },
   "repository": {
     "type": "git",
@@ -34,13 +39,16 @@
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "dotenv": "^12.0.4",
-    "express": "^4.17.2",
+    "express": "^4.17.3",
+    "express-mysql-session": "^2.1.7",
     "express-promise-router": "^4.1.1",
     "express-session": "^1.17.2",
+    "express-session-mariadb-store": "^0.1.4",
     "lodash": "^4.17.21",
-    "mariadb": "^2.5.5"
+    "mariadb": "^2.5.6"
   }
 }

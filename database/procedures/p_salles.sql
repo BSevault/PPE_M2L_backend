@@ -30,7 +30,7 @@ BEGIN
 END //
 
 -- créer salle
-CREATE OR REPLACE PROCEDURE createSalle (IN p_nom VARCHAR(255), IN p_desc VARCHAR(255), IN p_capa INT, IN p_prix FLOAT, IN p_active BOOLEAN)
+CREATE OR REPLACE PROCEDURE createSalle (IN p_nom TEXT, IN p_desc TEXT, IN p_capa INT, IN p_prix FLOAT, IN p_active BOOLEAN)
 BEGIN
 	INSERT INTO SALLES (nom, description, capacite, prix, is_active) VALUES (p_nom, p_desc, p_capa, p_prix, p_active);
 END //

@@ -34,10 +34,10 @@ Dans celui-ci on va créer un utilisateur "webapp" qui n'aura que les droits d'e
 Script SQL à inclure dans le fichier ***permissions.sql*** :
 
 ```sql
-CREATE OR REPLACE USER 'webapp'@'localhost' IDENTIFIED BY 'Zod€7c@arT48';
+CREATE OR REPLACE USER 'webapp'@'localhost' IDENTIFIED BY 'PopCorn2Bret@gn€';
 GRANT EXECUTE ON M2L_DB.* TO 'webapp'@'localhost';
 ```
-Le mot de passe `Zod€7c@arT48` est à titre indicatif, vous pouvez mettre celui que vous désirez.
+Le mot de passe `PopCorn2Bret@gn€` est à titre indicatif, vous pouvez mettre celui que vous désirez.
 
 #### Création des variables d'environnements
 
@@ -61,18 +61,22 @@ DB_PORT=3306            -> Port d'écoute de la base de données.
 Pour créer la base de données, insérer les procédures SQL et des données tests, et créer l'utilisateur webapp
 
 ##### Sous Windows
-Exécutez le script : `npm run resetDBLight`
+Exécutez le script : `npm run resetWin`
+Et entrez votre mot de passe d’utilisateur root MariaDB
 
 ##### Sous Linux 
-Exécutez la série de scripts :
+Exécutez le script : `npm run resetLinux`
+Et entrez votre mot de passe d’utilisateur root MariaDB
+
+Ou exécutez la série de commandes :
 
 ``` bash
 sudo mariadb -u root -p <./database/schema.sql
-sudo mariadb -u root -p <./database/light_dummy_datas.sql
 sudo mariadb -u root -p <./database/procedures/p_produits.sql
 sudo mariadb -u root -p <./database/procedures/p_salles.sql
 sudo mariadb -u root -p <./database/procedures/p_users.sql
 sudo mariadb -u root -p <./database/permissions.sql
+sudo mariadb -u root -p <./database/light_dummy_datas.sql
 ```
 
 ## Lancement
@@ -88,4 +92,4 @@ Pour s'assurer que l'on peut bien communiquer avec notre API, ouvrir un navigate
 
 Le résultat doit être <b>`{"success":"Bonjour, vous êtes sur l'api M2L"}`</b>.
 Si tel est le cas, tout est fonctionnel.
-Sinon vérifier que tous les logiciels <b>prérequis</b> sont correctement installés. Si le problème persiste vous pouvez nous contacter par le bien de ce repo. 
+Sinon vérifier que tous les logiciels <b>prérequis</b> sont correctement installés. Si le problème persiste vous pouvez nous contacter par le biais de ce repo. 

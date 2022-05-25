@@ -53,7 +53,7 @@ PORT=3001               -> Port d'écoute du serveur Express
 HOST=localhost          -> Adresse de la base de données
 USER=webapp             -> Utilisateur de la base de donneés
 PASSWORD=Zod€7c@arT48   -> Mot de passe de l'utilisateur de la base de données
-DATABASE=m2l_db         -> Nom de la base de données dans MariaDB
+DATABASE=M2L_DB         -> Nom de la base de données dans MariaDB
 DB_PORT=3306            -> Port d'écoute de la base de données.
 ```
 

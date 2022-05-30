@@ -26,7 +26,7 @@ if (process.env.NODE_ENV == 'dev') {
             //     "http://172.31.19.222:3000", "http://192.168.0.47:80", "http://192.168.0.47:3000", 
             //     "http://192.168.0.47"
             // ]
-            origin: true,
+            // origin: true,
             // origin: 'localhost:3000',
             // methods:['GET', 'POST', 'PUT', 'DELETE'],
         }

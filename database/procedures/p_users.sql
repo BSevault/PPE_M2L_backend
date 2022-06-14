@@ -440,3 +440,22 @@ BEGIN
 DELETE FROM TICKETS
 	WHERE id_user = p_user_id AND id = p_ticket_id;
 END //
+
+
+
+------------------------------ LIGUES ------------------------------------
+
+    -- insert a ligue //
+CREATE OR REPLACE PROCEDURE addNewLigue (IN p_nom_ligue varchar(255))
+BEGIN
+	IF (SELECT count(*) FROM LIGUES)=1
+	THEN
+		UPDATE LIGUES
+		SET nb_membres = ((SELECT nb_membres FROM LIGUES WHERE nom = p_nom_ligue) + 1)
+		WHERE nom = p_nom_ligue;
+	ELSE
+		INSERT INTO LIGUES (nom, nb_membres)
+		VALUES(p_nom_ligue, 1);
+	END IF;
+END //
+

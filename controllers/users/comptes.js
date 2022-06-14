@@ -59,7 +59,7 @@ module.exports = {
             console.log(checkEmail[0][0]);
             if (checkEmail[0][0] === undefined) {
 
-                const result = await connexion.query("CALL createAccount(?,?,?,?,?,?,?)", params);
+                const result = await connexion.query("CALL createAccount(?,?,?,?,?,?,?,?)", params);
                 return res.status(200).json({ success: result });
             }
 

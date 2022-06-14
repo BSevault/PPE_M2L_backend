@@ -8,10 +8,11 @@ DELIMITER //
 -- create user // ok route
 CREATE OR REPLACE PROCEDURE createAccount(IN p_nom VARCHAR(255), IN p_prenom VARCHAR(255), IN p_email VARCHAR(255), IN p_tel VARCHAR(50), IN p_password VARCHAR(255), IN p_ddn VARCHAR(255), IN p_adresse VARCHAR(255), IN p_nom_ligue VARCHAR(255))
 BEGIN
-	INSERT INTO USERS(nom, prenom, email, tel, password, ddn, adresse)
-	VALUES (p_nom, p_prenom, p_email, p_tel, MD5(p_password), p_ddn, p_adresse);
-
 	CALL addNewLigue(p_nom_ligue);
+
+	INSERT INTO USERS(nom, prenom, email, tel, password, ddn, adresse, id_ligue)
+	VALUES (p_nom, p_prenom, p_email, p_tel, MD5(p_password), p_ddn, p_adresse, (SELECT id FROM LIGUES WHERE nom = p_nom_ligue));
+
 END //
 
 -- update user // ok route

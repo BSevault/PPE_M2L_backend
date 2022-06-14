@@ -102,6 +102,16 @@ CREATE TABLE PARTICIPANTS(
    FOREIGN KEY(id_reservation) REFERENCES RESERVATIONS(id) ON DELETE CASCADE
 );
 
+CREATE TABLE LIGUES (
+   id INT NOT NULL AUTO_INCREMENT,
+   nom VARCHAR(255) NOT NULL,
+   loc_amphi_convi BOOLEAN NOT NULL DEFAULT 0,
+   nb_loc_free INT DEFAULT 0,
+   id_user INT NOT NULL,
+   PRIMARY KEY(id),
+   FOREIGN KEY(id_user) REFERENCES USERS(id)
+);
+
 CREATE TABLE session(
   sid                     VARCHAR(100) PRIMARY KEY NOT NULL,   
   session                 VARCHAR(2048) DEFAULT '{}',   

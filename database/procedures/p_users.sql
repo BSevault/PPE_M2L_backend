@@ -67,6 +67,15 @@ BEGIN
     SELECT id FROM USERS 
 	WHERE email = p_email;
 END //
+
+CREATE OR REPLACE PROCEDURE resetPassword(IN p_id INT, IN p_new_password VARCHAR(255))
+BEGIN
+	UPDATE USERS
+	SET
+		password = MD5(p_new_password)
+	WHERE
+		id = p_id;
+END //
     
 
 

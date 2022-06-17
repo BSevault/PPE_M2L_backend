@@ -12,7 +12,9 @@ const {
     getAccountIdByEmail,
     logout,
     checkLoginStatus,
-    adminCommand
+    adminCommand,
+    checkEmail,
+    resetPassword,
 } = require('../../controllers/users/comptes');
 
 router
@@ -42,7 +44,12 @@ router
 
 router
     .route('/:user_id/adm')
-    .post(adminCommand)
+    .post(adminCommand);
+
+ router
+    .route('/reset/pwd')
+    .post(checkEmail)
+    .put(resetPassword);
     
 
 module.exports = router;

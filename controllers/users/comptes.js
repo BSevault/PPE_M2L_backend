@@ -166,6 +166,35 @@ module.exports = {
         // si pas admin => dégage pigeon
         return res.status(401).send()
 
-    }
+    },
+
+    checkEmail: async (req, res) => {
+        const { email } = req.body;
+        
+        try {
+            await call(res, async (connexion) => {
+                const resultId = await connexion.query("CALL getAccountIdByEmail(?)", [email]);
+                console.log(resultId[0][0]);
+                return res.status(200).json({ success : resultId[0][0]});
+            });
+        } catch (error) {
+            return next();
+        }
+    },
+
+    resetPassword: async (req, res) => {
+        const { user_id, new_password } = req.body;
+        
+        try {
+            await call(res, async (connexion) => {
+                const result = await connexion.query("CALL resetPassword(?,?)", [user_id, new_password]);
+                console.log(result);
+                return res.status(200).json({ success : result});
+            });
+        } catch (error) {
+            return res.status(400).json({ error : error.message});
+        }
+    },
+
 
 }
